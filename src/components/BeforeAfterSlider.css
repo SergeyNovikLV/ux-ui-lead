@@ -1,0 +1,146 @@
+/* Before/After Slider — classes only, no inline styles.
+   Slider position is set via --slider-position (number 0–100) on container. */
+
+.slider-container {
+  position: relative;
+  cursor: ew-resize;
+  border-radius: 12px;
+  overflow: hidden;
+  user-select: none;
+  border: 1px solid #E8E4DE;
+  width: 100%;
+}
+
+.slider-after-img {
+  width: 100%;
+  display: block;
+  vertical-align: top;
+  height: auto;
+}
+
+.slider-before-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: calc(var(--slider-position, 40) * 1%);
+}
+
+.slider-before-img {
+  max-width: none;
+  display: block;
+  height: 100%;
+  width: calc(10000% / var(--slider-position, 40));
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.slider-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #fff;
+  transform: translateX(-50%);
+  left: calc(var(--slider-position, 40) * 1%);
+  pointer-events: none;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--slider-position, 40) * 1%);
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  pointer-events: none;
+}
+
+.slider-handle-arrow {
+  width: 22px;
+  height: 22px;
+  color: var(--color-accent, #E87722);
+}
+
+.slider-handle-arrow--left {
+  margin-right: 2px;
+}
+
+.slider-handle-arrow--right {
+  margin-left: 2px;
+}
+
+.slider-label-before {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 4px 10px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.slider-label-after {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(232, 119, 34, 0.8);
+  padding: 4px 10px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.slider-captions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.slider-caption-before {
+  font-size: var(--font-size-caption);
+  color: #8C877F;
+  font-family: var(--font-sans), sans-serif;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.slider-caption-after {
+  font-size: var(--font-size-caption);
+  color: #444;
+  font-family: var(--font-sans), sans-serif;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.slider-caption-single {
+  font-family: var(--font-sans), sans-serif;
+  font-size: var(--font-size-caption);
+  color: #7A746E;
+  line-height: 1.5;
+  margin: 12px 0 0 0;
+}

@@ -1,0 +1,16 @@
+.footer {
+  padding: 24px var(--space-lg);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-warm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer__text {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-min);
+  letter-spacing: var(--letter-spacing-max);
+  color: var(--color-meta);
+  text-transform: uppercase;
+}

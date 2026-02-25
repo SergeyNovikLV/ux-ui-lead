@@ -1,0 +1,300 @@
+/* Eleving Case Study — layout overrides only; uses case-shared.css */
+
+.eleving {
+  --section-padding: 72px;
+  --content-max: var(--max-width);
+  --content-padding: 0 var(--space-lg);
+  --text-width: var(--text-width);
+}
+
+.eleving-hero {
+  background: linear-gradient(
+    to bottom,
+    #F5F3F0 calc(100% - 460px),
+    #ffffff calc(100% - 460px)
+  );
+  padding-top: 64px;
+  padding-bottom: 0;
+}
+
+.eleving-hero__grid {
+  display: block;
+}
+
+.eleving-hero__title {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1.1;
+  margin-bottom: var(--space-sm);
+}
+
+.eleving-hero__subtitle {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-subtitle);
+  color: #8C877F;
+  margin-bottom: 0;
+}
+
+.eleving-context {
+  background: #ffffff;
+  padding-top: 72px;
+}
+
+.eleving-context__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.eleving-context .case__body:last-of-type {
+  margin-bottom: 0;
+}
+
+.eleving-context__stats {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.eleving-role {
+  background: var(--color-bg-tinted);
+  text-align: left;
+}
+
+.eleving-role__title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: #111111;
+  margin-top: 8px;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+.eleving-role__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.eleving-decisions {
+  background: var(--color-bg-white);
+}
+
+.eleving-built {
+  background: var(--color-bg-white);
+}
+
+.eleving-built .case__body {
+  margin-bottom: 0;
+}
+
+.eleving-built__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.eleving-built__card-num {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  color: #F0EBE3;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.eleving-built__card-title {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 12px;
+}
+
+.eleving-built__card-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: #444444;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.eleving-built__card-result {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-style: italic;
+  color: #8C877F;
+}
+
+.eleving-process {
+  background: var(--color-bg-tinted);
+  text-align: left;
+}
+
+.eleving-process .case__body:last-of-type {
+  margin-bottom: 0;
+}
+
+.eleving-process__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.eleving-process__card-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+.eleving-process__card-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: #444444;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.eleving-process__outcomes {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.eleving-process__outcomes-title {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 16px;
+}
+
+.eleving-process__outcomes-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: #444444;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.eleving-process__outcomes-text:last-child {
+  margin-bottom: 0;
+}
+
+.eleving-evidence {
+  background: #ffffff;
+}
+
+.eleving-evidence__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.eleving-evidence__block {
+  display: flex;
+  flex-direction: column;
+}
+
+.eleving-evidence__label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+}
+
+.eleving-evidence__title {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-subtitle);
+  font-weight: 600;
+  color: #111111;
+  margin-bottom: 8px;
+}
+
+.eleving-impact {
+  background: #F5F3F0;
+}
+
+.eleving-impact__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.eleving-impact__metric {
+  padding: var(--space-md);
+  text-align: left;
+}
+
+.eleving-impact__metric:first-child {
+  padding-left: 0;
+}
+
+.eleving-impact__signals {
+  margin-top: 40px;
+  padding-top: 40px;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: #444444;
+  line-height: 1.75;
+  max-width: var(--text-width);
+}
+
+.eleving-nav {
+  background: #ffffff;
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-md) 0;
+}
+
+.eleving-nav__wrap {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.eleving-nav__link {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-accent);
+}
+
+.eleving-nav__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .eleving-role__cards {
+    grid-template-columns: 1fr;
+  }
+  .eleving-built__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .eleving-process__grid {
+    grid-template-columns: 1fr;
+  }
+  .eleving-evidence__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .eleving-built__grid {
+    grid-template-columns: 1fr;
+  }
+}

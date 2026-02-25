@@ -1,0 +1,548 @@
+/* Banking Case — scannable structure, Fleet rules. No docx walls. */
+
+.banking {
+  --content-max: var(--page-max);
+  --content-padding: 0 var(--space-lg);
+  --text-width: var(--text-column-max);
+  --contextEvidenceOffset: 32px;
+  background: var(--color-bg-page);
+}
+
+.banking .case__wrap {
+  max-width: 1120px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--space-lg);
+  box-sizing: border-box;
+}
+
+.banking .case__section {
+  padding-block: var(--section-padding);
+}
+
+.banking .case__body,
+.banking .case__h2 {
+  max-width: 760px;
+}
+
+/* ─── Media placeholders (swap with real imgs via caseAssets) ─────────── */
+.banking-media-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  min-height: 200px;
+  background: #E8E6E4;
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.banking-media-placeholder__label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.banking-media-placeholder__file {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #8C877F;
+}
+
+/* ─── HERO ───────────────────────────────────────────────────────────── */
+.banking-hero {
+  background: var(--color-bg-page);
+}
+
+.banking-hero__grid {
+  display: block;
+}
+
+.banking-hero__text {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.banking-hero .case__hero-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  color: #E87722;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
+.banking-hero__title {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1.1;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.banking-hero__subtitle {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-body);
+  margin: 0;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.banking-hero__meta-wrap {
+  max-width: 1120px;
+  margin: 32px auto 0;
+}
+
+.banking-hero .case__meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0 24px;
+}
+
+.banking-hero__meta-item {
+  padding: 0 20px;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.banking-hero__meta-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.banking-hero .case__meta-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: #777777;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+.banking-hero .case__meta-value {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: #111111;
+  line-height: 1.35;
+}
+
+.banking-hero__media {
+  margin-top: 28px;
+}
+
+.banking-hero__media-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  background: var(--color-bg-white);
+  aspect-ratio: 16 / 9;
+}
+
+.banking-hero__media-inner .banking-media-placeholder {
+  aspect-ratio: 16 / 9;
+  min-height: 320px;
+  border-radius: 0;
+}
+
+.banking-hero__media-caption {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-meta);
+  margin: 12px 0 0 0;
+  text-align: center;
+}
+
+/* ─── CONTEXT (split: left 760 + right signals) ───────────────────────── */
+.banking-context {
+  background: var(--color-bg-page);
+}
+
+.banking-context__wrap {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+}
+
+.banking-context__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.banking-context__narrative {
+  grid-column: 1 / 8;
+  max-width: 760px;
+}
+
+.banking-context__title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #111111;
+  margin: 0 0 18px 0;
+}
+
+.banking-context__lead {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-body);
+  margin: 0 0 12px 0;
+}
+
+.banking-context__lead:last-of-type {
+  margin-bottom: 0;
+}
+
+.banking-context__statement {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.45;
+  color: #111111;
+  margin: 30px 0 0 0;
+  max-width: 88%;
+}
+
+.banking-context__statement strong {
+  font-weight: 600;
+}
+
+.banking-context__evidence {
+  grid-column: 8 / -1;
+  padding-top: var(--contextEvidenceOffset);
+}
+
+.banking-context__evidence-item {
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.banking-context__evidence-num {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+  color: #E87722;
+  margin-bottom: 8px;
+}
+
+.banking-context__evidence-title {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  color: #111111;
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+
+.banking-context__evidence-desc {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: #8C877F;
+  line-height: 1.4;
+}
+
+.banking-context__evidence-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 22px 0;
+}
+
+/* ─── MY ROLE (3 cols, compact lists) ────────────────────────────────── */
+.banking-role {
+  background: var(--color-bg-page);
+  text-align: left;
+}
+
+.banking-role__title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+}
+
+.banking-role__intro {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-body);
+  max-width: 760px;
+  margin: 0 0 40px 0;
+}
+
+.banking-role__ledger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.banking-role__col {
+  position: relative;
+}
+
+.banking-role__col-title {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  color: #111111;
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.banking-role__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.banking-role__row:last-child {
+  margin-bottom: 0;
+}
+
+.banking-role__row-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9A958D;
+  margin-top: 0.5em;
+}
+
+.banking-role__row-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #444444;
+}
+
+/* ─── BEFORE / AFTER ─────────────────────────────────────────────────── */
+.banking-before-after {
+  background: var(--color-bg-page);
+}
+
+.banking-before-after__slider-wrap {
+  margin-top: 24px;
+}
+
+.banking-before-after__slider-wrap .slider-container {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ─── DESIGN WORK (4 blocks: left text + right media) ─────────────────── */
+.banking-artifacts {
+  background: var(--color-bg-page);
+}
+
+.banking-artifact {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+.banking-artifact:last-child {
+  margin-bottom: 0;
+}
+
+.banking-artifact__text {
+  max-width: 760px;
+}
+
+.banking-artifact__body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-body);
+  margin: 0 0 8px 0;
+}
+
+.banking-artifact__caption {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-caption);
+  color: #7A746E;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.banking-artifact__media .banking-media-placeholder {
+  aspect-ratio: 16 / 10;
+}
+
+/* ─── VALIDATION (left text + chips, right media) ─────────────────────── */
+.banking-validation {
+  background: var(--color-bg-page);
+}
+
+.banking-validation__wrap {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--space-lg);
+}
+
+.banking-validation__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.banking-validation__text {
+  grid-column: 1 / 8;
+  max-width: 760px;
+}
+
+.banking-validation__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: 20px;
+}
+
+.banking-validation__chip {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #444;
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 1.3;
+}
+
+.banking-validation__media {
+  grid-column: 8 / -1;
+}
+
+.banking-validation__media .banking-media-placeholder {
+  aspect-ratio: 16 / 10;
+}
+
+/* ─── IMPACT (same as Fleet: no card, no dividers) ───────────────────── */
+.banking-impact {
+  background: var(--color-bg-white);
+}
+
+.banking-impact__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.banking-impact__metric {
+  padding: var(--space-md);
+  text-align: left;
+}
+
+.banking-impact__metric:first-child {
+  padding-left: 0;
+}
+
+/* ─── NAV ────────────────────────────────────────────────────────────── */
+.banking-nav {
+  background: var(--color-bg-page);
+  border-top: 1px solid var(--color-border);
+  padding: 40px var(--space-lg);
+}
+
+.banking-nav__wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.banking-nav__link {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--color-accent);
+  transition: color 0.2s ease;
+}
+
+.banking-nav__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .banking-role__ledger {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-artifact {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-impact__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-impact__metric {
+    padding: var(--space-md) 0;
+  }
+
+  .banking-impact__metric:first-child {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .banking-hero__title {
+    font-size: 40px;
+  }
+
+  .banking-context__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-context__narrative {
+    grid-column: 1;
+  }
+
+  .banking-context__evidence {
+    grid-column: 1;
+    padding-top: 24px;
+  }
+
+  .banking-validation__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .banking-validation__text {
+    grid-column: 1;
+  }
+
+  .banking-validation__media {
+    grid-column: 1;
+  }
+}

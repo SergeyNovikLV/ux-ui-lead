@@ -1,0 +1,30 @@
+/* WCAG AA: normal text ≥4.5:1 contrast on background; large text ≥3:1 */
+:root {
+  --color-accent: #E87722;
+  --color-text: #111111;
+  --color-body: #555555;
+  --color-meta: #5A5550;
+  --color-bg-warm: #F5F3F0;
+  --color-bg-white: #ffffff;
+  --color-bg-tinted: #F7F6F3;
+  --color-bg-page: #F6F6F4;
+  --color-border: #E8E4DE;
+  --font-display: 'Playfair Display', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'Plus Jakarta Sans', sans-serif;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 32px;
+  --space-lg: 64px;
+  --space-xl: 104px;
+  --max-width: 1120px;
+  --page-max: 1120px;
+  --text-width: 760px;
+  --text-column-max: 760px;
+  --radius-card: 12px;
+  --font-size-min: 14px;
+  --font-size-subtitle: 18px;
+  --font-size-caption: 14px;
+  --letter-spacing-max: 2px;
+  --section-padding: 120px;
+}

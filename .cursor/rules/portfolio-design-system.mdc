@@ -1,0 +1,47 @@
+---
+description: Portfolio design system — enterprise lead cases, no decorative noise
+globs: ["**/*.jsx", "**/*.css", "**/CaseRow*", "**/Banking*", "**/tokens.css"]
+---
+
+# Portfolio design system
+
+## Layout
+- Page max width: 1120px (`--page-max`, `--max-width`)
+- Text column max: 760px (`--text-column-max`)
+- 12-column grid for split sections on case pages
+- Section spacing: `padding-block: 120px` for major sections (`--section-padding`)
+- No stacking multiple vertical paddings
+
+## Typography
+- H1: 48–56px desktop (enterprise presence)
+- H2: 36–40px
+- Body: 18px / 1.6
+- Meta: 14–15px muted (`--color-meta`)
+- Accent: `#E87722` (`--color-accent`)
+
+## Strict bans (do not reintroduce)
+- No case numbers on home preview cards (no 01/02/03/04, no ghost numbers, no year above number)
+- No decorative ghost typography or watermark numbers
+- No repeated identical cards or duplicated metadata
+- No long paragraph > 3 lines
+- No random background stripes
+- No decorative dividers or extra typography experiments on case pages
+- No "dribbble-style" decorative layout
+
+## Surfaces
+- Base background: `#F6F6F4` (`--color-bg-page`)
+- Surfaces (cards, impact section): white only (`--color-bg-white`)
+
+## Home case preview structure (CaseRow)
+- Left: TITLE · POSITIONING (1 line) · META (single line, muted) · OUTCOME STRIP (bold) · CTA "View case →"
+- Right: single media block (16:9, rounded 20px, subtle shadow)
+- No numbers. No tags line. Same system for all cases.
+
+## Case pages (e.g. Banking)
+- Hero: eyebrow, H1, description (max 2 lines), meta row (4 columns), hero media 16:9 rounded 24px, caption 14px
+- Context: split layout; left narrative, right metric rows (large % accent, title, subline)
+- Role: 3 equal columns (Owned / Influenced / Decided), clean bullets, no column numbers
+- Before/After: slider, placeholder images, caption
+- Design work: split blocks (1 sentence + media), no duplicate captions
+- Validation: short paragraph, inline chips, media right
+- Impact: white surface, 3-column KPI grid, no extra paragraph

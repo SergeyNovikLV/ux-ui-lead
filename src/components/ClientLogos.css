@@ -1,0 +1,59 @@
+.client-logos {
+  background: var(--color-bg-page);
+  border-bottom: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+  padding: 0;
+  border-radius: 8px;
+}
+
+.client-logos__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.client-logos__label {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-min);
+  letter-spacing: var(--letter-spacing-max);
+  color: var(--color-meta);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.client-logos__divider {
+  display: none;
+}
+
+.client-logos__list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 52px;
+  flex-wrap: wrap;
+}
+
+.client-logos__item {
+  cursor: default;
+  line-height: 0;
+  transition: filter 0.25s ease;
+}
+
+.client-logos__item img {
+  display: block;
+  height: 36px;
+  width: auto;
+  max-height: 36px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+.client-logos__item:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
