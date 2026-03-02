@@ -19,9 +19,7 @@ export default function CTA() {
           className={`cta__button ${ctaVisible ? "cta__button--visible" : ""}`}
         >
           Get in touch
-          <svg width="18" height="7" viewBox="0 0 18 7" fill="none">
-            <path d="M0 3.5H16M13 1L17 3.5L13 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-          </svg>
+         
         </a>
       </div>
     </section>

@@ -44,8 +44,8 @@ export default function UKTVCase() {
             <div className="case__meta-grid">
               {[
                 { label: 'YEAR', value: '2020–2022' },
-                { label: 'ROLE', value: 'Senior Product Designer' },
-                { label: 'TEAM', value: 'PM · 2 BA · 14 Mobile Engineers · 4 QA · 4 Designers' },
+                { label: 'ROLE', value: 'Senior UX/UI Designer' },
+               
                 { label: 'PLATFORMS', value: 'iOS Native · Android Native' },
               ].map(item => (
                 <div key={item.label} className="uktv-hero__meta-item">

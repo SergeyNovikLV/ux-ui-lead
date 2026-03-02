@@ -1,19 +1,24 @@
-/* Eleving Case Study — layout overrides only; uses case-shared.css */
+/* Eleving Case Study — structure and alignment like Fleet */
 
 .eleving {
   --section-padding: 72px;
-  --content-max: var(--max-width);
+  --content-max: 1120px;
   --content-padding: 0 var(--space-lg);
-  --text-width: var(--text-width);
+  --text-width: 760px;
 }
 
+.eleving .case__wrap {
+  max-width: 1120px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--space-lg);
+  box-sizing: border-box;
+}
+
+/* ─── HERO (Fleet structure) ─────────────────────────────────────────── */
 .eleving-hero {
-  background: linear-gradient(
-    to bottom,
-    #F5F3F0 calc(100% - 460px),
-    #ffffff calc(100% - 460px)
-  );
-  padding-top: 64px;
+  padding-top: 72px;
   padding-bottom: 0;
 }
 
@@ -21,25 +26,174 @@
   display: block;
 }
 
+.eleving-hero__text {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.eleving-hero .case__hero-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
 .eleving-hero__title {
   font-family: var(--font-display);
   font-size: 56px;
   font-weight: 700;
-  color: #111111;
+  color: var(--color-text);
   line-height: 1.1;
-  margin-bottom: var(--space-sm);
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .eleving-hero__subtitle {
   font-family: var(--font-sans);
-  font-size: var(--font-size-subtitle);
-  color: #8C877F;
-  margin-bottom: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-body);
+  margin: 0;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.eleving-hero__divider {
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  margin: 20px auto 0;
+}
+
+.eleving-hero__meta-wrap {
+  max-width: 1120px;
+  margin: 32px auto 0;
+  margin-bottom: 24px;
+}
+
+.eleving-hero .case__meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  gap: 0;
+  margin: 0;
+  padding: 0 24px;
+}
+
+.eleving-hero__meta-item {
+  padding: 0 20px;
+  border-left: 1px solid var(--color-border-subtle);
+  text-align: center;
+}
+
+.eleving-hero__meta-item:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.eleving-hero .case__meta-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-body);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+.eleving-hero .case__meta-value {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.35;
+}
+
+.hero-split {
+  margin-top: 28px;
+}
+
+.hero-split__image {
+  width: 100%;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-split__img {
+  display: block;
+  width: 100%;
+}
+
+.eleving .case__body,
+.eleving .case__h2 {
+  max-width: 760px;
+}
+
+@media (max-width: 900px) {
+  .eleving-hero .case__meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .eleving-hero__meta-item {
+    border-left: none;
+    border-top: 1px solid var(--color-border-subtle);
+    padding: 16px 0 0;
+    margin-top: 16px;
+  }
+
+  .eleving-hero__meta-item:nth-child(1),
+  .eleving-hero__meta-item:nth-child(2) {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .eleving-hero {
+    padding-top: 88px;
+  }
+
+  .eleving-hero__title {
+    font-size: 40px;
+  }
+
+  .eleving-hero__subtitle {
+    font-size: 18px;
+  }
+
+  .eleving-hero .case__meta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .eleving-hero__meta-item {
+    border-left: none;
+    border-top: 1px solid var(--color-border-subtle);
+    padding: 12px 0 0;
+    margin-top: 12px;
+  }
+
+  .eleving-hero__meta-item:first-child {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+  }
 }
 
 .eleving-context {
-  background: #ffffff;
   padding-top: 72px;
+  padding-bottom: 72px;
 }
 
 .eleving-context__grid {
@@ -59,15 +213,18 @@
   margin-top: 32px;
 }
 
+.eleving-context__stats .case__stat-num {
+  font-size: 28px;
+}
+
 .eleving-role {
-  background: var(--color-bg-tinted);
   text-align: left;
 }
 
 .eleving-role__title {
   font-family: var(--font-display);
   font-size: 36px;
-  color: #111111;
+  color: var(--color-text);
   margin-top: 8px;
   margin-bottom: 0;
   line-height: 1.2;
@@ -80,18 +237,14 @@
   margin-top: 32px;
 }
 
-.eleving-decisions {
-  background: var(--color-bg-white);
-}
-
 .eleving-built {
-  background: var(--color-bg-white);
 }
 
 .eleving-built .case__body {
   margin-bottom: 0;
 }
 
+/* Card grid (used by MogoCase Product Design Operating System) */
 .eleving-built__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -103,7 +256,7 @@
   font-family: var(--font-display);
   font-size: 40px;
   font-weight: 700;
-  color: #F0EBE3;
+  color: var(--color-card-num);
   line-height: 1;
   margin-bottom: 8px;
 }
@@ -112,27 +265,26 @@
   font-family: var(--font-sans);
   font-size: 18px;
   font-weight: 700;
-  color: #111111;
+  color: var(--color-text);
   margin-bottom: 12px;
 }
 
 .eleving-built__card-body {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: #444444;
+  color: var(--color-body-dark);
   line-height: 1.6;
   margin-bottom: 12px;
 }
 
 .eleving-built__card-result {
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 16px;
   font-style: italic;
-  color: #8C877F;
+  color: var(--color-caption);
 }
 
 .eleving-process {
-  background: var(--color-bg-tinted);
   text-align: left;
 }
 
@@ -159,7 +311,7 @@
 .eleving-process__card-body {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: #444444;
+  color: var(--color-body-dark);
   line-height: 1.6;
   margin-bottom: 16px;
 }
@@ -175,14 +327,14 @@
   font-family: var(--font-sans);
   font-size: 18px;
   font-weight: 700;
-  color: #111111;
+  color: var(--color-text);
   margin-bottom: 16px;
 }
 
 .eleving-process__outcomes-text {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: #444444;
+  color: var(--color-body-dark);
   line-height: 1.8;
   margin-bottom: 12px;
 }
@@ -192,7 +344,6 @@
 }
 
 .eleving-evidence {
-  background: #ffffff;
 }
 
 .eleving-evidence__grid {
@@ -219,12 +370,11 @@
   font-family: var(--font-sans);
   font-size: var(--font-size-subtitle);
   font-weight: 600;
-  color: #111111;
+  color: var(--color-text);
   margin-bottom: 8px;
 }
 
 .eleving-impact {
-  background: #F5F3F0;
 }
 
 .eleving-impact__metrics {
@@ -248,13 +398,12 @@
   border-top: 1px solid var(--color-border);
   font-family: var(--font-sans);
   font-size: 16px;
-  color: #444444;
+  color: var(--color-body-dark);
   line-height: 1.75;
   max-width: var(--text-width);
 }
 
 .eleving-nav {
-  background: #ffffff;
   border-top: 1px solid var(--color-border);
   padding: var(--space-md) 0;
 }
@@ -297,4 +446,157 @@
   .eleving-built__grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ── Shared fleet-process styles (used by Mogo + Fleet pages) ── */
+.fleet-process {
+
+}
+
+.fleet-process__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .fleet-process__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fleet-process__body-lead {
+  color: var(--color-body-dark);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.fleet-process__card {
+  background: #ffffff;
+  border: none;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-surface);
+  padding: 24px;
+}
+
+@media (max-width: 580px) {
+  .fleet-process__card { padding: 20px; }
+}
+
+.fleet-process__card-method {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-xs);
+}
+
+.fleet-process__card-title {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  line-height: 1.3;
+}
+
+.fleet-process__card-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.fleet-process__card-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--space-xs);
+  padding: 10px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.fleet-process__card-row--first {
+  border-top: none;
+}
+
+.fleet-process__card-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  text-align: center;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 5px!important;
+}
+
+.fleet-process__card-row--last .fleet-process__card-badge {
+  color: var(--color-accent);
+}
+
+.fleet-process__card-value {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.55;
+}
+
+/* ── Fleet role ledger (Owned / Influenced / Decided) ── */
+.fleet-role__ledger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 768px) {
+  .fleet-role__ledger {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fleet-role__col-title {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin: 0 0 var(--space-sm);
+}
+
+.fleet-role__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.fleet-role__row-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-top: 8px;
+}
+
+.fleet-role__row-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.6;
+}
+
+/* ── Fleet research badge override ── */
+.fleet-research .fleet-process__card-artifact {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-accent);
 }

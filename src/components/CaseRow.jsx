@@ -150,8 +150,8 @@ export default function CaseRow({ c, index, transitionDelay }) {
   const cardContent = (
     <article
       ref={ref}
-      className={`case-row ${visible ? "case-row--visible" : ""}`}
-      style={{ ['--case-row-bg']: c.bg, ['--case-row-delay']: `${transitionDelay}s` }}
+      className={`case-row ${visible ? "case-row--visible" : ""} ${c.slug === "banking" ? "case-row--banking-thumb" : ""} ${c.slug === "uktv" ? "case-row--default-thumb" : ""}`}
+      style={{ ['--case-row-delay']: `${transitionDelay}s` }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -159,15 +159,12 @@ export default function CaseRow({ c, index, transitionDelay }) {
           <div className="case-row__grid">
             <div className="case-row__content">
               <h2 className="case-row__title">{c.title}</h2>
-              <p className="case-row__description">{c.description}</p>
-              <p className="case-row__context">{c.context}</p>
-              <p className="case-row__impact">{c.impact}</p>
-              <div className="case-row__cta-wrap">
-                <span className="case-row__cta-text">View case</span>
-                <svg className="case-row__cta-arrow" width="18" height="7" viewBox="0 0 18 7" fill="none">
-                  <path d="M0 3.5H16M13 1L17 3.5L13 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                </svg>
-              </div>
+              <p className="case-row__impact-line">
+                <span className="case-row__impact-label">Impact:</span> {c.description}
+              </p>
+              <p className="case-row__body">{c.impact}</p>
+              <p className="case-row__meta">{c.context}</p>
+              <span className="case-row__cta">View case</span>
             </div>
             <div className={`case-row__visual-wrap ${hovered ? "case-row__visual-wrap--hover" : ""}`}>
               <div className="case-row__visual-inner">

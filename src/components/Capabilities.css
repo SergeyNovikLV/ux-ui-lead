@@ -1,6 +1,5 @@
 .capabilities {
   border-top: 1px solid var(--color-border);
-  background: var(--color-bg-warm);
 }
 
 .capabilities__inner {
@@ -63,10 +62,20 @@
   max-width: 400px;
 }
 
+.capabilities__domains {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-meta);
+  line-height: 1.5;
+  margin-top: 16px;
+}
+
 .capabilities__skills {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 80px;
   opacity: 0;
   transform: translateX(20px);
   transition: all 0.65s ease 0.14s;
@@ -93,4 +102,10 @@
   border-color: var(--color-accent);
   color: var(--color-text);
   background: #fffaf6;
+}
+
+@media (max-width: 768px) {
+  .capabilities__skills {
+    margin-top: 24px;
+  }
 }

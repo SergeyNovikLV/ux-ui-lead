@@ -1,0 +1,191 @@
+/* ── Figure wrapper (image + caption) ───────────────────── */
+.zoom-figure {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.zoom-figure__caption {
+  margin-top: 24px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-caption);
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* ── Trigger wrapper ─────────────────────────────────────── */
+.zoom-img {
+  position: relative;
+  display: block;
+  cursor: zoom-in;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-surface);
+  overflow: hidden;
+  outline: none;
+}
+
+.zoom-img:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.zoom-img__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  border-radius: inherit;
+}
+
+.zoom-img:hover .zoom-img__img,
+.zoom-img:focus-visible .zoom-img__img {
+  transform: scale(1.015);
+  filter: brightness(0.97);
+}
+
+/* "Zoom" hint label */
+.zoom-img__hint {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.zoom-img:hover .zoom-img__hint,
+.zoom-img:focus-visible .zoom-img__hint {
+  opacity: 1;
+}
+
+/* ── Modal / dialog ──────────────────────────────────────── */
+.zoom-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  z-index: 9999;
+  overflow-y: auto;
+  display: none;
+}
+
+.zoom-modal::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(2px);
+}
+
+/* Animate in */
+@keyframes zoom-modal-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.zoom-modal[open] {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  animation: zoom-modal-in 0.18s ease forwards;
+}
+
+
+.zoom-modal__body {
+  position: relative;
+  margin: auto;
+  padding: 48px 24px 40px;
+  max-width: min(92vw, 1200px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.zoom-modal__img {
+  display: block;
+  max-width: 100%;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+.zoom-modal__caption {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Close icon (top-right ✕) ────────────────────────────── */
+.zoom-modal__close-icon {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+  z-index: 10000;
+}
+
+.zoom-modal__close-icon:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.zoom-modal__close-icon:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── Close button (bottom of image) ─────────────────────── */
+.zoom-modal__close-btn {
+  margin-top: 8px;
+  padding: 10px 28px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  align-self: center;
+}
+
+.zoom-modal__close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.zoom-modal__close-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

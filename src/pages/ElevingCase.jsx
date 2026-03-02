@@ -1,4 +1,6 @@
 import './ElevingCase.css';
+import KeyDecisions from '../components/KeyDecisions';
+import DesignSystemPillars from '../components/DesignSystemPillars';
 
 export default function ElevingCase() {
   return (
@@ -7,30 +9,34 @@ export default function ElevingCase() {
       <section className="case__section eleving-hero">
         <div className="case__wrap">
           <div className="eleving-hero__grid">
-            <div>
+            <div className="eleving-hero__text">
               <div className="case__hero-label">01 · Fintech · Multi-brand · Design Systems</div>
               <h1 className="eleving-hero__title">Eleving — Product Design Operating System</h1>
               <p className="eleving-hero__subtitle">
                 Product foundation for 3 fintech brands across 7 markets: shared design language, QA process, and governance so Mogo, Primero, and MyMogo ship consistently — not just a design system, but how design operates.
               </p>
-              <div className="case__hero-divider" aria-hidden />
+              <div className="eleving-hero__divider" aria-hidden />
             </div>
           </div>
-          <div className="case__meta-grid">
-            {[
-              { label: 'TIMELINE', value: '06.2025–Present' },
-              { label: 'ROLE', value: 'Lead Product Designer' },
-              { label: 'SCOPE', value: 'Mogo · Primero · MyMogo' },
-              { label: 'MARKETS', value: 'LV · LT · EE · RO · AM · GE · MD' },
-            ].map(item => (
-              <div key={item.label}>
-                <div className="case__meta-label">{item.label}</div>
-                <div className="case__meta-value">{item.value}</div>
-              </div>
-            ))}
+          <div className="eleving-hero__meta-wrap">
+            <div className="case__meta-grid">
+              {[
+                { label: 'TIMELINE', value: '06.2025–Present' },
+                { label: 'ROLE', value: 'Lead Product Designer' },
+                { label: 'SCOPE', value: 'Mogo · Primero · MyMogo' },
+                { label: 'MARKETS', value: 'LV · LT · EE · RO · AM · GE · MD' },
+              ].map(item => (
+                <div key={item.label} className="eleving-hero__meta-item">
+                  <div className="case__meta-label">{item.label}</div>
+                  <div className="case__meta-value">{item.value}</div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="case__placeholder case__placeholder--hero">
-            HERO IMAGE — Design system overview
+          <div className="hero-split">
+            <div className="hero-split__image">
+              <img src="/eleving/case1.png" alt="Eleving design system overview" className="hero-split__img" />
+            </div>
           </div>
         </div>
       </section>
@@ -131,56 +137,31 @@ export default function ElevingCase() {
       </section>
 
       {/* KEY DECISIONS */}
-      <section className="case__section eleving-decisions">
-        <div className="case__wrap">
-          <div className="case__section-label">KEY DECISIONS</div>
-          <h2 className="case__h2">Four decisions that defined the system.</h2>
-          <div className="case__decision">
-            <span className="case__decision-num">01</span>
-            <div>
-              <div className="case__decision-title">Global token architecture as the foundation</div>
-              <p className="case__decision-body">
-                <strong>Problem:</strong> Each brand managed styles manually. Color, typography, spacing decisions lived in designer heads — not in a system. Any change meant touching every component.<br />
-                <strong>Decision:</strong> Build a global semantic token layer first. Primitive tokens → semantic tokens → component tokens. Three tiers. One source.<br />
-                <strong>Trade-off:</strong> No visible UI output for weeks. Accepted — everything built before this would need rebuilding after.
-              </p>
-            </div>
-          </div>
-          <div className="case__decision">
-            <span className="case__decision-num">02</span>
-            <div>
-              <div className="case__decision-title">Automatic dark/light mode via token switching</div>
-              <p className="case__decision-body">
-                <strong>Problem:</strong> Dark mode wasn't supported across any of the brands. Adding it later would mean touching every component individually.<br />
-                <strong>Decision:</strong> Design the token system with mode-awareness from day one. Light/dark values mapped at semantic token level — switching mode = one variable change, not a component rebuild.<br />
-                <strong>Trade-off:</strong> More complex token structure upfront. Accepted — retrofitting dark mode costs 10× more than building it in from the start.
-              </p>
-            </div>
-          </div>
-          <div className="case__decision">
-            <span className="case__decision-num">03</span>
-            <div>
-              <div className="case__decision-title">Multi-brand theming without component duplication</div>
-              <p className="case__decision-body">
-                <strong>Problem:</strong> Mogo, Primero, and MyMogo had diverging components. Maintaining 3 separate systems at current team size was impossible.<br />
-                <strong>Decision:</strong> Single component layer. Brand identity expressed entirely through theme token overrides — not separate components. New brand = new theme file. Same components.<br />
-                <strong>Trade-off:</strong> Tighter constraints on brand expression. Accepted — system scalability outweighs marginal brand differentiation at this scale.
-              </p>
-            </div>
-          </div>
-          <div className="case__decision">
-            <span className="case__decision-num">04</span>
-            <div>
-              <div className="case__decision-title">Design QA as a structural release gate</div>
-              <p className="case__decision-body">
-                <strong>Problem:</strong> Figma ≠ production. Drift was discovered after deployment. No one owned the gap between design intent and shipped UI.<br />
-                <strong>Decision:</strong> Define "design-ready" formally. Mandatory QA pass before every release. Token validation, typography checks, component state coverage — all documented.<br />
-                <strong>Trade-off:</strong> Slower release cycle initially. Accepted — post-deploy fixes cost more and erode team trust in the system.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <KeyDecisions
+        title="Four decisions that defined the system."
+        decisions={[
+          {
+            num: '01',
+            title: 'Global token architecture as the foundation',
+            body: <><strong>Problem:</strong> Each brand managed styles manually. Color, typography, spacing decisions lived in designer heads — not in a system. Any change meant touching every component.<br /><strong>Decision:</strong> Build a global semantic token layer first. Primitive tokens → semantic tokens → component tokens. Three tiers. One source.<br /><strong>Trade-off:</strong> No visible UI output for weeks. Accepted — everything built before this would need rebuilding after.</>,
+          },
+          {
+            num: '02',
+            title: 'Automatic dark/light mode via token switching',
+            body: <><strong>Problem:</strong> Dark mode wasn't supported across any of the brands. Adding it later would mean touching every component individually.<br /><strong>Decision:</strong> Design the token system with mode-awareness from day one. Light/dark values mapped at semantic token level — switching mode = one variable change, not a component rebuild.<br /><strong>Trade-off:</strong> More complex token structure upfront. Accepted — retrofitting dark mode costs 10× more than building it in from the start.</>,
+          },
+          {
+            num: '03',
+            title: 'Multi-brand theming without component duplication',
+            body: <><strong>Problem:</strong> Mogo, Primero, and MyMogo had diverging components. Maintaining 3 separate systems at current team size was impossible.<br /><strong>Decision:</strong> Single component layer. Brand identity expressed entirely through theme token overrides — not separate components. New brand = new theme file. Same components.<br /><strong>Trade-off:</strong> Tighter constraints on brand expression. Accepted — system scalability outweighs marginal brand differentiation at this scale.</>,
+          },
+          {
+            num: '04',
+            title: 'Design QA as a structural release gate',
+            body: <><strong>Problem:</strong> Figma ≠ production. Drift was discovered after deployment. No one owned the gap between design intent and shipped UI.<br /><strong>Decision:</strong> Define "design-ready" formally. Mandatory QA pass before every release. Token validation, typography checks, component state coverage — all documented.<br /><strong>Trade-off:</strong> Slower release cycle initially. Accepted — post-deploy fixes cost more and erode team trust in the system.</>,
+          },
+        ]}
+      />
 
       {/* WHAT I BUILT — DESIGN SYSTEM */}
       <section className="case__section eleving-built">
@@ -188,53 +169,16 @@ export default function ElevingCase() {
           <div className="case__section-label">DESIGN SYSTEM</div>
           <h2 className="case__h2">Product Design Operating System</h2>
           <p className="case__body">
-            This wasn't a Design System update. I built the infrastructure layer that makes
-            consistent, scalable, multi-brand product delivery structurally possible.
+            Alongside product work, I established a multi-brand delivery framework so UI changes stayed consistent across brands, surfaces, and releases.
           </p>
-          <div className="eleving-built__grid">
-            <div className="case__card">
-              <div className="eleving-built__card-num">01</div>
-              <h3 className="eleving-built__card-title">Global Token Architecture</h3>
-              <p className="eleving-built__card-body">
-                3-tier system: primitive → semantic → component. Single source of truth
-                across Figma and Storybook. Token naming aligned to code variables — no
-                manual interpretation by developers. Multi-brand theming via theme file swap.
-              </p>
-              <p className="eleving-built__card-result">Result: Brand change = theme file. No component rebuilds.</p>
-            </div>
-            <div className="case__card">
-              <div className="eleving-built__card-num">02</div>
-              <h3 className="eleving-built__card-title">Typography System</h3>
-              <p className="eleving-built__card-body">
-                Rebuilt scale using Inter Variable across all 3 brands. Desktop and mobile
-                modes defined. Every text style mapped to a code token — ad-hoc font
-                overrides eliminated in production. 1:1 parity between Figma and Storybook.
-              </p>
-              <p className="eleving-built__card-result">Result: Typography decided once. Applied everywhere automatically.</p>
-            </div>
-            <div className="case__card">
-              <div className="eleving-built__card-num">03</div>
-              <h3 className="eleving-built__card-title">Design Sign-off Process</h3>
-              <p className="eleving-built__card-body">
-                QA teams checked functionality — not design. Visual bugs and token errors
-                shipped silently. I introduced a formal Design Sign-off stage before QA in
-                the product development flow. Defined "design-ready": token coverage,
-                component states, typography, accessibility.
-              </p>
-              <p className="eleving-built__card-result">Result: Visual bugs caught before shipping. Design intent became verifiable.</p>
-            </div>
-            <div className="case__card">
-              <div className="eleving-built__card-num">04</div>
-              <h3 className="eleving-built__card-title">Governance & Contribution Standards</h3>
-              <p className="eleving-built__card-body">
-                Contribution rules for new components. Versioning logic and naming
-                conventions for long-term scalability. Figma file architecture standardized
-                across brands. Rules for when to extend vs reuse. AI-ready token boundaries
-                for predictable AI-assisted UI generation.
-              </p>
-              <p className="eleving-built__card-result">Result: Design shifted from screen-level execution to system-level thinking.</p>
-            </div>
-          </div>
+          <DesignSystemPillars
+            pillars={[
+              { num: '01', title: 'Multi-brand design contracts', description: 'Defined shared UI rules and component behaviors so Mogo, Primero, and MyMogo ship with the same interaction logic.', result: 'Same interaction logic and quality bar across brands.' },
+              { num: '02', title: 'Token-driven consistency', description: 'Standardized foundations so brand differences are handled through controlled overrides, not manual rework.', result: 'Brand changes via controlled overrides, not manual rework.' },
+              { num: '03', title: 'Design sign-off (release verification)', description: 'Mandatory design verification step before release to catch visual drift early.', result: 'Visual drift caught before release.' },
+              { num: '04', title: 'Governance for scalable updates', description: 'Contribution rules: naming, spec format, extend vs reuse — so the system scales without fragmentation.', result: 'System scales without fragmentation.' },
+            ]}
+          />
           <div className="case__placeholder case__placeholder--section">
             DESIGN SYSTEM — Token structure / Component library
           </div>

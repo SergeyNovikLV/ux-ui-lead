@@ -1,0 +1,616 @@
+@import './ElevingCase.css';
+
+/* 06 — IMPACT */
+.mogo-impact__timeframe {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-caption);
+  margin: var(--space-xs) 0 var(--space-md);
+}
+
+.mogo-impact__subhead {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-xs);
+}
+
+.mogo-impact__subhead + .mogo-impact__subhead {
+  margin-top: var(--space-md);
+}
+
+.mogo-impact__body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.7;
+  margin: 0 0 var(--space-md);
+  max-width: var(--text-width);
+}
+
+.mogo-impact__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mogo-impact__list li {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.65;
+  padding-left: 18px;
+  position: relative;
+}
+
+.mogo-impact__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.mogo-impact__proof {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-caption);
+  line-height: 1.6;
+  border-left: 2px solid var(--color-border);
+  padding-left: 14px;
+  margin: 0;
+}
+
+/* 05 — SHIPPING SYSTEM section tint */
+.mogo-shipping-section {
+
+}
+
+/* 07 — NEXT STEPS */
+.mogo-next {
+  padding-top: calc(var(--space-xl) + 24px);
+
+}
+
+.mogo-next__lead {
+  margin-bottom: var(--space-md);
+}
+
+.mogo-next__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .mogo-next__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .mogo-next__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mogo-next__card {
+  background: #ffffff;
+  border: none;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-surface);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 580px) {
+  .mogo-next__card { padding: 20px; }
+}
+
+.mogo-next__icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.mogo-next__title {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.mogo-next__text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 08 — RELATED WORK */
+.mogo-related {
+
+}
+
+.mogo-related__intro {
+  margin-bottom: var(--space-md);
+  max-width: var(--text-width);
+}
+
+.mogo-related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .mogo-related__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mogo-related__card {
+  display: flex;
+  flex-direction: column;
+}
+
+.mogo-related__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-xs);
+}
+
+.mogo-related__title {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-subtitle);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 var(--space-xs) 0;
+  line-height: 1.3;
+}
+
+.mogo-related__desc {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.6;
+  margin: 0 0 var(--space-sm) 0;
+  flex: 1;
+}
+
+.mogo-related__img {
+  margin-top: auto;
+  height: 180px;
+}
+
+.mogo-related__img-zoom {
+  margin-top: auto;
+}
+
+.mogo-related__img-zoom .zoom-img {
+  height: 180px;
+}
+
+.mogo-related__img-zoom .zoom-img__img {
+  height: 180px;
+  object-fit: cover;
+}
+
+.mogo-related__img-zoom .zoom-figure__caption {
+  font-size: 12px;
+}
+
+/* 08 — TAKEAWAYS — same styles as MogoCase (shared class names) */
+
+/* Mogo case — under-hero: Summary > Tiles > Credibility > Role cards */
+.mogo-hero__under {
+  margin-top: var(--space-lg);
+}
+
+/* 1) Executive Summary — strongest hierarchy */
+/* Metric tiles */
+.mogo-hero__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .mogo-hero__metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mogo-hero__metrics .case__stat-desc {
+  font-weight: 400;
+  color: var(--color-caption);
+}
+
+/* Role & scope — bullet list (fleet-role__ledger) */
+.mogo-hero__role-list {
+  margin-bottom: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.mogo-hero__img {
+  display: block;
+  width: 100%;
+  margin-top: 0;
+}
+
+/* Section blocks */
+.mogo-section__images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .mogo-section__images {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mogo-section__image {
+  margin-top: 28px;
+}
+
+.mogo-section__img {
+  display: block;
+  width: 100%;
+}
+
+.case__list {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.75;
+  margin: var(--space-sm) 0;
+  padding-left: 1.5em;
+}
+
+.case__list li {
+  margin-bottom: var(--space-xs);
+}
+
+.case__list--ordered {
+  list-style: decimal;
+}
+
+.case__body--strong {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+}
+
+/* 04 — KEY DECISIONS: Rule + Trade-off + Image per item */
+.mogo-decisions__list {
+  margin-top: var(--space-lg);
+}
+
+.mogo-decisions__item {
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.mogo-decisions__item:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.mogo-decisions__item-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.mogo-decisions__num {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.mogo-decisions__title {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-subtitle);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.mogo-decisions__rule,
+.mogo-decisions__tradeoff {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.6;
+  margin: 0 0 var(--space-xs) 0;
+}
+
+.mogo-decisions__item .case__placeholder {
+  margin-top: var(--space-sm);
+  margin-bottom: 0;
+}
+
+/* 05 — SHIPPING SYSTEM icon cards */
+.mogo-system__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .mogo-system__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .mogo-system__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mogo-system__item {
+  background: #ffffff;
+  border: none;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-surface);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 580px) {
+  .mogo-system__item { padding: 20px; }
+}
+
+.mogo-system__icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.mogo-system__title {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.mogo-system__desc {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--color-body-dark);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 2-column image row under B + C cards */
+.mogo-evidence__images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+@media (max-width: 768px) {
+  .mogo-evidence__images {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Full-width video below research cards */
+.fleet-section__video {
+  width: 100%;
+  margin-top: var(--space-md);
+}
+.fleet-section__video-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.fleet-section__video-el {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  vertical-align: middle;
+}
+/* Centered play/pause overlay (YouTube-style) — does not block native controls */
+.fleet-section__video-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.fleet-section__video-center .fleet-section__video-play {
+  pointer-events: auto;
+}
+.fleet-section__video-center--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.fleet-section__video-play {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+  padding-left: 4px;
+}
+.fleet-section__video-play:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.08);
+}
+.fleet-section__video-play:focus-visible {
+  outline: 2px solid var(--color-accent, #fff);
+  outline-offset: 3px;
+}
+.fleet-section__video-play--pause {
+  padding-left: 0;
+}
+
+/* Before → After slider (03 — REDESIGN) */
+.fleet-section__slider-wrap {
+  margin-top: var(--space-md);
+}
+.fleet-section__slider-wrap .slider-container {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Evidence card title spacing */
+.fleet-process__card-title {
+  margin-bottom: var(--space-xs);
+}
+
+/* Evidence grid: left col = intro (label + title + lead), right col = Card A; row 2 = B + C */
+.mogo-evidence__grid {
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
+
+.mogo-evidence__intro {
+  grid-column: 1;
+  grid-row: 1;
+  padding-right: var(--space-md);
+  align-self: start;
+}
+
+/* MY ROLE — Fleet-style 3-column layout (matches FleetCase) */
+.eleving .fleet-role {
+  text-align: left;
+}
+
+.eleving .fleet-role__eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+
+.eleving .fleet-role__title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+}
+
+.eleving .fleet-role__intro {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-body);
+  max-width: 760px;
+  margin: 0 0 40px 0;
+}
+
+.eleving .fleet-role__ledger {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+.eleving .fleet-role__col {
+  grid-column: span 4;
+  position: relative;
+}
+
+.eleving .fleet-role__col-num {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.eleving .fleet-role__col-title {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 16px 0;
+  line-height: 1.3;
+}
+
+.eleving .fleet-role__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.eleving .fleet-role__row:last-child {
+  margin-bottom: 0;
+}
+
+.eleving .fleet-role__row-dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-overlay);
+  margin-top: 0.5em;
+}
+
+.eleving .fleet-role__row-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-body-dark);
+}

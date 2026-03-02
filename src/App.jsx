@@ -1,61 +1,63 @@
 import { useState, useEffect } from "react";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
-import ClientLogos from "./components/ClientLogos";
 import CaseRow from "./components/CaseRow";
 import Capabilities from "./components/Capabilities";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
-import FleetCase from "./pages/FleetCase";
-import ElevingCase from "./pages/ElevingCase";
-import BankingCase from "./pages/BankingCase";
+import FleetCaseNew from "./pages/FleetCaseNew";
+import MogoCase from "./pages/MogoCase";
+import ProductOSCase from "./pages/ProductOSCase";
+import BankingNew from "./pages/BankingNew";
 import UKTVCase from "./pages/UKTVCase";
 import "./App.css";
 
 const CASES = [
   {
     id: "01",
-    title: "Eleving — Product Design Operating System",
-    description: "Product foundation for 3 fintech brands: shared design language, QA process, and governance so Mogo, Primero, and MyMogo ship consistently.",
-    context: "Eleving Group · Senior Product Designer · 2025",
-    impact: "Eliminated brand drift across brands. Delivery cycle shortened via standardized handoff and single source of truth.",
+    title: "Mogo — Loan Application Journey Redesign",
+    description: "9→6 steps. Completion 16.7% → 38.8%. Measurable, repeatable improvements.",
+    context: "Eleving Group · Product Designer · 2025",
+    impact: "Journey redesign + monitoring layer so decisions were data-driven.",
     year: "2025",
     visual: "ds",
+    thumbnailSrc: "/eleving/mogo.png",
     bg: "#F6F6F4",
-    slug: "eleving",
+    slug: "mogo",
   },
   {
-    id: "02",
+    id: "03",
     title: "Fleet Operations Platform",
-    description: "Redesigned an 18-year-old B2B platform — unified workflows, AI decision support, and cross-platform design system.",
-    context: "Mapon · Senior Product Designer · 2023",
-    impact: "23% faster data interpretation. 17% reduction in manual reporting after launch.",
+    description: "23% faster data interpretation. 17% less manual reporting. Unified workflows, AI decision support.",
+    context: "Mapon · Senior UX/UI Designer · 2023",
+    impact: "Redesigned 18-year-old B2B platform with cross-platform design system.",
     year: "2023",
     visual: "fleet",
+    thumbnailSrc: "/fleet/fleetapp.png",
     bg: "#F7F6F3",
     slug: "fleet",
   },
   {
-    id: "03",
+    id: "04",
     title: "Banking Platform Efficiency",
-    description: "Structural UX redesign for internal banking workflows (navigation + compliance + accessibility).",
-    tags: "FINTECH · ENTERPRISE · ACCESSIBILITY",
-    context: "2021–2022 · Senior UX/UI Designer · Desktop / Web / Tablet",
-    impact: "16% faster tasks · 33% fewer clicks · 21% higher satisfaction",
+    description: "16% faster tasks · 33% fewer clicks · 21% higher satisfaction.",
+    context: "2021–2022 · Senior UX/UI Designer",
+    impact: "Structural redesign: navigation, compliance flows, accessibility across web and tablet.",
     year: "2021–2022",
     visual: "banking",
+    thumbnailSrc: "/db/card-bank.jpg",
     bg: "#F6F6F4",
     slug: "banking",
   },
   {
-    id: "04",
+    id: "05",
     title: "Reimagining the UK's top TV app",
-    description: "Cross-platform rebrand and accessibility overhaul for 28M+ users.",
-    tags: "MEDIA · MOBILE · ACCESSIBILITY · DESIGN SYSTEM",
-    context: "2020–2022 · Senior Product Designer · iOS / Android",
-    impact: "9% ↑ engagement · 15% faster handoff · 7% ↑ accessible usage",
-    year: "2020–2022",
+    description: "28M+ users. 9% ↑ engagement · 15% faster handoff · 7% ↑ accessible usage.",
+    context: "2021–2022 · Senior UX/UI Designer",
+    impact: "Cross-platform rebrand and accessibility overhaul.",
+    year: "2020–2021",
     visual: "banking",
+    thumbnailSrc: "/ukc4/card-uktv.png",
     bg: "#F6F6F4",
     slug: "uktv",
   },
@@ -79,11 +81,19 @@ export default function App() {
     return () => window.removeEventListener("hashchange", handler);
   }, []);
 
-  if (page === "eleving") {
+  if (page === "mogo") {
     return (
       <div className="app">
         <Nav scrolled={scrolled} hoveredNav={hoveredNav} setHoveredNav={setHoveredNav} />
-        <ElevingCase />
+        <MogoCase />
+      </div>
+    );
+  }
+  if (page === "eleving" || page === "product-os") {
+    return (
+      <div className="app">
+        <Nav scrolled={scrolled} hoveredNav={hoveredNav} setHoveredNav={setHoveredNav} />
+        <ProductOSCase />
       </div>
     );
   }
@@ -91,7 +101,7 @@ export default function App() {
     return (
       <div className="app">
         <Nav scrolled={scrolled} hoveredNav={hoveredNav} setHoveredNav={setHoveredNav} />
-        <FleetCase />
+        <FleetCaseNew />
       </div>
     );
   }
@@ -99,7 +109,7 @@ export default function App() {
     return (
       <div className="app">
         <Nav scrolled={scrolled} hoveredNav={hoveredNav} setHoveredNav={setHoveredNav} />
-        <BankingCase />
+        <BankingNew />
       </div>
     );
   }
@@ -120,19 +130,8 @@ export default function App() {
         setHoveredNav={setHoveredNav}
       />
       <Hero />
-      <ClientLogos />
 
       <section id="work">
-        <div className="work-header">
-          <div>
-            <p className="work-header__eyebrow">Selected Work</p>
-            <h2 className="work-header__title">
-              Operational systems &amp; AI-driven platforms
-            </h2>
-            <p className="work-header__sub">2021 — Present</p>
-          </div>
-        </div>
-
         {CASES.map((c, i) => (
           <CaseRow
             key={c.id}

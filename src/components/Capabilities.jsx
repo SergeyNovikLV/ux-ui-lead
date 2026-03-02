@@ -9,7 +9,6 @@ const SKILLS = [
   "Operational UX",
   "Cross-functional Leadership",
   "Research to Outcome",
-  "Fleet / Fintech",
   "WCAG Accessibility",
   "Product Strategy",
   "Interaction Design",
@@ -31,6 +30,7 @@ export default function Capabilities() {
           <p className="capabilities__text">
             Every decision mapped to an operational outcome, a risk removed, or a constraint honored. Not execution for its own sake.
           </p>
+          <p className="capabilities__domains"><strong>Domains:</strong> Fintech · Transportation · Healthcare · Media · B2B platforms</p>
         </div>
 
         <div className={`capabilities__skills ${capVisible ? "capabilities__skills--visible" : ""}`}>
