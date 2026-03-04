@@ -234,6 +234,9 @@ export default function UKMediaCase() {
               <p className="mogo-system__desc">Scaling and VoiceOver validation before release — accessibility regressions caught early.</p>
             </div>
           </div>
+          <div className="mogo-section__image">
+            <ZoomableImage src={import.meta.env.BASE_URL + "ukc4/audit.jpg"} alt="UK TV app — shipping system" className="mogo-section__img" />
+          </div>
         </div>
       </section>
 
