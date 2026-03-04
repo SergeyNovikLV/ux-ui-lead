@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { asset } from "./config/paths";
 import Nav from "./components/Nav";
 import ScrollToTop from "./components/ScrollToTop";
 import Hero from "./components/Hero";
@@ -27,7 +26,7 @@ const CASES = [
     ],
     year: "2025 – Present",
     visual: "ds",
-    thumbnailSrc: asset("eleving/mogo.png"),
+    thumbnailSrc: import.meta.env.BASE_URL + "eleving/mogo.png",
     bg: "#F6F6F4",
     slug: "mogo",
   },
@@ -43,7 +42,7 @@ const CASES = [
     ],
     year: "2025",
     visual: "fleet",
-    thumbnailSrc: asset("fleet/fleetapp.png"),
+    thumbnailSrc: import.meta.env.BASE_URL + "fleet/fleetapp.png",
     bg: "#F7F6F3",
     slug: "fleet",
   },
@@ -59,7 +58,7 @@ const CASES = [
     ],
     year: "2021–2022",
     visual: "banking",
-    thumbnailSrc: asset("db/card-bank.jpg"),
+    thumbnailSrc: import.meta.env.BASE_URL + "db/card-bank.jpg",
     bg: "#F6F6F4",
     slug: "banking",
   },
@@ -75,7 +74,7 @@ const CASES = [
     ],
     year: "2021–2022",
     visual: "banking",
-    thumbnailSrc: asset("ukc4/card-uktv.png"),
+    thumbnailSrc: import.meta.env.BASE_URL + "ukc4/card-uktv.png",
     bg: "#F6F6F4",
     slug: "ukmedia",
   },

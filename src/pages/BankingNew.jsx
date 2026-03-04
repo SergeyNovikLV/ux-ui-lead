@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import './BankingNew.css';
-import { asset } from '../config/paths';
 import ZoomableImage from '../components/ZoomableImage';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, Wrench, FlaskConical } from 'lucide-react';
@@ -65,7 +64,7 @@ export default function BankingNew() {
           </div>
 
           <div className="hero-split">
-            <ZoomableImage src={asset("db/bank.png")} alt="Banking platform overview" className="mogo-hero__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "db/bank.png"} alt="Banking platform overview" className="mogo-hero__img" />
           </div>
         </div>
       </section>
@@ -89,7 +88,7 @@ export default function BankingNew() {
           <p className="case__body"><strong>Constraint:</strong> Improve efficiency and reduce error rate without increasing compliance risk or disrupting existing workflows.</p>
          
           <div className="mogo-section__image">
-            <ZoomableImage src={asset("db/workshop.png")} alt="Platform workshop — where the platform slowed people down" className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "db/workshop.png"} alt="Platform workshop — where the platform slowed people down" className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -128,7 +127,7 @@ export default function BankingNew() {
             />
           </div>
           <div className="mogo-section__image">
-            <ZoomableImage src={asset("db/bankusers.png")} alt="Field input: daily users across operational roles" caption="Field input: daily users across operational roles — tasks, constraints, and navigation workarounds mapped before restructuring." className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "db/bankusers.png"} alt="Field input: daily users across operational roles" caption="Field input: daily users across operational roles — tasks, constraints, and navigation workarounds mapped before restructuring." className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -148,8 +147,8 @@ export default function BankingNew() {
           <p className="case__body case__body--strong">Before → After: From fragmented navigation to unified task paths</p>
           <div className="banking-section__slider-wrap">
             <BeforeAfterSlider
-              beforeSrc={asset("db/bankcomparisonold.jpg")}
-              afterSrc={asset("db/banknew.jpg")}
+              beforeSrc={import.meta.env.BASE_URL + "db/bankcomparisonold.jpg"}
+              afterSrc={import.meta.env.BASE_URL + "db/banknew.jpg"}
               beforeCaption="Before: Deep navigation, inconsistent patterns, compliance backtracking."
               afterCaption="After: Unified navigation, linear compliance flows, accessibility parity."
             />
@@ -225,7 +224,7 @@ export default function BankingNew() {
             </div>
           </div>
           <div className="mogo-section__image">
-            <ZoomableImage src={asset("db/pallete.jpg")} alt="Design system palette — tokens and alignment model" className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "db/pallete.jpg"} alt="Design system palette — tokens and alignment model" className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -250,7 +249,7 @@ export default function BankingNew() {
             >
               <video
                 ref={bankVideoRef}
-                src={asset("videos/bank.mp4")}
+                src={import.meta.env.BASE_URL + "videos/bank.mp4"}
                 controls
                 playsInline
                 className="fleet-section__video-el"

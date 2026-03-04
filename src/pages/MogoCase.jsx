@@ -1,5 +1,4 @@
 import './MogoCase.css';
-import { asset } from '../config/paths';
 import ZoomableImage from '../components/ZoomableImage';
 import VideoPreview from '../components/VideoPreview';
 import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench } from 'lucide-react';
@@ -46,7 +45,7 @@ export default function MogoCase() {
           </div>
 
           <div className="hero-split">
-            <ZoomableImage src={asset("eleving/mogo3.png")} alt="New flow preview" caption="Before → After: Clearer hero + simplified process explanation." className="mogo-hero__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo3.png"} alt="New flow preview" caption="Before → After: Clearer hero + simplified process explanation." className="mogo-hero__img" />
           </div>
         </div>
       </section>
@@ -68,7 +67,7 @@ export default function MogoCase() {
           </ul>
           <p className="case__body"><strong>Constraint:</strong> Simplify the application and increase submissions without reducing start intent.</p>
           <div className="mogo-section__image">
-            <ZoomableImage src={asset("eleving/mogo1.png")} alt="Before/After screens showing messy hierarchy → simplified flow and clearer primary CTA" caption={'Before → After: Cleaner steps, clearer \u201cNext\u201d.'} className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo1.png"} alt="Before/After screens showing messy hierarchy → simplified flow and clearer primary CTA" caption={'Before → After: Cleaner steps, clearer \u201cNext\u201d.'} className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -107,7 +106,7 @@ export default function MogoCase() {
             />
           </div>
           <div className="mogo-section__image">
-            <ZoomableImage src={asset("eleving/mogo6.png")} alt="Pain/importance map" caption="Pain/importance map: Prioritized issues by user pain vs business importance to focus the redesign." className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo6.png"} alt="Pain/importance map" caption="Pain/importance map: Prioritized issues by user pain vs business importance to focus the redesign." className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -124,7 +123,7 @@ export default function MogoCase() {
             <li>Visible progression: step position, next action, and remaining steps are clear throughout.</li>
           </ul>
           <div className="mogo-section__image">
-            <ZoomableImage src={asset("eleving/mogo2.png")} alt="6-step flow overview with step intent labels" caption="6-step flow: Simplified application with clear step intent and one obvious primary action per screen." className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo2.png"} alt="6-step flow overview with step intent labels" caption="6-step flow: Simplified application with clear step intent and one obvious primary action per screen." className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -197,7 +196,7 @@ export default function MogoCase() {
             </div>
           </div>
           <div className="mogo-section__image">
-            <ZoomableImage src={asset("eleving/mogo7.png")} alt="Alignment model — Business–Design–Engineering workflow" caption="Alignment model: Business–Design–Engineering workflow with ownership, outputs, and QA checkpoints to ship without UX drift." className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo7.png"} alt="Alignment model — Business–Design–Engineering workflow" caption="Alignment model: Business–Design–Engineering workflow with ownership, outputs, and QA checkpoints to ship without UX drift." className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -214,7 +213,7 @@ export default function MogoCase() {
             <li>Shipping with defined states and acceptance criteria prevented quality drift post-release.</li>
           </ul>
           <div className="mogo-section__image">
-            <ZoomableImage src={asset("eleving/mogo4.png")} alt="Monitoring pack — GA4 + Clarity dashboard" caption="Monitoring pack: Monthly GA4 + Clarity dashboard — start rate, continuation, completion, scroll depth, dead clicks." className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo4.png"} alt="Monitoring pack — GA4 + Clarity dashboard" caption="Monitoring pack: Monthly GA4 + Clarity dashboard — start rate, continuation, completion, scroll depth, dead clicks." className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -256,19 +255,19 @@ export default function MogoCase() {
               <div className="mogo-related__eyebrow">PRODUCT DESIGN OS</div>
               <h3 className="mogo-related__title">Product Design OS</h3>
               <p className="mogo-related__desc">I built an internal delivery system: tokens + governance + a design sign-off gate, plus a shared workspace where teams track UX quality and metrics.</p>
-              <VideoPreview src={asset("videos/elev.mp4")} caption="Product Design OS: tokens, governance, and design sign-off gate in action." className="mogo-related__video" />
+              <VideoPreview src={import.meta.env.BASE_URL + "videos/elev.mp4"} caption="Product Design OS: tokens, governance, and design sign-off gate in action." className="mogo-related__video" />
             </div>
             <div className="mogo-related__card">
               <div className="mogo-related__eyebrow">KLEVO</div>
               <h3 className="mogo-related__title">Klevo — brand launched in 4 weeks</h3>
               <p className="mogo-related__desc">From brand name voting to production in one month — clear ownership, fast iteration loops, and delivery discipline that kept scope under control.</p>
-              <ZoomableImage src={asset("eleving/mogo8.png")} alt="Klevo brand launch proof" caption="Klevo: From brand name voting to production release in 4 weeks." className="mogo-related__img-zoom" />
+              <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo8.png"} alt="Klevo brand launch proof" caption="Klevo: From brand name voting to production release in 4 weeks." className="mogo-related__img-zoom" />
             </div>
             <div className="mogo-related__card">
               <div className="mogo-related__eyebrow">3 BRANDS</div>
               <h3 className="mogo-related__title">3 brands on one foundation</h3>
               <p className="mogo-related__desc">One shared token source and common UI rules across brands — consistent UX patterns, easier maintenance, and faster rollouts without breaking brand integrity.</p>
-              <ZoomableImage src={asset("eleving/mogo9.png")} alt="3 brands on one foundation" caption="3 brands on one shared token foundation — consistent patterns, faster rollouts." className="mogo-related__img-zoom" />
+              <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo9.png"} alt="3 brands on one foundation" caption="3 brands on one shared token foundation — consistent patterns, faster rollouts." className="mogo-related__img-zoom" />
             </div>
           </div>
         </div>
