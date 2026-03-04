@@ -7,7 +7,8 @@
   --color-bg-warm: #F5F3F0;
   --color-bg-white: #ffffff;
   --color-bg-tinted: #F7F6F3;
-  --color-bg-page: #F6F6F4;
+  --color-bg-page: #ffffff;
+  --color-card-bg: #F7F7F7;
   --color-border: #E8E4DE;
   --color-border-light: #F0EDE8;
   --color-border-subtle: rgba(0, 0, 0, 0.08);
@@ -40,12 +41,27 @@
   --page-max: 1120px;
   --text-width: 760px;
   --text-column-max: 760px;
-  --radius-card: 24px;
+  --radius-card: 16px;       /* Cards, content blocks, images/media */
+  --radius-sm: 8px;          /* Small UI: chips, tags, buttons */
+  /* Research/Signal card spacing (METHOD/SIGNAL/DECISION blocks) */
+  --rs-card-padding: 32px;
+  --rs-eyebrow-to-title: 8px;
+  --rs-title-to-body: 16px;
+  --rs-row-gap: 16px;
+  --rs-row-padding: 16px;
+  --rs-label-width: 92px;
   --shadow-surface: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06);
   --shadow-surface-hover: 0 2px 4px rgba(0, 0, 0, 0.08), 0 12px 32px rgba(0, 0, 0, 0.08);
   --font-size-min: 14px;
   --font-size-subtitle: 18px;
   --font-size-caption: 14px;
   --letter-spacing-max: 2px;
-  --section-padding: 120px;
+  --section-padding: 70px;
+  --nav-height: 68px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 30px;
+  }
 }

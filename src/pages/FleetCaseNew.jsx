@@ -3,7 +3,10 @@ import './FleetCaseNew.css';
 import ZoomableImage from '../components/ZoomableImage';
 import VideoPreview from '../components/VideoPreview';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
-import { Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench } from 'lucide-react';
+import RoleAndScope from '../components/RoleAndScope';
+import ResearchSignalCard from '../components/ResearchSignalCard';
+import { fleetRoleScope } from '../data/roleScopeData';
 
 export default function FleetCaseNew() {
   const [videoPlaying, setVideoPlaying] = useState(false);
@@ -41,6 +44,7 @@ export default function FleetCaseNew() {
 
           {/* Under-hero: Metric tiles */}
           <div className="mogo-hero__under">
+            <p className="mogo-hero__metric-context">Baseline → post-launch (2025)</p>
             <div className="mogo-hero__metrics">
               <div className="case__stat">
                 <div className="case__stat-num">23%</div>
@@ -63,42 +67,18 @@ export default function FleetCaseNew() {
           <div className="hero-split">
             <ZoomableImage src="/fleet/mobilescreen.png" alt="Fleet Operations Platform — dashboard preview" caption="Fleet Dashboard: Fuel summary timeline with AI-assisted anomaly detection and decision support." className="mogo-hero__img" />
           </div>
-
-          {/* Role & scope — Owned / Influenced / Decided */}
-          <div className="fleet-role__ledger mogo-hero__role-list">
-            <div className="fleet-role__col">
-              <h3 className="fleet-role__col-title">Owned</h3>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">End-to-end design (discovery → delivery) for core workflows</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">AI integration UX: explainability, confidence, sources, guardrails</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Design-system foundations: tokens, components, usage rules</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Design QA + handoff: states, edge cases, acceptance criteria</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Cross-platform parity (web + iOS + Android)</span></div>
-            </div>
-            <div className="fleet-role__col">
-              <h3 className="fleet-role__col-title">Influenced</h3>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Scope prioritisation with 3/8 product owners</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">IA across 6 core modules (navigation + hierarchy)</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Accessibility baseline (WCAG 2.1 AA patterns)</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Figma ↔ Storybook alignment with engineering</span></div>
-            </div>
-            <div className="fleet-role__col">
-              <h3 className="fleet-role__col-title">Decided</h3>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Dashboard over tables (signals first, details on demand)</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">AI as decision support — no black-box automation</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Unified component library (reuse + scalability)</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Mobile-first parity (same logic, both surfaces)</span></div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* 01 — PROBLEM */}
+      <RoleAndScope {...fleetRoleScope} />
+
+      {/* 02 — PROBLEM */}
       <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">01 — PROBLEM</div>
+          <div className="case__section-label">02 — PROBLEM</div>
           <h2 className="case__h2">18 years of growth. Zero design coherence</h2>
           <p className="case__body">The platform grew without a design system, creating fragmented workflows and inconsistent navigation. Fleet managers made high-stakes operational decisions in an interface that slowed them down.</p>
-          <p className="case__body case__body--strong">What we observed</p>
+          <p className="case__body case__body--strong">What I observed</p>
           <ul className="case__list">
             <li>73% of fuel selections were manual — unnecessary detours and higher fuel costs.</li>
             <li>Basic fleet tasks required up to 7 clicks; users expected ~3.</li>
@@ -112,71 +92,38 @@ export default function FleetCaseNew() {
         </div>
       </section>
 
-      {/* 02 — EVIDENCE */}
+      {/* 03 — RESEARCH */}
       <section className="case__section fleet-process fleet-research">
         <div className="case__wrap">
           <div className="fleet-process__grid mogo-evidence__grid">
             <div className="mogo-evidence__intro">
-              <div className="case__section-label">02 — RESEARCH</div>
+              <div className="case__section-label">03 — RESEARCH</div>
               <h2 className="case__h2">Signals that drove decisions</h2>
               <p className="case__body fleet-process__body-lead">
                 Three research methods — interviews, workflow audit, and usability testing — translated operational pain into product decisions.
               </p>
             </div>
-            <div className="fleet-process__card">
-              <div className="fleet-process__card-method">INTERVIEWS & SYNTHESIS</div>
-              <div className="fleet-process__card-title">Empathy mapping (2 segments)</div>
-              <div className="fleet-process__card-rows">
-                <div className="fleet-process__card-row fleet-process__card-row--first">
-                  <span className="fleet-process__card-badge">METHOD</span>
-                  <span className="fleet-process__card-value">Contextual interviews + synthesis with fleet managers and on-ground operators.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--middle">
-                  <span className="fleet-process__card-badge">SIGNAL</span>
-                  <span className="fleet-process__card-value">Managers needed predictive signals; operators needed fewer steps to complete tasks.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--last">
-                  <span className="fleet-process__card-badge">DECISION</span>
-                  <span className="fleet-process__card-value">Split IA by role needs (signals vs execution), not by feature lists.</span>
-                </div>
-              </div>
-            </div>
-            <div className="fleet-process__card">
-              <div className="fleet-process__card-method">WORKFLOW AUDIT</div>
-              <div className="fleet-process__card-title">Workflow analysis (click-path)</div>
-              <div className="fleet-process__card-rows">
-                <div className="fleet-process__card-row fleet-process__card-row--first">
-                  <span className="fleet-process__card-badge">METHOD</span>
-                  <span className="fleet-process__card-value">Task-flow audit + click-path analysis across core workflows.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--middle">
-                  <span className="fleet-process__card-badge">SIGNAL</span>
-                  <span className="fleet-process__card-value">Fuel Locator required up to 7 steps; users expected ~3.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--last">
-                  <span className="fleet-process__card-badge">DECISION</span>
-                  <span className="fleet-process__card-value">Redesign Fuel Locator as an inline comparison tool, not a separate screen.</span>
-                </div>
-              </div>
-            </div>
-            <div className="fleet-process__card">
-              <div className="fleet-process__card-method">USABILITY TESTING</div>
-              <div className="fleet-process__card-title">Moderated prototype tests (n=6)</div>
-              <div className="fleet-process__card-rows">
-                <div className="fleet-process__card-row fleet-process__card-row--first">
-                  <span className="fleet-process__card-badge">METHOD</span>
-                  <span className="fleet-process__card-value">Moderated prototype tests on key tasks with fleet managers.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--middle">
-                  <span className="fleet-process__card-badge">SIGNAL</span>
-                  <span className="fleet-process__card-value">Users ignored AI suggestions when reasoning and confidence were hidden.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--last">
-                  <span className="fleet-process__card-badge">DECISION</span>
-                  <span className="fleet-process__card-value">Surface confidence + data source inline; keep the primary action dominant.</span>
-                </div>
-              </div>
-            </div>
+            <ResearchSignalCard
+              eyebrow="INTERVIEWS & SYNTHESIS"
+              title="Empathy mapping (2 segments)"
+              method="Contextual interviews + synthesis with fleet managers and on-ground operators."
+              signal="Managers needed predictive signals; operators needed fewer steps to complete tasks."
+              decision="Split IA by role needs (signals vs execution), not by feature lists."
+            />
+            <ResearchSignalCard
+              eyebrow="WORKFLOW AUDIT"
+              title="Workflow analysis (click-path)"
+              method="Task-flow audit + click-path analysis across core workflows."
+              signal="Fuel Locator required up to 7 steps; users expected ~3."
+              decision="Redesign Fuel Locator as an inline comparison tool, not a separate screen."
+            />
+            <ResearchSignalCard
+              eyebrow="USABILITY TESTING"
+              title="Moderated prototype tests (n=6)"
+              method="Moderated prototype tests on key tasks with fleet managers."
+              signal="Users ignored AI suggestions when reasoning and confidence were hidden."
+              decision="Surface confidence + data source inline; keep the primary action dominant."
+            />
           </div>
           <div className="fleet-section__video">
             <div
@@ -210,14 +157,15 @@ export default function FleetCaseNew() {
                 </button>
               </div>
             </div>
+            <p className="fleet-section__video-caption">Figma clickable prototype demonstrating the Semi-Automated Fuel Locator.</p>
           </div>
         </div>
       </section>
 
-      {/* 03 — REDESIGN */}
+      {/* 04 — REDESIGN */}
       <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">03 — REDESIGN</div>
+          <div className="case__section-label">04 — REDESIGN</div>
           <h2 className="case__h2">Redesign summary</h2>
           <p className="case__body">I replaced static fuel tables with a timeline dashboard and rebuilt the Fuel Locator as an inline comparison flow — so fleet managers make faster, better-supported decisions.</p>
           <ul className="case__list">
@@ -236,11 +184,11 @@ export default function FleetCaseNew() {
         </div>
       </section>
 
-      {/* 04 — KEY DECISIONS */}
+      {/* 05 — KEY DECISIONS */}
       <section className="case__section case__key-decisions">
         <div className="case__wrap case__key-decisions__wrap">
           <div className="case__key-decisions__left">
-            <div className="case__section-label">04 — KEY DECISIONS</div>
+            <div className="case__section-label">05 — KEY DECISIONS</div>
             <h2 className="case__h2">Trade-offs behind the redesign</h2>
             <p className="case__body">Four decisions shaped the direction — each resolved a specific tension between operational need, AI credibility, and delivery complexity.</p>
           </div>
@@ -279,10 +227,10 @@ export default function FleetCaseNew() {
         </div>
       </section>
 
-      {/* 05 — DESIGN SYSTEM */}
-      <section className="case__section mogo-section mogo-shipping-section">
+      {/* 06 — DESIGN SYSTEM */}
+      <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">05 — DESIGN SYSTEM</div>
+          <div className="case__section-label">06 — DESIGN SYSTEM</div>
           <h2 className="case__h2">This wasn't cleanup — it was product infrastructure</h2>
           <p className="case__body">No shared token layer, inconsistent components, weak cross-platform parity. I drove a system rebuild as a structural requirement for the redesign to hold.</p>
           <p className="case__body case__body--strong">What I built</p>
@@ -306,31 +254,27 @@ export default function FleetCaseNew() {
         </div>
       </section>
 
-      {/* 06 — IMPACT */}
+      {/* 07 — IMPACT */}
       <section className="case__section mogo-impact">
         <div className="case__wrap">
-          <div className="case__section-label">06 — IMPACT</div>
-          <h2 className="case__h2">What improved</h2>
-         
-          <p className="mogo-impact__subhead">What it means</p>
-          <p className="mogo-impact__body">Operational efficiency improved because managers stopped cross-referencing manual tables — the dashboard surfaced the same insight in seconds. AI decision support added confidence without removing control.</p>
-          <p className="mogo-impact__subhead">Why it worked</p>
+          <div className="case__section-label">07 — IMPACT</div>
+          <h2 className="case__h2">Results</h2>
+          <p className="case__body mogo-impact__intro">Operational efficiency improved because managers stopped cross-referencing manual tables — the dashboard surfaced the same insight in seconds. AI decision support added confidence without removing control.</p>
           <ul className="mogo-impact__list">
             <li>Dashboard replaced manual table analysis — trends and anomalies visible at a glance.</li>
             <li>AI ranks and explains options; managers confirm — trust built through transparency, not automation.</li>
             <li>Unified design system reduced implementation drift and shortened delivery cycles.</li>
           </ul>
-       
           <div className="mogo-section__image">
             <ZoomableImage src="/fleet/fleet10.png" alt="Fleet impact — fuel efficiency and dashboard adoption metrics" caption="Post-launch monitoring: Fuel efficiency trends and dashboard adoption across monitored fleets." className="mogo-section__img" />
           </div>
         </div>
       </section>
 
-      {/* 07 — NEXT STEPS */}
+      {/* 08 — NEXT STEPS */}
       <section className="case__section mogo-next">
         <div className="case__wrap">
-          <div className="case__section-label">07 — NEXT STEPS</div>
+          <div className="case__section-label">08 — NEXT STEPS</div>
           <h2 className="case__h2">How I'd extend the platform</h2>
           <p className="case__body mogo-next__lead">To keep improving operational outcomes without adding UI complexity, I'd run a focused iteration loop:</p>
           <div className="mogo-next__grid">
@@ -353,10 +297,10 @@ export default function FleetCaseNew() {
         </div>
       </section>
 
-      {/* 08 — TAKEAWAYS */}
+      {/* 09 — TAKEAWAYS */}
       <section className="case__section mogo-takeaways">
         <div className="case__wrap">
-          <div className="case__section-label">08 — TAKEAWAYS</div>
+          <div className="case__section-label">09 — TAKEAWAYS</div>
           <h2 className="case__h2">Executive takeaways</h2>
           <div className="mogo-takeaways__numbered">
             <div className="mogo-takeaways__num-item">
@@ -386,8 +330,8 @@ export default function FleetCaseNew() {
       {/* Navigation */}
       <nav className="eleving-nav" aria-label="Case study navigation">
         <div className="eleving-nav__wrap">
-          <a href="#work" className="eleving-nav__link">← Back to Work</a>
-          <a href="#banking" className="eleving-nav__link">Next: Banking Platform →</a>
+          <a href="#work" className="eleving-nav__link"><ArrowLeft size={16} strokeWidth={2} aria-hidden /> Back to Work</a>
+          <a href="#banking" className="eleving-nav__link">Next: Banking Platform <ArrowRight size={16} strokeWidth={2} aria-hidden /></a>
         </div>
       </nav>
     </article>

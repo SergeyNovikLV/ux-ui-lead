@@ -9,7 +9,7 @@ globs: ["**/*.jsx", "**/*.css", "**/CaseRow*", "**/Banking*", "**/tokens.css"]
 - Page max width: 1120px (`--page-max`, `--max-width`)
 - Text column max: 760px (`--text-column-max`)
 - 12-column grid for split sections on case pages
-- Section spacing: `padding-block: 120px` for major sections (`--section-padding`)
+- Section spacing: `padding-block: 70px` for major sections (`--section-padding`)
 - No stacking multiple vertical paddings
 
 ## Typography

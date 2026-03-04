@@ -2,7 +2,7 @@
   border-bottom: 1px solid var(--color-border);
   border-top: 1px solid var(--color-border);
   padding: 0;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
 }
 
 .client-logos__inner {
@@ -13,6 +13,12 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .client-logos__inner {
+    padding: 32px var(--space-md);
+  }
 }
 
 .client-logos__label {

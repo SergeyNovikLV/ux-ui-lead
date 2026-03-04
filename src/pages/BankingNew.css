@@ -22,6 +22,10 @@
   margin-top: var(--space-md);
 }
 
+.mogo-impact__intro {
+  margin-bottom: var(--space-md);
+}
+
 .mogo-impact__body {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -70,16 +74,7 @@
   margin: 0;
 }
 
-/* 05 — SHIPPING SYSTEM section tint */
-.mogo-shipping-section {
-
-}
-
 /* 07 — NEXT STEPS */
-.mogo-next {
-  padding-top: calc(var(--space-xl) + 24px);
-
-}
 
 .mogo-next__lead {
   margin-bottom: var(--space-md);
@@ -104,7 +99,7 @@
 }
 
 .mogo-next__card {
-  background: #ffffff;
+  background: var(--color-card-bg);
   border: none;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-surface);
@@ -130,6 +125,7 @@
   color: var(--color-text);
   margin: 0;
   line-height: 1.3;
+  min-height: calc(1.3em * 2);
 }
 
 .mogo-next__text {
@@ -223,6 +219,14 @@
 /* Mogo case — under-hero: Summary > Tiles > Credibility > Role cards */
 .mogo-hero__under {
   margin-top: var(--space-lg);
+}
+
+.mogo-hero__metric-context {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-caption);
+  text-align: center;
+  margin: 0 0 var(--space-sm);
 }
 
 /* 1) Executive Summary — strongest hierarchy */
@@ -380,7 +384,7 @@
 }
 
 .mogo-system__item {
-  background: #ffffff;
+  background: var(--color-card-bg);
   border: none;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-surface);
@@ -406,6 +410,7 @@
   color: var(--color-text);
   margin: 0;
   line-height: 1.35;
+  min-height: calc(1.35em * 2);
 }
 
 .mogo-system__desc {
@@ -430,24 +435,106 @@
   }
 }
 
+/* Full-width video below evidence cards (same style as Fleet) */
+.fleet-section__video {
+  width: 100%;
+  margin-top: var(--space-md);
+}
+.fleet-section__video-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.fleet-section__video-el {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-card);
+  vertical-align: middle;
+}
+.fleet-section__video-center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.fleet-section__video-center .fleet-section__video-play {
+  pointer-events: auto;
+}
+.fleet-section__video-center--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.fleet-section__video-play {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.2s ease;
+  padding-left: 4px;
+}
+
+.fleet-section__video-play::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+}
+.fleet-section__video-play:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.08);
+}
+.fleet-section__video-play:focus-visible {
+  outline: 2px solid var(--color-accent, #fff);
+  outline-offset: 3px;
+}
+.fleet-section__video-play--pause {
+  padding-left: 0;
+}
+.fleet-section__video-caption {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-caption);
+  line-height: 1.5;
+  margin: var(--space-sm) 0 0;
+}
+
 /* Before → After slider (03 — REDESIGN) */
 .banking-section__slider-wrap {
   margin-top: var(--space-md);
 }
 .banking-section__slider-wrap .slider-container {
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   overflow: hidden;
-}
-
-/* Evidence card title spacing */
-.fleet-process__card-title {
-  margin-bottom: var(--space-xs);
 }
 
 /* Evidence grid: left col = intro (label + title + lead), right col = Card A; row 2 = B + C */
 .mogo-evidence__grid {
   grid-template-columns: 1fr 1fr;
   align-items: start;
+}
+
+@media (max-width: 768px) {
+  .mogo-evidence__grid {
+    grid-template-columns: 1fr;
+  }
+  .mogo-evidence__intro {
+    grid-column: 1;
+    padding-right: 0;
+  }
 }
 
 .mogo-evidence__intro {

@@ -87,24 +87,35 @@
 }
 
 .capabilities__skill {
-  border: 1px solid #ddd8d0;
   padding: 11px 18px;
-  border-radius: 20px;
+  border-radius: var(--radius-card);
   font-family: var(--font-sans);
   font-size: var(--font-size-min);
   color: var(--color-body);
-  background: var(--color-bg-white);
+  background: var(--color-card-bg);
+  box-shadow: var(--shadow-surface);
   transition: all 0.2s ease;
   cursor: default;
 }
 
 .capabilities__skill:hover {
-  border-color: var(--color-accent);
   color: var(--color-text);
   background: #fffaf6;
+  box-shadow: var(--shadow-surface-hover);
 }
 
 @media (max-width: 768px) {
+  .capabilities__inner {
+    padding: 48px var(--space-md);
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .capabilities__text,
+  .capabilities__domains {
+    font-size: 16px;
+  }
+
   .capabilities__skills {
     margin-top: 24px;
   }

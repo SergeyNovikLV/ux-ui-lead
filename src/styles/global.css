@@ -7,19 +7,28 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   font-family: var(--font-sans);
   font-size: var(--font-size-min);
   color: var(--color-body);
-  background: #F6F7F9;
+  background: var(--color-bg-white);
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
 }
 
 a {
   text-decoration: none;
+}
+
+/* Clickable UI — pointer cursor on hover */
+button,
+a[href],
+[role="button"] {
+  cursor: pointer;
 }
 
 ::-webkit-scrollbar {
@@ -27,7 +36,7 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: #faf8f5;
+  background: var(--color-bg-white);
 }
 
 ::-webkit-scrollbar-thumb {

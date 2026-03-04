@@ -214,7 +214,7 @@
   font-size: 12px;
 }
 
-/* 08 — TAKEAWAYS — same styles as MogoCase (shared class names) */
+/* 09 — TAKEAWAYS — styles live in case-shared.css */
 
 /* Mogo case — under-hero: Summary > Tiles > Credibility > Role cards */
 .mogo-hero__under {
@@ -435,7 +435,7 @@
   }
 }
 
-/* Full-width video below research cards */
+/* Full-width video below evidence cards (same style as Fleet/Banking) */
 .fleet-section__video {
   width: 100%;
   margin-top: var(--space-md);
@@ -452,7 +452,6 @@
   border-radius: var(--radius-card);
   vertical-align: middle;
 }
-/* Centered play/pause overlay (YouTube-style) — does not block native controls */
 .fleet-section__video-center {
   position: absolute;
   left: 0;
@@ -488,13 +487,11 @@
   transition: background 0.2s ease, transform 0.2s ease;
   padding-left: 4px;
 }
-
 .fleet-section__video-play::before {
   content: '';
   position: absolute;
   inset: -20px;
 }
-
 .fleet-section__video-play:hover {
   background: rgba(0, 0, 0, 0.8);
   transform: scale(1.08);
@@ -506,22 +503,12 @@
 .fleet-section__video-play--pause {
   padding-left: 0;
 }
-
 .fleet-section__video-caption {
   font-family: var(--font-sans);
   font-size: 13px;
   color: var(--color-caption);
   line-height: 1.5;
   margin: var(--space-sm) 0 0;
-}
-
-/* Before → After slider (03 — REDESIGN) */
-.fleet-section__slider-wrap {
-  margin-top: var(--space-md);
-}
-.fleet-section__slider-wrap .slider-container {
-  border-radius: var(--radius-card);
-  overflow: hidden;
 }
 
 /* Evidence grid: left col = intro (label + title + lead), right col = Card A; row 2 = B + C */

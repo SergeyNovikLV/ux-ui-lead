@@ -95,43 +95,7 @@
   margin: 0;
 }
 
-/* CTA directly under value sentence — belongs to text block */
-.hero__cta-wrap {
-  margin-top: var(--hero-gap);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: all 0.5s ease 0.45s;
-}
-
-.hero__cta-wrap--visible {
-  opacity: 1;
-  transform: none;
-}
-
-.hero__cta {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-bg-white);
-  background: var(--color-accent);
-  border: none;
-  border-radius: 8px;
-  padding: 14px 28px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.hero__cta:hover {
-  background: #d96b1e;
-}
-
-.hero__cta:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* Divider between CTA and metrics */
+/* Divider between intro and metrics */
 .hero__divider {
   width: 100%;
   max-width: 400px;
@@ -174,7 +138,7 @@
   font-size: 24px;
   font-weight: 600;
   font-variant-numeric: tabular-nums lining-nums;
-  color: var(--color-text);
+  color: var(--color-accent);
   line-height: 1.2;
   height: 1.2em;
   display: flex;
@@ -210,13 +174,18 @@
   opacity: 1;
 }
 
-/* Selected works label + chevron after last hero text (60px margin desktop) */
+/* Selected works label + chevron — clickable, scrolls to first case card */
 .hero__selected-wrap {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.hero__selected-wrap:hover {
+  opacity: 0.85;
 }
 @media (min-width: 641px) {
   .hero__selected-wrap {
@@ -246,7 +215,7 @@
 
 @media (max-width: 640px) {
   .hero__inner {
-    padding: 40px var(--space-md) 40px;
+    padding: calc(var(--nav-height, 68px) + 40px) var(--space-md) 40px;
     --hero-gap: 20px;
   }
 

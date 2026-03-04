@@ -35,13 +35,13 @@
 
 .case-row__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 380px) 1fr;
   gap: 56px;
   align-items: start;
 }
 
 .case-row__content {
-  max-width: var(--text-column-max, 760px);
+  max-width: 380px;
 }
 
 /* Style 1: Title */
@@ -55,29 +55,52 @@
   margin-bottom: 14px;
 }
 
-/* Style 2: Impact line — label in accent, metrics neutral */
-.case-row__impact-line {
+.case-row__description {
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 400;
   color: var(--color-text);
   line-height: 1.5;
   margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.case-row__impact-label {
-  color: var(--color-accent);
-  font-weight: 500;
+/* Style 2: Impact bullets — numbers bold only, desc inline */
+.case-row__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px 0;
 }
 
-/* Style 3: Body + meta + CTA — single regular style */
-.case-row__body {
+.case-row__bullet {
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 400;
   color: var(--color-body);
-  line-height: 1.55;
-  margin-bottom: 10px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  padding-left: 14px;
+  position: relative;
+}
+
+.case-row__bullet::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.case-row__bullet:last-child {
+  margin-bottom: 0;
+}
+
+.case-row__bullet strong {
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 .case-row__meta {
@@ -90,6 +113,9 @@
 }
 
 .case-row__cta {
+  display: inline-block;
+  padding: 8px 4px;
+  margin: -8px -4px;
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 400;
@@ -97,7 +123,6 @@
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease, color 0.2s ease;
-  display: inline-block;
 }
 
 .case-row__link:hover .case-row__cta,
@@ -107,13 +132,13 @@
 }
 
 .case-row__visual-wrap {
-  border-radius: 20px;
+  border-radius: var(--radius-card);
   overflow: hidden;
   background: var(--color-bg-tinted);
   box-shadow: var(--shadow-surface);
   transition: box-shadow 0.45s ease;
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10.8; /* 20% taller than 16/9 */
 }
 
 .case-row__visual-wrap--hover {
@@ -124,7 +149,7 @@
   transform: scale(1);
   transition: transform 0.55s ease;
   line-height: 0;
-  background: var(--color-bg-white);
+  background: var(--color-card-bg);
   width: 100%;
   height: 100%;
   display: flex;
@@ -150,7 +175,7 @@
   object-fit: cover;
 }
 
-/* Banking card only: cover + zoom 20%, position down a bit */
+/* Banking card only: cover + zoom, position down a bit */
 .case-row--banking-thumb .case-row__thumbnail {
   object-fit: cover;
   object-position: center 85%;
@@ -178,7 +203,17 @@
   .case-row__visual-wrap {
     order: -1;
     max-width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10.8; /* 20% taller than 16/9 */
+  }
+}
+
+@media (max-width: 768px) {
+  .case-row {
+    padding: 48px 0;
+  }
+
+  .case-row__inner {
+    padding: 0 var(--space-md);
   }
 }
 

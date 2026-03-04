@@ -1,9 +1,32 @@
+import { useState, useRef } from 'react';
 import './BankingNew.css';
 import ZoomableImage from '../components/ZoomableImage';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
-import { Compass, ClipboardList, ShieldCheck, ScanEye, Wrench, FlaskConical } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, Wrench, FlaskConical } from 'lucide-react';
+import RoleAndScope from '../components/RoleAndScope';
+import ResearchSignalCard from '../components/ResearchSignalCard';
+import { bankingRoleScope } from '../data/roleScopeData';
 
 export default function BankingNew() {
+  const [videoPlaying, setVideoPlaying] = useState(false);
+  const [videoHover, setVideoHover] = useState(false);
+  const bankVideoRef = useRef(null);
+
+  const toggleBankVideo = () => {
+    const v = bankVideoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setVideoPlaying(true);
+    } else {
+      v.pause();
+      setVideoPlaying(false);
+    }
+  };
+
+  const onBankVideoPlay = () => setVideoPlaying(true);
+  const onBankVideoPause = () => setVideoPlaying(false);
+  const onBankVideoEnded = () => setVideoPlaying(false);
   return (
     <article className="eleving mogo-case">
       {/* HERO — Executive summary */}
@@ -20,6 +43,7 @@ export default function BankingNew() {
 
           {/* Under-hero: Results metrics strip */}
           <div className="mogo-hero__under">
+            <p className="mogo-hero__metric-context">Baseline → post-release (2021–2022)</p>
             <div className="mogo-hero__metrics">
               <div className="case__stat">
                 <div className="case__stat-num">16%</div>
@@ -42,55 +66,18 @@ export default function BankingNew() {
           <div className="hero-split">
             <ZoomableImage src="/db/bank.png" alt="Banking platform overview" className="mogo-hero__img" />
           </div>
-
-          {/* Quick facts + Role & scope */}
-          <div className="fleet-role__ledger mogo-hero__role-list">
-            <div className="fleet-role__col">
-              <h3 className="fleet-role__col-title">Owned</h3>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Information architecture rebuild for core modules (navigation depth + entry points)</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Compliance flow mapping (steps, branches, required evidence) + UX specs</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Accessibility remediation plan (WCAG 2.1 AA) across light/dark + focus states</span></div>
-            </div>
-            <div className="fleet-role__col">
-              <h3 className="fleet-role__col-title">Influenced</h3>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Prioritized the top workflows with PM/BA based on frequency + support load</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Aligned compliance stakeholders on "minimum acceptable clarity" per step</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Component/token updates to prevent cross-surface inconsistencies during rollout</span></div>
-            </div>
-            <div className="fleet-role__col">
-              <h3 className="fleet-role__col-title">Decided</h3>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Task-path navigation model (structure follows workflows, not feature taxonomy)</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Compliance as guided steps (reduce backtracking, make "next" explicit)</span></div>
-              <div className="fleet-role__row"><span className="fleet-role__row-dot" aria-hidden /><span className="fleet-role__row-text">Accessibility as release gate (parity in light/dark + keyboard-first behavior)</span></div>
-            </div>
-          </div>
         </div>
       </section>
 
-      {/* 01 — PROBLEM */}
+      <RoleAndScope {...bankingRoleScope} />
+
+      {/* 02 — PROBLEM */}
       <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">01 — PROBLEM</div>
+          <div className="case__section-label">02 — PROBLEM</div>
           <h2 className="case__h2">Where the platform slowed people down</h2>
           <p className="case__body">The issue wasn't visual. The platform had grown without a unified navigation model or structured compliance flows — creating structural inefficiency that slowed daily tasks and increased errors.</p>
-          <div className="mogo-hero__metrics">
-            <div className="case__stat">
-              <div className="case__stat-num">5–7 levels</div>
-              <div className="case__stat-label">Navigation depth (baseline)</div>
-              <div className="case__stat-desc">Inefficient navigation depth slowed routine tasks.</div>
-            </div>
-            <div className="case__stat">
-              <div className="case__stat-num">9%</div>
-              <div className="case__stat-label">Low feature discoverability</div>
-              <div className="case__stat-desc">Key tools were buried in the structure.</div>
-            </div>
-            <div className="case__stat">
-              <div className="case__stat-num">13%</div>
-              <div className="case__stat-label">Increase in support inquiries</div>
-              <div className="case__stat-desc">Confusion in compliance workflows drove helpdesk load.</div>
-            </div>
-          </div>
-          <p className="case__body case__body--strong">What we observed</p>
+          <p className="case__body case__body--strong">What I observed</p>
           <ul className="case__list">
             <li>Excessive depth for routine tasks — users navigated 5–7 levels for actions that should take 2.</li>
             <li>Users relied on memory and workarounds instead of discoverable structure.</li>
@@ -106,84 +93,49 @@ export default function BankingNew() {
         </div>
       </section>
 
-      {/* 02 — EVIDENCE */}
+      {/* 03 — EVIDENCE */}
       <section className="case__section fleet-process fleet-research">
         <div className="case__wrap">
           <div className="fleet-process__grid mogo-evidence__grid">
             <div className="mogo-evidence__intro">
-              <div className="case__section-label">02 — EVIDENCE</div>
+              <div className="case__section-label">03 — EVIDENCE</div>
               <h2 className="case__h2">Signals that drove decisions</h2>
               <p className="case__body fleet-process__body-lead">
                 I combined user input, workflow analysis, and an accessibility audit to locate friction and translate it into structural decisions.
               </p>
             </div>
-            <div className="fleet-process__card">
-              <div className="fleet-process__card-method">USER INPUT</div>
-              <div className="fleet-process__card-title">Interviews + feedback sessions</div>
-              <div className="fleet-process__card-rows">
-                <div className="fleet-process__card-row fleet-process__card-row--first">
-                  <span className="fleet-process__card-badge">METHOD</span>
-                  <span className="fleet-process__card-value">Interviews + internal feedback sessions with daily users (employees + operational roles).</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--middle">
-                  <span className="fleet-process__card-badge">SIGNAL</span>
-                  <span className="fleet-process__card-value">Navigation inconsistency forced workarounds; users struggled to predict "where to go next".</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--last">
-                  <span className="fleet-process__card-badge">DECISION</span>
-                  <span className="fleet-process__card-value">Define one navigation model and enforce consistent patterns across all surfaces.</span>
-                </div>
-              </div>
-            </div>
-            <div className="fleet-process__card">
-              <div className="fleet-process__card-method">WORKFLOW ANALYSIS</div>
-              <div className="fleet-process__card-title">Workflow mapping + click-path review</div>
-              <div className="fleet-process__card-rows">
-                <div className="fleet-process__card-row fleet-process__card-row--first">
-                  <span className="fleet-process__card-badge">METHOD</span>
-                  <span className="fleet-process__card-value">Workflow mapping + click-path review for core tasks across key modules.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--middle">
-                  <span className="fleet-process__card-badge">SIGNAL</span>
-                  <span className="fleet-process__card-value">Routine tasks required unnecessary hops and repeated cross-referencing between sections.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--last">
-                  <span className="fleet-process__card-badge">DECISION</span>
-                  <span className="fleet-process__card-value">Reduce depth, keep primary actions persistent, restructure screens around task paths.</span>
-                </div>
-              </div>
-            </div>
-            <div className="fleet-process__card">
-              <div className="fleet-process__card-method">ACCESSIBILITY + QUALITY AUDIT</div>
-              <div className="fleet-process__card-title">WCAG 2.1 AA review</div>
-              <div className="fleet-process__card-rows">
-                <div className="fleet-process__card-row fleet-process__card-row--first">
-                  <span className="fleet-process__card-badge">METHOD</span>
-                  <span className="fleet-process__card-value">WCAG 2.1 AA review across light/dark mode, focus states, and keyboard navigation.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--middle">
-                  <span className="fleet-process__card-badge">SIGNAL</span>
-                  <span className="fleet-process__card-value">Contrast and focus inconsistencies slowed work and increased mistake rates in high-stakes tasks.</span>
-                </div>
-                <div className="fleet-process__card-row fleet-process__card-row--last">
-                  <span className="fleet-process__card-badge">DECISION</span>
-                  <span className="fleet-process__card-value">Fix tokens and focus states; ship accessibility parity as a mandatory release requirement, not as optional.</span>
-                </div>
-              </div>
-            </div>
+            <ResearchSignalCard
+              eyebrow="USER INPUT"
+              title="Interviews + on-site observation (JTBD mapping)"
+              method="Interviews with daily users + on-site observation of real task execution; mapped JTBD, pain points, and workarounds across core workflows."
+              signal='Users relied on memory and workarounds to navigate; "where to go next" was unclear in compliance-heavy tasks and repeated handoffs.'
+              decision="Define one navigation model and enforce consistent patterns across all surfaces."
+            />
+            <ResearchSignalCard
+              eyebrow="WORKFLOW ANALYSIS"
+              title="Workflow mapping + click-path review"
+              method="Workflow mapping and click-path review for core tasks and user workflows across key modules."
+              signal="Routine tasks required unnecessary hops and repeated cross-referencing between sections."
+              decision="Reduce depth, keep primary actions persistent, restructure screens around task paths."
+            />
+            <ResearchSignalCard
+              eyebrow="ACCESSIBILITY + QUALITY AUDIT"
+              title="WCAG 2.1 AA review"
+              method="WCAG 2.1 AA review across light/dark mode, focus states, and keyboard navigation."
+              signal="Contrast and focus inconsistencies slowed work and increased mistake rates in high-stakes tasks."
+              decision="Fix tokens and focus states; ship accessibility parity as a mandatory release requirement, not as optional."
+            />
           </div>
-          <div className="mogo-evidence__images">
-            {/* placeholder: TODO — replace with actual artifact images */}
-            <div className="case__placeholder case__placeholder--evidence mogo-section__img">[Image: Workflow map — bottlenecks]</div>
-            <div className="case__placeholder case__placeholder--evidence mogo-section__img">[Image: WCAG audit — light/dark parity]</div>
+          <div className="mogo-section__image">
+            <ZoomableImage src="/db/bankusers.png" alt="Field input: daily users across operational roles" caption="Field input: daily users across operational roles — tasks, constraints, and navigation workarounds mapped before restructuring." className="mogo-section__img" />
           </div>
         </div>
       </section>
 
-      {/* 03 — REDESIGN */}
+      {/* 04 — REDESIGN */}
       <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">03 — REDESIGN</div>
+          <div className="case__section-label">04 — REDESIGN</div>
           <h2 className="case__h2">Redesign summary</h2>
           <p className="case__body">I rebuilt the platform's structural layer — unifying navigation, restructuring compliance flows, and standardising patterns so users could complete tasks with fewer steps and less uncertainty.</p>
           <ul className="case__list">
@@ -204,11 +156,11 @@ export default function BankingNew() {
         </div>
       </section>
 
-      {/* 04 — KEY DECISIONS */}
+      {/* 05 — KEY DECISIONS */}
       <section className="case__section case__key-decisions">
         <div className="case__wrap case__key-decisions__wrap">
           <div className="case__key-decisions__left">
-            <div className="case__section-label">04 — KEY DECISIONS</div>
+            <div className="case__section-label">05 — KEY DECISIONS</div>
             <h2 className="case__h2">Rules and trade-offs behind the redesign</h2>
             <p className="case__body">These decisions explain how I chose what to restructure, what to standardise, and how to reduce friction without introducing risk.</p>
           </div>
@@ -239,7 +191,7 @@ export default function BankingNew() {
                 <span className="case__decision-num">04</span>
                 <div>
                   <div className="case__decision-title">Accessibility as infrastructure</div>
-                  <p className="case__decision-body">WCAG 2.1 AA parity treated as a release requirement — not a post-launch audit. Tokens, focus states, and contrast shipped as part of every change.</p>
+                  <p className="case__decision-body">Accessibility parity treated as a release requirement — not a post-launch audit. Tokens, focus states, and contrast shipped as part of every change.</p>
                 </div>
               </div>
             </div>
@@ -247,10 +199,10 @@ export default function BankingNew() {
         </div>
       </section>
 
-      {/* 05 — SHIPPING SYSTEM */}
-      <section className="case__section mogo-section mogo-shipping-section">
+      {/* 06 — SHIPPING SYSTEM */}
+      <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">05 — SHIPPING SYSTEM</div>
+          <div className="case__section-label">06 — SHIPPING SYSTEM</div>
           <h2 className="case__h2">How it stayed consistent in production</h2>
           <p className="case__body">A redesign only works if it ships reliably, stays consistent, and doesn't drift after release.</p>
           <p className="case__body case__body--strong">The system I introduced</p>
@@ -277,43 +229,59 @@ export default function BankingNew() {
         </div>
       </section>
 
-      {/* 06 — IMPACT */}
+      {/* 07 — IMPACT */}
       <section className="case__section mogo-impact">
         <div className="case__wrap">
-          <div className="case__section-label">06 — IMPACT</div>
-          <h2 className="case__h2">What improved</h2>
-       
-          <div className="mogo-hero__metrics">
-            <div className="case__stat">
-              <div className="case__stat-num">16%</div>
-              <div className="case__stat-label">Faster task completion</div>
-              <div className="case__stat-desc">Reduced navigation depth and fewer hops per task.</div>
-            </div>
-            <div className="case__stat">
-              <div className="case__stat-num">33%</div>
-              <div className="case__stat-label">Fewer clicks per task</div>
-              <div className="case__stat-desc">Unified navigation and persistent primary actions removed redundant steps.</div>
-            </div>
-            <div className="case__stat">
-              <div className="case__stat-num">21%</div>
-              <div className="case__stat-label">Higher user satisfaction</div>
-              <div className="case__stat-desc">Post-release internal survey; consistent patterns reduced cognitive load.</div>
-            </div>
-          </div>
-          <p className="mogo-impact__subhead">Why it worked</p>
+          <div className="case__section-label">07 — IMPACT</div>
+          <h2 className="case__h2">Results</h2>
+          <p className="case__body mogo-impact__intro">Post-change outcomes (2021–2022). Efficiency improved across core workflows and compliance steps after the structural UX rebuild.</p>
           <ul className="mogo-impact__list">
             <li>Reduced navigation depth and fewer hops removed unnecessary transitions.</li>
             <li>Clearer compliance steps reduced backtracking and uncertainty.</li>
             <li>Accessibility parity reduced friction and errors for all user types.</li>
             <li>Consistent patterns reduced cognitive load across modules.</li>
           </ul>
+          <div className="fleet-section__video">
+            <div
+              className="fleet-section__video-wrap"
+              onMouseEnter={() => setVideoHover(true)}
+              onMouseLeave={() => setVideoHover(false)}
+            >
+              <video
+                ref={bankVideoRef}
+                src="/videos/bank.mp4"
+                controls
+                playsInline
+                className="fleet-section__video-el"
+                onPlay={onBankVideoPlay}
+                onPause={onBankVideoPause}
+                onEnded={onBankVideoEnded}
+              />
+              <div className={`fleet-section__video-center ${videoPlaying || !videoHover ? 'fleet-section__video-center--hidden' : ''}`} aria-hidden>
+                <button type="button" className="fleet-section__video-play" onClick={toggleBankVideo} aria-label="Play">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
+                  </svg>
+                </button>
+              </div>
+              <div className={`fleet-section__video-center fleet-section__video-center--pause ${!videoPlaying || !videoHover ? 'fleet-section__video-center--hidden' : ''}`} aria-hidden>
+                <button type="button" className="fleet-section__video-play fleet-section__video-play--pause" onClick={toggleBankVideo} aria-label="Pause">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" />
+                    <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <p className="fleet-section__video-caption">Demo: redesigned workflows + new capabilities (incl. dark mode) after the structural UX rebuild.</p>
+          </div>
         </div>
       </section>
 
-      {/* 07 — NEXT STEPS */}
+      {/* 08 — NEXT STEPS */}
       <section className="case__section mogo-next">
         <div className="case__wrap">
-          <div className="case__section-label">07 — NEXT STEPS</div>
+          <div className="case__section-label">08 — NEXT STEPS</div>
           <h2 className="case__h2">How I'd extend the work</h2>
           <p className="case__body mogo-next__lead">To keep improving without introducing new fragmentation, I'd run a lightweight iteration loop:</p>
           <div className="mogo-next__grid">
@@ -330,16 +298,16 @@ export default function BankingNew() {
             <div className="mogo-next__card">
               <FlaskConical size={32} className="mogo-next__icon" aria-hidden />
               <h3 className="mogo-next__title">Accessibility regression checks</h3>
-              <p className="mogo-next__text">WCAG spot checks on every release cycle and continued token and component consolidation for long-term consistency.</p>
+              <p className="mogo-next__text">Spot checks on contrast, focus states, and keyboard behavior during each release cycle.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 08 — TAKEAWAYS */}
+      {/* 09 — TAKEAWAYS */}
       <section className="case__section mogo-takeaways">
         <div className="case__wrap">
-          <div className="case__section-label">08 — TAKEAWAYS</div>
+          <div className="case__section-label">09 — TAKEAWAYS</div>
           <h2 className="case__h2">Executive takeaways</h2>
           <div className="mogo-takeaways__numbered">
             <div className="mogo-takeaways__num-item">
@@ -355,7 +323,7 @@ export default function BankingNew() {
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">03</span>
               <p className="mogo-takeaways__num-title">Treat accessibility as a release requirement</p>
-              <p className="mogo-takeaways__num-text">Shipping WCAG parity as part of every release — not a separate audit — kept quality stable and prevented regressions.</p>
+              <p className="mogo-takeaways__num-text">Shipping accessibility parity as part of every release — not as a separate audit — kept quality stable and prevented regressions.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">04</span>
@@ -369,8 +337,8 @@ export default function BankingNew() {
       {/* Navigation */}
       <nav className="eleving-nav" aria-label="Case study navigation">
         <div className="eleving-nav__wrap">
-          <a href="#work" className="eleving-nav__link">← Back to Work</a>
-          <a href="#uktv" className="eleving-nav__link">Next: UK TV App →</a>
+          <a href="#work" className="eleving-nav__link"><ArrowLeft size={16} strokeWidth={2} aria-hidden /> Back to Work</a>
+          <a href="#ukmedia" className="eleving-nav__link">Next: UK TV App <ArrowRight size={16} strokeWidth={2} aria-hidden /></a>
         </div>
       </nav>
     </article>

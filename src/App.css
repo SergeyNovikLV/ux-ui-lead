@@ -12,6 +12,12 @@
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .work-header {
+    padding: 48px var(--space-md) 32px;
+  }
+}
+
 .work-header__eyebrow {
   font-family: var(--font-mono);
   font-size: var(--font-size-min);

@@ -150,7 +150,7 @@ export default function CaseRow({ c, index, transitionDelay }) {
   const cardContent = (
     <article
       ref={ref}
-      className={`case-row ${visible ? "case-row--visible" : ""} ${c.slug === "banking" ? "case-row--banking-thumb" : ""} ${c.slug === "uktv" ? "case-row--default-thumb" : ""}`}
+      className={`case-row ${visible ? "case-row--visible" : ""} ${c.slug === "banking" ? "case-row--banking-thumb" : ""} ${c.slug === "ukmedia" ? "case-row--default-thumb" : ""}`}
       style={{ ['--case-row-delay']: `${transitionDelay}s` }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -159,10 +159,18 @@ export default function CaseRow({ c, index, transitionDelay }) {
           <div className="case-row__grid">
             <div className="case-row__content">
               <h2 className="case-row__title">{c.title}</h2>
-              <p className="case-row__impact-line">
-                <span className="case-row__impact-label">Impact:</span> {c.description}
-              </p>
-              <p className="case-row__body">{c.impact}</p>
+              {c.description && (
+                <p className="case-row__description">{c.description}</p>
+              )}
+              {c.bullets && c.bullets.length > 0 && (
+                <ul className="case-row__bullets">
+                  {c.bullets.slice(0, 3).map((b, i) => (
+                    <li key={i} className="case-row__bullet">
+                      {b.numbers ? <><strong>{b.numbers}</strong> </> : null}{b.text}{b.text || b.numbers ? ' ' : ''}{b.desc}
+                    </li>
+                  ))}
+                </ul>
+              )}
               <p className="case-row__meta">{c.context}</p>
               <span className="case-row__cta">View case</span>
             </div>

@@ -22,6 +22,10 @@
   margin-top: var(--space-md);
 }
 
+.mogo-impact__intro {
+  margin-bottom: var(--space-md);
+}
+
 .mogo-impact__body {
   font-family: var(--font-sans);
   font-size: 16px;
@@ -70,16 +74,7 @@
   margin: 0;
 }
 
-/* 05 — SHIPPING SYSTEM section tint */
-.mogo-shipping-section {
-
-}
-
 /* 07 — NEXT STEPS */
-.mogo-next {
-  padding-top: calc(var(--space-xl) + 24px);
-
-}
 
 .mogo-next__lead {
   margin-bottom: var(--space-md);
@@ -104,7 +99,7 @@
 }
 
 .mogo-next__card {
-  background: #ffffff;
+  background: var(--color-card-bg);
   border: none;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-surface);
@@ -130,6 +125,7 @@
   color: var(--color-text);
   margin: 0;
   line-height: 1.3;
+  min-height: calc(1.3em * 2);
 }
 
 .mogo-next__text {
@@ -223,6 +219,14 @@
 /* Mogo case — under-hero: Summary > Tiles > Credibility > Role cards */
 .mogo-hero__under {
   margin-top: var(--space-lg);
+}
+
+.mogo-hero__metric-context {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-caption);
+  text-align: center;
+  margin: 0 0 var(--space-sm);
 }
 
 /* 1) Executive Summary — strongest hierarchy */
@@ -380,7 +384,7 @@
 }
 
 .mogo-system__item {
-  background: #ffffff;
+  background: var(--color-card-bg);
   border: none;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-surface);
@@ -406,6 +410,7 @@
   color: var(--color-text);
   margin: 0;
   line-height: 1.35;
+  min-height: calc(1.35em * 2);
 }
 
 .mogo-system__desc {
@@ -434,6 +439,16 @@
 .mogo-evidence__grid {
   grid-template-columns: 1fr 1fr;
   align-items: start;
+}
+
+@media (max-width: 768px) {
+  .mogo-evidence__grid {
+    grid-template-columns: 1fr;
+  }
+  .mogo-evidence__intro {
+    grid-column: 1;
+    padding-right: 0;
+  }
 }
 
 .mogo-evidence__intro {

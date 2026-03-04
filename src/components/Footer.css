@@ -6,6 +6,12 @@
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .footer {
+    padding: 24px var(--space-md);
+  }
+}
+
 .footer__text {
   font-family: var(--font-mono);
   font-size: var(--font-size-min);

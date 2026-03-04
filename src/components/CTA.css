@@ -12,6 +12,17 @@
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .cta__inner {
+    padding: 48px var(--space-md);
+  }
+
+  .cta__eyebrow,
+  .cta__button {
+    font-size: 16px;
+  }
+}
+
 .cta__eyebrow {
   font-family: var(--font-mono);
   font-size: var(--font-size-min);
@@ -65,7 +76,7 @@
   gap: 14px;
   border: 1px solid var(--color-accent);
   padding: 18px 48px;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   color: var(--color-accent);
   font-family: var(--font-mono);
   font-size: var(--font-size-min);

@@ -1,5 +1,8 @@
 import './ElevingCase.css';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import KeyDecisions from '../components/KeyDecisions';
+import RoleAndScope from '../components/RoleAndScope';
+import { elevingRoleScope } from '../data/roleScopeData';
 import DesignSystemPillars from '../components/DesignSystemPillars';
 
 export default function ElevingCase() {
@@ -18,21 +21,6 @@ export default function ElevingCase() {
               <div className="eleving-hero__divider" aria-hidden />
             </div>
           </div>
-          <div className="eleving-hero__meta-wrap">
-            <div className="case__meta-grid">
-              {[
-                { label: 'TIMELINE', value: '06.2025–Present' },
-                { label: 'ROLE', value: 'Lead Product Designer' },
-                { label: 'SCOPE', value: 'Mogo · Primero · MyMogo' },
-                { label: 'MARKETS', value: 'LV · LT · EE · RO · AM · GE · MD' },
-              ].map(item => (
-                <div key={item.label} className="eleving-hero__meta-item">
-                  <div className="case__meta-label">{item.label}</div>
-                  <div className="case__meta-value">{item.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
           <div className="hero-split">
             <div className="hero-split__image">
               <img src="/eleving/case1.png" alt="Eleving design system overview" className="hero-split__img" />
@@ -41,12 +29,14 @@ export default function ElevingCase() {
         </div>
       </section>
 
-      {/* CONTEXT */}
+      <RoleAndScope {...elevingRoleScope} />
+
+      {/* 02 — CONTEXT */}
       <section className="case__section eleving-context">
         <div className="case__wrap">
           <div className="eleving-context__grid">
             <div>
-              <div className="case__section-label">CONTEXT</div>
+              <div className="case__section-label">02 — CONTEXT</div>
               <h2 className="case__h2">Three brands. No shared foundation. One team. One month to prove it works.</h2>
               <p className="case__body">
                 Eleving operates 3 fintech brands across 7 markets. Each product evolved
@@ -80,64 +70,9 @@ export default function ElevingCase() {
         </div>
       </section>
 
-      {/* MY ROLE — 4 cards 2x2 */}
-      <section className="case__section eleving-role">
-        <div className="case__wrap">
-          <div className="case__section-label">MY ROLE</div>
-          <h2 className="eleving-role__title">What I owned, influenced, decided, delivered</h2>
-          <div className="eleving-role__cards">
-            <div className="case__card">
-              <span className="case__card-num" aria-hidden>01</span>
-              <h3 className="case__card-title">Owned</h3>
-              <ul className="case__card-list">
-                <li className="case__card-item">Token architecture rebuild</li>
-                <li className="case__card-item">Typography system — Inter Variable</li>
-                <li className="case__card-item">Design QA process from scratch</li>
-                <li className="case__card-item">Figma file architecture and governance</li>
-                <li className="case__card-item">Component library contribution</li>
-              </ul>
-            </div>
-            <div className="case__card">
-              <span className="case__card-num" aria-hidden>02</span>
-              <h3 className="case__card-title">Influenced</h3>
-              <ul className="case__card-list">
-                <li className="case__card-item">Engineering adoption of token system</li>
-                <li className="case__card-item">Storybook ↔ Figma token alignment</li>
-                <li className="case__card-item">QA gate integrated into release cycle</li>
-                <li className="case__card-item">Brand migration sequencing roadmap</li>
-              </ul>
-            </div>
-            <div className="case__card">
-              <span className="case__card-num" aria-hidden>03</span>
-              <h3 className="case__card-title">Decided</h3>
-              <ul className="case__card-list">
-                <li className="case__card-item">Theme-based token layering for brand switching</li>
-                <li className="case__card-item">Definition of "design-ready" standard</li>
-                <li className="case__card-item">Extend vs reuse component rules</li>
-                <li className="case__card-item">AI-ready token boundaries</li>
-              </ul>
-            </div>
-            <div className="case__card">
-              <span className="case__card-num" aria-hidden>04</span>
-              <h3 className="case__card-title">Delivered</h3>
-              <ul className="case__card-list">
-                <li className="case__card-item">Klevo — new brand launched in 4 weeks</li>
-                <li className="case__card-item">Mogo full redesign shipped</li>
-                <li className="case__card-item">Zero critical failures post-launch audit</li>
-                <li className="case__card-item">3→1 token sources consolidated</li>
-              </ul>
-            </div>
-          </div>
-          <blockquote className="case__quote">
-            "This wasn't a Design System update. I established a Product Design Operating
-            Model — infrastructure that makes delivery predictable and brand drift
-            structurally impossible."
-          </blockquote>
-        </div>
-      </section>
-
-      {/* KEY DECISIONS */}
+      {/* 03 — KEY DECISIONS */}
       <KeyDecisions
+        sectionLabel="03 — KEY DECISIONS"
         title="Four decisions that defined the system."
         decisions={[
           {
@@ -166,7 +101,7 @@ export default function ElevingCase() {
       {/* WHAT I BUILT — DESIGN SYSTEM */}
       <section className="case__section eleving-built">
         <div className="case__wrap">
-          <div className="case__section-label">DESIGN SYSTEM</div>
+          <div className="case__section-label">04 — DESIGN SYSTEM</div>
           <h2 className="case__h2">Product Design Operating System</h2>
           <p className="case__body">
             Alongside product work, I established a multi-brand delivery framework so UI changes stayed consistent across brands, surfaces, and releases.
@@ -188,7 +123,7 @@ export default function ElevingCase() {
       {/* PROCESS — Research & Product Process */}
       <section className="case__section eleving-process">
         <div className="case__wrap">
-          <div className="case__section-label">PROCESS</div>
+          <div className="case__section-label">05 — PROCESS</div>
           <h2 className="case__h2">Embedding research into product delivery</h2>
           <p className="case__body">
             Before I joined, product decisions were made without structured user insight.
@@ -267,7 +202,7 @@ export default function ElevingCase() {
       {/* EVIDENCE — 3 columns */}
       <section className="case__section eleving-evidence">
         <div className="case__wrap">
-          <div className="case__section-label">EVIDENCE</div>
+          <div className="case__section-label">06 — EVIDENCE</div>
           <h2 className="case__h2">From operating model to shipped product</h2>
           <div className="eleving-evidence__grid">
             <div className="eleving-evidence__block">
@@ -307,7 +242,7 @@ export default function ElevingCase() {
       {/* IMPACT */}
       <section className="case__section eleving-impact">
         <div className="case__wrap">
-          <div className="case__section-label">IMPACT</div>
+          <div className="case__section-label">07 — IMPACT</div>
           <h2 className="case__h2">Measured outcomes</h2>
           <div className="eleving-impact__metrics">
             <div className="eleving-impact__metric">
@@ -338,8 +273,8 @@ export default function ElevingCase() {
       {/* NAVIGATION */}
       <nav className="eleving-nav" aria-label="Case study navigation">
         <div className="eleving-nav__wrap">
-          <a href="#work" className="eleving-nav__link">← Back to Work</a>
-          <a href="#fleet" className="eleving-nav__link">Next: Fleet Operations Platform →</a>
+          <a href="#work" className="eleving-nav__link"><ArrowLeft size={16} strokeWidth={2} aria-hidden /> Back to Work</a>
+          <a href="#fleet" className="eleving-nav__link">Next: Fleet Operations Platform <ArrowRight size={16} strokeWidth={2} aria-hidden /></a>
         </div>
       </nav>
     </article>

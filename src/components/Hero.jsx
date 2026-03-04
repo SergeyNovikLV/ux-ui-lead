@@ -35,14 +35,6 @@ export default function Hero() {
             </p>
           </div>
 
-          <div className={`hero__cta-wrap ${heroVisible ? "hero__cta-wrap--visible" : ""}`}>
-            <button type="button" className="hero__cta" onClick={scrollToWork}>
-              View selected work
-            </button>
-          </div>
-
-          
-
           <div className={`hero__stats ${heroVisible ? "hero__stats--visible" : ""}`}>
             {STATS.map(({ value, label }) => (
               <div key={label} className="hero__stat">
@@ -55,7 +47,14 @@ export default function Hero() {
           <p className={`hero__trusted ${heroVisible ? "hero__trusted--visible" : ""}`}>
             <strong>Trusted by:</strong> Channel 4 · Johnson &amp; Johnson · Deutsche Bank · Perfetti Van Melle · Mapon
           </p>
-          <div className="hero__selected-wrap">
+          <div
+            className="hero__selected-wrap"
+            onClick={scrollToWork}
+            onKeyDown={(e) => e.key === "Enter" && scrollToWork()}
+            role="button"
+            tabIndex={0}
+            aria-label="Scroll to selected work"
+          >
             <p className="hero__selected-label">Selected works</p>
             <div className="hero__selected-chevron" aria-hidden>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

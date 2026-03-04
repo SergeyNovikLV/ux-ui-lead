@@ -72,7 +72,7 @@
 }
 
 .case__card {
-  background: var(--color-bg-white);
+  background: var(--color-card-bg);
   border: none;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-surface);
@@ -97,6 +97,8 @@
   font-weight: 700;
   color: var(--color-text);
   margin: 0 0 16px 0;
+  line-height: 1.35;
+  min-height: calc(1.35em * 2);
 }
 
 .case__card-list {
@@ -160,6 +162,15 @@
 @media (max-width: 768px) {
   .case__key-decisions__wrap {
     grid-template-columns: 1fr;
+  }
+
+  .case__body,
+  .case__list,
+  .case__list li,
+  .case__decision-body,
+  .mogo-impact__list li,
+  .mogo-impact__body {
+    font-size: 16px;
   }
 }
 
@@ -314,7 +325,7 @@
 }
 
 .case__placeholder {
-  background: var(--color-border-light);
+  background: var(--color-card-bg);
   border-radius: var(--radius-card);
   display: flex;
   align-items: center;

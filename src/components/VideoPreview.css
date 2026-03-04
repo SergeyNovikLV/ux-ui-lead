@@ -8,7 +8,7 @@
 .vp-thumb {
   position: relative;
   display: block;
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-surface);
   overflow: hidden;
   cursor: pointer;
@@ -26,7 +26,7 @@
   width: 100%;
   height: 180px;
   object-fit: cover;
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   pointer-events: none;
 }
 
@@ -39,7 +39,7 @@
   align-items: center;
   justify-content: center;
   transition: background 0.18s ease;
-  border-radius: 16px;
+  border-radius: var(--radius-card);
 }
 
 .vp-thumb:hover .vp-thumb__overlay,
@@ -126,7 +126,7 @@
   max-height: 82vh;
   width: 100%;
   height: auto;
-  border-radius: 16px;
+  border-radius: var(--radius-card);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
 }
 
@@ -158,12 +158,18 @@
   z-index: 10000;
 }
 
+.vp-modal__close-icon::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+}
+
 .vp-modal__close-icon:hover { background: rgba(255, 255, 255, 0.24); }
 .vp-modal__close-icon:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
 .vp-modal__close-btn {
   padding: 10px 28px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
