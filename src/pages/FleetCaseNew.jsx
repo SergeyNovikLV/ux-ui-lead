@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import './FleetCaseNew.css';
+import { asset } from '../config/paths';
 import ZoomableImage from '../components/ZoomableImage';
 import VideoPreview from '../components/VideoPreview';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
@@ -65,7 +66,7 @@ export default function FleetCaseNew() {
           </div>
 
           <div className="hero-split">
-            <ZoomableImage src="/fleet/mobilescreen.png" alt="Fleet Operations Platform — dashboard preview" caption="Fleet Dashboard: Fuel summary timeline with AI-assisted anomaly detection and decision support." className="mogo-hero__img" />
+            <ZoomableImage src={asset("fleet/mobilescreen.png")} alt="Fleet Operations Platform — dashboard preview" caption="Fleet Dashboard: Fuel summary timeline with AI-assisted anomaly detection and decision support." className="mogo-hero__img" />
           </div>
         </div>
       </section>
@@ -87,7 +88,7 @@ export default function FleetCaseNew() {
           </ul>
           <p className="case__body"><strong>Constraint:</strong> Structural redesign across 6 core modules — not a visual refresh. Had to maintain operational continuity across 8 product streams during rollout.</p>
           <div className="mogo-section__image">
-            <ZoomableImage src="/fleet/fleet5.png" alt="Fleet platform before redesign — fragmented navigation and manual table views" caption="Before: Static 14-column fuel table with no trend visibility, no anomaly detection, and manual cross-referencing required." className="mogo-section__img" />
+            <ZoomableImage src={asset("fleet/fleet5.png")} alt="Fleet platform before redesign — fragmented navigation and manual table views" caption="Before: Static 14-column fuel table with no trend visibility, no anomaly detection, and manual cross-referencing required." className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -133,7 +134,7 @@ export default function FleetCaseNew() {
             >
               <video
                 ref={fleetVideoRef}
-                src="/videos/fleet-fuellocator1.mp4"
+                src={asset("videos/fleet-fuellocator1.mp4")}
                 controls
                 playsInline
                 className="fleet-section__video-el"
@@ -176,8 +177,8 @@ export default function FleetCaseNew() {
           <p className="case__body case__body--strong">Before → After: From manual tables to signal-first decisions</p>
           <div className="fleet-section__slider-wrap">
             <BeforeAfterSlider
-              beforeSrc="/fleet/fleetold.jpg"
-              afterSrc="/fleet/fleetnew.jpg"
+              beforeSrc={asset("fleet/fleetold.jpg")}
+              afterSrc={asset("fleet/fleetnew.jpg")}
               
             />
           </div>
@@ -266,7 +267,7 @@ export default function FleetCaseNew() {
             <li>Unified design system reduced implementation drift and shortened delivery cycles.</li>
           </ul>
           <div className="mogo-section__image">
-            <ZoomableImage src="/fleet/fleet10.png" alt="Fleet impact — fuel efficiency and dashboard adoption metrics" caption="Post-launch monitoring: Fuel efficiency trends and dashboard adoption across monitored fleets." className="mogo-section__img" />
+            <ZoomableImage src={asset("fleet/fleet10.png")} alt="Fleet impact — fuel efficiency and dashboard adoption metrics" caption="Post-launch monitoring: Fuel efficiency trends and dashboard adoption across monitored fleets." className="mogo-section__img" />
           </div>
         </div>
       </section>

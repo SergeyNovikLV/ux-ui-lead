@@ -1,4 +1,5 @@
 import './ElevingCase.css';
+import { asset } from '../config/paths';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import KeyDecisions from '../components/KeyDecisions';
 import RoleAndScope from '../components/RoleAndScope';
@@ -23,7 +24,7 @@ export default function ElevingCase() {
           </div>
           <div className="hero-split">
             <div className="hero-split__image">
-              <img src="/eleving/case1.png" alt="Eleving design system overview" className="hero-split__img" />
+              <img src={asset("eleving/case1.png")} alt="Eleving design system overview" className="hero-split__img" />
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import './UKMediaCase.css';
+import { asset } from '../config/paths';
 import ZoomableImage from '../components/ZoomableImage';
 import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench } from 'lucide-react';
 import RoleAndScope from '../components/RoleAndScope';
@@ -62,7 +63,7 @@ export default function UKMediaCase() {
           </div>
 
           <div className="hero-split">
-            <ZoomableImage src="/ukc4/uk1.jpg" alt="UK TV app — rebrand and accessibility overhaul" className="mogo-hero__img" />
+            <ZoomableImage src={asset("ukc4/uk1.jpg")} alt="UK TV app — rebrand and accessibility overhaul" className="mogo-hero__img" />
           </div>
         </div>
       </section>
@@ -120,7 +121,7 @@ export default function UKMediaCase() {
             >
               <video
                 ref={ukVideoRef}
-                src="/videos/cvideo.mp4"
+                src={asset("videos/cvideo.mp4")}
                 controls
                 playsInline
                 className="fleet-section__video-el"
@@ -162,7 +163,7 @@ export default function UKMediaCase() {
             <li>Tightened QA and validation loops for mobile delivery consistency</li>
           </ul>
           <div className="mogo-section__image">
-            <ZoomableImage src="/ukc4/tvzoom.jpg" alt="UK TV app — 200% text scaling and layout preservation" className="mogo-section__img" />
+            <ZoomableImage src={asset("ukc4/tvzoom.jpg")} alt="UK TV app — 200% text scaling and layout preservation" className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -249,7 +250,7 @@ export default function UKMediaCase() {
             <li>Shared Figma library and governance reduced rework and kept releases aligned.</li>
           </ul>
           <div className="mogo-section__image">
-            <ZoomableImage src="/ukc4/uktv5.png" alt="UK TV app — impact results" className="mogo-section__img" />
+            <ZoomableImage src={asset("ukc4/uktv5.png")} alt="UK TV app — impact results" className="mogo-section__img" />
           </div>
         </div>
       </section>
