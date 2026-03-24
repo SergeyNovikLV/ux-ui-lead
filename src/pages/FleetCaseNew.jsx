@@ -1,7 +1,5 @@
-import { useState, useRef } from 'react';
 import './FleetCaseNew.css';
 import ZoomableImage from '../components/ZoomableImage';
-import VideoPreview from '../components/VideoPreview';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench } from 'lucide-react';
 import RoleAndScope from '../components/RoleAndScope';
@@ -9,25 +7,6 @@ import ResearchSignalCard from '../components/ResearchSignalCard';
 import { fleetRoleScope } from '../data/roleScopeData';
 
 export default function FleetCaseNew() {
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const [videoHover, setVideoHover] = useState(false);
-  const fleetVideoRef = useRef(null);
-
-  const toggleFleetVideo = () => {
-    const v = fleetVideoRef.current;
-    if (!v) return;
-    if (v.paused) {
-      v.play();
-      setVideoPlaying(true);
-    } else {
-      v.pause();
-      setVideoPlaying(false);
-    }
-  };
-
-  const onFleetVideoPlay = () => setVideoPlaying(true);
-  const onFleetVideoPause = () => setVideoPlaying(false);
-  const onFleetVideoEnded = () => setVideoPlaying(false);
   return (
     <article className="eleving mogo-case">
       {/* HERO — Executive summary */}
@@ -124,40 +103,6 @@ export default function FleetCaseNew() {
               signal="Users ignored AI suggestions when reasoning and confidence were hidden."
               decision="Surface confidence + data source inline; keep the primary action dominant."
             />
-          </div>
-          <div className="fleet-section__video">
-            <div
-              className="fleet-section__video-wrap"
-              onMouseEnter={() => setVideoHover(true)}
-              onMouseLeave={() => setVideoHover(false)}
-            >
-              <video
-                ref={fleetVideoRef}
-                src={import.meta.env.BASE_URL + "videos/fleet-fuellocator1.mp4"}
-                controls
-                playsInline
-                className="fleet-section__video-el"
-                onPlay={onFleetVideoPlay}
-                onPause={onFleetVideoPause}
-                onEnded={onFleetVideoEnded}
-              />
-              <div className={`fleet-section__video-center ${videoPlaying || !videoHover ? 'fleet-section__video-center--hidden' : ''}`} aria-hidden>
-                <button type="button" className="fleet-section__video-play" onClick={toggleFleetVideo} aria-label="Play">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
-                  </svg>
-                </button>
-              </div>
-              <div className={`fleet-section__video-center fleet-section__video-center--pause ${!videoPlaying || !videoHover ? 'fleet-section__video-center--hidden' : ''}`} aria-hidden>
-                <button type="button" className="fleet-section__video-play fleet-section__video-play--pause" onClick={toggleFleetVideo} aria-label="Pause">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" />
-                    <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <p className="fleet-section__video-caption">Figma clickable prototype demonstrating the Semi-Automated Fuel Locator.</p>
           </div>
         </div>
       </section>
