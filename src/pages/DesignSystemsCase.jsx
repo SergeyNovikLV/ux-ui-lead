@@ -14,6 +14,7 @@ import {
 import CaseCardTitleGroup from '../components/CaseCardTitleGroup';
 import FleetSectionVideo from '../components/FleetSectionVideo';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
+import { getIcon } from '../data/roleScopeData';
 
 const base = import.meta.env.BASE_URL;
 
@@ -39,14 +40,17 @@ const DELIVERY_DRIFT_SYMPTOMS = [
   {
     title: 'Duplicated foundations',
     desc: 'Multiple brands evolved separate component logic, creating repeated design and implementation work.',
+    icon: 'Blocks',
   },
   {
     title: 'Design ↔ development drift',
     desc: 'Different design and implementation patterns made delivery less predictable across products.',
+    icon: 'ArrowLeftRight',
   },
   {
     title: 'Scaling overhead',
     desc: 'More QA effort, maintenance work, and release friction appeared as products expanded.',
+    icon: 'LineChart',
   },
 ];
 
@@ -64,9 +68,13 @@ function HeroMetricCard({ num, title, desc }) {
   );
 }
 
-function DriftSymptomCard({ title, desc }) {
+function DriftSymptomCard({ title, desc, icon }) {
+  const IconComponent = getIcon(icon);
   return (
     <div className="role-scope__card design-systems-case__drift-card">
+      <div className="role-scope__card-icon-wrap">
+        <IconComponent size={20} strokeWidth={2} className="role-scope__card-icon" aria-hidden />
+      </div>
       <div className="role-scope__card-content">
         <div className="role-scope__card-title" data-case-card-title>
           {title}

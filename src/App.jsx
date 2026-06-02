@@ -61,7 +61,7 @@ const CASES = [
     context: "Eleving Group · Design systems · Operations · 2024–2025",
     year: "2024–2025",
     visual: "ds",
-    thumbnailSrc: import.meta.env.BASE_URL + "eleving/mogo8.png",
+    thumbnailVideoSrc: import.meta.env.BASE_URL + "ai-case/ds2.mp4",
     bg: "#F6F6F4",
     slug: "design-systems",
   },
