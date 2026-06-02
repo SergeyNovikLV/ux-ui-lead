@@ -1,31 +1,13 @@
-import { useState, useRef } from 'react';
 import './UKMediaCase.css';
 import ZoomableImage from '../components/ZoomableImage';
+import FleetSectionVideo from '../components/FleetSectionVideo';
+import CaseCardTitleGroup from '../components/CaseCardTitleGroup';
 import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench } from 'lucide-react';
 import RoleAndScope from '../components/RoleAndScope';
 import ResearchSignalCard from '../components/ResearchSignalCard';
 import { ukMediaRoleScope } from '../data/roleScopeData';
 
 export default function UKMediaCase() {
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const [videoHover, setVideoHover] = useState(false);
-  const ukVideoRef = useRef(null);
-
-  const toggleUkVideo = () => {
-    const v = ukVideoRef.current;
-    if (!v) return;
-    if (v.paused) {
-      v.play();
-      setVideoPlaying(true);
-    } else {
-      v.pause();
-      setVideoPlaying(false);
-    }
-  };
-
-  const onUkVideoPlay = () => setVideoPlaying(true);
-  const onUkVideoPause = () => setVideoPlaying(false);
-  const onUkVideoEnded = () => setVideoPlaying(false);
   return (
     <article className="eleving mogo-case">
       {/* HERO */}
@@ -35,7 +17,7 @@ export default function UKMediaCase() {
             <div className="eleving-hero__text">
               <div className="case__hero-label">MEDIA & ENTERTAINMENT · PRODUCT DESIGN · MOBILE PLATFORM</div>
               <h1 className="eleving-hero__title">Reimagining the UK's top TV app</h1>
-              <p className="eleving-hero__subtitle">Led cross-platform rebrand and accessibility overhaul for a 28M+ user public TV app — unifying iOS/Android UX, enabling 200% text scaling, and rebuilding the design system and tooling (Sketch → Figma).</p>
+              <p className="eleving-hero__subtitle">High-scale accessibility and cross-platform redesign for one of the UK’s largest streaming platforms.</p>
               <div className="eleving-hero__divider" aria-hidden />
             </div>
           </div>
@@ -82,7 +64,7 @@ export default function UKMediaCase() {
       {/* 03 — EVIDENCE */}
       <section className="case__section fleet-process fleet-research">
         <div className="case__wrap">
-          <div className="fleet-process__grid mogo-evidence__grid">
+          <CaseCardTitleGroup className="fleet-process__grid mogo-evidence__grid">
             <div className="mogo-evidence__intro">
               <div className="case__section-label">03 — EVIDENCE</div>
               <h2 className="case__h2">Signals that drove decisions</h2>
@@ -111,41 +93,11 @@ export default function UKMediaCase() {
               signal="Navigation confusion and accessibility friction in key flows."
               decision="Iterate navigation clarity across key flows and confirm improvements through usability validation."
             />
-          </div>
-          <div className="fleet-section__video">
-            <div
-              className="fleet-section__video-wrap"
-              onMouseEnter={() => setVideoHover(true)}
-              onMouseLeave={() => setVideoHover(false)}
-            >
-              <video
-                ref={ukVideoRef}
-                src={import.meta.env.BASE_URL + "videos/cvideo.mp4"}
-                controls
-                playsInline
-                className="fleet-section__video-el"
-                onPlay={onUkVideoPlay}
-                onPause={onUkVideoPause}
-                onEnded={onUkVideoEnded}
-              />
-              <div className={`fleet-section__video-center ${videoPlaying || !videoHover ? 'fleet-section__video-center--hidden' : ''}`} aria-hidden>
-                <button type="button" className="fleet-section__video-play" onClick={toggleUkVideo} aria-label="Play">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
-                  </svg>
-                </button>
-              </div>
-              <div className={`fleet-section__video-center fleet-section__video-center--pause ${!videoPlaying || !videoHover ? 'fleet-section__video-center--hidden' : ''}`} aria-hidden>
-                <button type="button" className="fleet-section__video-play fleet-section__video-play--pause" onClick={toggleUkVideo} aria-label="Pause">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" />
-                    <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <p className="fleet-section__video-caption">A/B testing example.</p>
-          </div>
+          </CaseCardTitleGroup>
+          <FleetSectionVideo
+            src={import.meta.env.BASE_URL + 'videos/cvideo.mp4'}
+            caption="A/B testing example."
+          />
         </div>
       </section>
 
@@ -217,23 +169,23 @@ export default function UKMediaCase() {
           <h2 className="case__h2">How it stayed consistent in production</h2>
           <p className="case__body">A redesign only works if it ships reliably, stays consistent, and doesn't drift after release.</p>
           <p className="case__body case__body--strong">The system I introduced</p>
-          <div className="mogo-system__grid">
+          <CaseCardTitleGroup className="mogo-system__grid">
             <div className="mogo-system__item">
               <Compass size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Parity rules (HIG/Material mapping)</h3>
+              <h3 className="mogo-system__title" data-case-card-title>Parity rules (HIG/Material mapping)</h3>
               <p className="mogo-system__desc">Mapped HIG and Material into shared parity rules so both platforms stay aligned as the product evolves.</p>
             </div>
             <div className="mogo-system__item">
               <ClipboardList size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Shared Figma library governance (reuse standards)</h3>
+              <h3 className="mogo-system__title" data-case-card-title>Shared Figma library governance (reuse standards)</h3>
               <p className="mogo-system__desc">Component reuse standards and governance — single source of truth for design and dev.</p>
             </div>
             <div className="mogo-system__item">
               <ShieldCheck size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Accessibility QA gate (text resizing + VoiceOver checks)</h3>
+              <h3 className="mogo-system__title" data-case-card-title>Accessibility QA gate (text resizing + VoiceOver checks)</h3>
               <p className="mogo-system__desc">Scaling and VoiceOver validation before release — accessibility regressions caught early.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
           <div className="mogo-section__image">
             <ZoomableImage src={import.meta.env.BASE_URL + "ukc4/audit.jpg"} alt="UK TV app — shipping system" className="mogo-section__img" />
           </div>
@@ -263,23 +215,23 @@ export default function UKMediaCase() {
           <div className="case__section-label">08 — NEXT STEPS</div>
           <h2 className="case__h2">How I'd extend the win</h2>
           <p className="case__body mogo-next__lead">To keep improving without reintroducing drift, I'd run a lightweight iteration loop:</p>
-          <div className="mogo-next__grid">
+          <CaseCardTitleGroup className="mogo-next__grid">
             <div className="mogo-next__card">
               <ScanEye size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Accessibility regression checks per release</h3>
+              <h3 className="mogo-next__title" data-case-card-title>Accessibility regression checks per release</h3>
               <p className="mogo-next__text">Scaling + VoiceOver validation per release to catch regressions early.</p>
             </div>
             <div className="mogo-next__card">
               <FlaskConical size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Component parity hardening</h3>
+              <h3 className="mogo-next__title" data-case-card-title>Component parity hardening</h3>
               <p className="mogo-next__text">Continue edge case coverage across platforms as new features ship.</p>
             </div>
             <div className="mogo-next__card">
               <Wrench size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Expand library coverage</h3>
+              <h3 className="mogo-next__title" data-case-card-title>Expand library coverage</h3>
               <p className="mogo-next__text">Grow the shared library as new components and patterns enter production.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 
@@ -288,28 +240,32 @@ export default function UKMediaCase() {
         <div className="case__wrap">
           <div className="case__section-label">09 — TAKEAWAYS</div>
           <h2 className="case__h2">Executive takeaways</h2>
-          <div className="mogo-takeaways__numbered">
+          <p className="case__body">
+            The redesign scaled because accessibility, cross-platform parity, and shared tooling were treated as system foundations — not as separate follow-up
+            tasks.
+          </p>
+          <CaseCardTitleGroup className="mogo-takeaways__numbered">
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">01</span>
-              <p className="mogo-takeaways__num-title">Accessibility in system foundations</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Accessibility in system foundations</p>
               <p className="mogo-takeaways__num-text">Scaling, VoiceOver, contrast as tokens — not bolt-ons.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">02</span>
-              <p className="mogo-takeaways__num-title">Text scaling is a product requirement at scale</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Text scaling is a product requirement at scale</p>
               <p className="mogo-takeaways__num-text">Text resizing with layout preservation at 28M+ users demands structural design.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">03</span>
-              <p className="mogo-takeaways__num-title">Tooling (Figma) can be a delivery multiplier</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Tooling (Figma) can be a delivery multiplier</p>
               <p className="mogo-takeaways__num-text">Sketch → Figma as source of truth reduced handoff time and implementation drift.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">04</span>
-              <p className="mogo-takeaways__num-title">Parity rules + QA gates prevent drift</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Parity rules + QA gates prevent drift</p>
               <p className="mogo-takeaways__num-text">HIG/Material mapping and accessibility QA kept production aligned with intent.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 

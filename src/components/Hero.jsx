@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import "./Hero.css";
 
 const STATS = [
-  { value: "10+ yrs", label: "Complex systems" },
-  { value: "Design systems", label: "Tokens + governance" },
-  { value: "AI integration", label: "Assisted ops" },
+  { value: "10+ years", label: "Complex products" },
+  { value: "Product systems", label: "Flows + quality" },
+  { value: "AI delivery", label: "Cursor + Claude" },
 ];
 
 export default function Hero() {
@@ -24,20 +24,21 @@ export default function Hero() {
       <div className="hero__inner">
         <div className="hero__content">
           <div className={`hero__headline-wrap ${heroVisible ? "hero__headline-wrap--visible" : ""}`}>
-            <p className="hero__eyebrow">Senior UX/UI Designer</p>
+            <p className="hero__eyebrow">Product Designer</p>
+            <p className="hero__subtitle">Fintech · Complex Flows · AI-Assisted Delivery</p>
             <h1 className="hero__title">Sergejs <span className="hero__title-outline">Noviks</span></h1>
             <div className="hero__accent-line" />
           </div>
 
           <div className={`hero__intro-wrap ${heroVisible ? "hero__intro-wrap--visible" : ""}`}>
             <p className="hero__intro">
-              I design complex operational systems where decisions carry real weight—platform UX, workflows, and scalable foundations that reduce rework and improve consistency.
+              I design complex fintech and operational products where clarity, trust, and delivery speed matter — combining product thinking, systems logic, analytics, and AI-assisted workflows.
             </p>
           </div>
 
           <div className={`hero__stats ${heroVisible ? "hero__stats--visible" : ""}`}>
             {STATS.map(({ value, label }) => (
-              <div key={label} className="hero__stat">
+              <div key={value} className="hero__stat">
                 <div className="hero__stat-value">{value}</div>
                 <div className="hero__stat-label">{label}</div>
               </div>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useInView } from "../hooks/useInView";
 import "./CaseRow.css";
 
@@ -23,8 +22,8 @@ const VISUALS = {
       <rect x="36" y="106" width="60" height="7" rx="2" fill="#B0A8A0" />
       {["#E87722","#2a2520","#6b6560","#e8e4de","#f5f3ef","#22c55e"].map((col,i) => (
         <g key={i}>
-          <rect x={36 + i*52} y={118} width={20} height={20} rx="3" fill={col} />
-          <rect x={36 + i*52} y={142} width={38} height={5} rx="1.5" fill="#C8C2BA" />
+          <rect x={36 + i*52} y={118} width={20} height="20" rx="3" fill={col} />
+          <rect x={36 + i*52} y={142} width={38} height="5" rx="1.5" fill="#C8C2BA" />
         </g>
       ))}
       <line x1="240" y1="156" x2="240" y2="176" stroke="#d0cbc4" strokeWidth="1.5" strokeDasharray="3 2" />
@@ -113,6 +112,31 @@ const VISUALS = {
       <rect x="328" y="254" width="56" height="5" rx="1.5" fill="#fff" />
     </svg>
   ),
+  workflow: (
+    <svg viewBox="0 0 480 300" fill="none">
+      <rect width="480" height="300" fill="#f5f3ef" />
+      <rect x="40" y="48" width="400" height="44" rx="6" fill="#fff" stroke="#C8C2BA" strokeWidth="1" />
+      <rect x="56" y="64" width="100" height="6" rx="2" fill="#B0A8A0" />
+      <rect x="56" y="76" width="160" height="5" rx="1.5" fill="#d8d4ce" />
+      <rect x="40" y="112" width="118" height="140" rx="6" fill="#fff" stroke="#C8C2BA" strokeWidth="1" />
+      <rect x="52" y="126" width="72" height="5" rx="1.5" fill="#E87722" opacity="0.85" />
+      {[142, 156, 170, 184].map((y) => (
+        <rect key={y} x="52" y={y} width="94" height="4" rx="1" fill="#e8e4de" />
+      ))}
+      <path d="M178 172h32" stroke="#C8C2BA" strokeWidth="1.2" />
+      <polygon points="206,168 214,172 206,176" fill="#C8C2BA" />
+      <rect x="222" y="112" width="118" height="140" rx="6" fill="#fff" stroke="#C8C2BA" strokeWidth="1" />
+      <rect x="234" y="126" width="88" height="5" rx="1.5" fill="#3a3630" opacity="0.35" />
+      {[142, 156, 170, 184].map((y) => (
+        <rect key={`r-${y}`} x="234" y={y} width="78" height="4" rx="1" fill="#e8e4de" />
+      ))}
+      <path d="M354 172h32" stroke="#C8C2BA" strokeWidth="1.2" />
+      <polygon points="382,168 390,172 382,176" fill="#C8C2BA" />
+      <rect x="404" y="112" width="36" height="140" rx="6" fill="#faf8f5" stroke="#E87722" strokeWidth="1" opacity="0.9" />
+      <rect x="412" y="128" width="20" height="20" rx="3" fill="#E87722" opacity="0.2" />
+      <rect x="412" y="158" width="20" height="56" rx="2" fill="#E87722" opacity="0.12" />
+    </svg>
+  ),
   banking: (
     <svg viewBox="0 0 480 300" fill="none">
       <rect width="480" height="300" fill="#eef0f5" />
@@ -143,49 +167,83 @@ const VISUALS = {
   ),
 };
 
-export default function CaseRow({ c, index, transitionDelay }) {
+function normalizeMetric(m) {
+  if (m && typeof m === "object" && ("value" in m || "text" in m)) {
+    const value = typeof m.value === "string" ? m.value.trim() : "";
+    const text = typeof m.text === "string" ? m.text.trim() : "";
+    return { value, text };
+  }
+  const s = String(m ?? "").trim();
+  return { value: "", text: s };
+}
+
+export default function CaseRow({ c, transitionDelay }) {
   const [ref, visible] = useInView(0.04);
-  const [hovered, setHovered] = useState(false);
+  const metrics = Array.isArray(c.metrics) ? c.metrics.slice(0, 2) : [];
 
   const cardContent = (
     <article
       ref={ref}
-      className={`case-row ${visible ? "case-row--visible" : ""} ${c.slug === "banking" ? "case-row--banking-thumb" : ""} ${c.slug === "ukmedia" ? "case-row--default-thumb" : ""}`}
+      className={`case-row ${visible ? "case-row--visible" : ""}`}
       style={{ ['--case-row-delay']: `${transitionDelay}s` }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       <div className="case-row__inner">
-          <div className="case-row__grid">
-            <div className="case-row__content">
-              <h2 className="case-row__title">{c.title}</h2>
-              {c.description && (
-                <p className="case-row__description">{c.description}</p>
-              )}
-              {c.bullets && c.bullets.length > 0 && (
-                <ul className="case-row__bullets">
-                  {c.bullets.slice(0, 3).map((b, i) => (
-                    <li key={i} className="case-row__bullet">
-                      {b.numbers ? <><strong>{b.numbers}</strong> </> : null}{b.text}{b.text || b.numbers ? ' ' : ''}{b.desc}
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <p className="case-row__meta">{c.context}</p>
-              <span className="case-row__cta">View case</span>
-            </div>
-            <div className={`case-row__visual-wrap ${hovered ? "case-row__visual-wrap--hover" : ""}`}>
-              <div className="case-row__visual-inner">
-                {c.thumbnailSrc ? (
-                  <img src={c.thumbnailSrc} alt="" className="case-row__thumbnail" />
-                ) : (
-                  VISUALS[c.visual]
-                )}
+        <div className="case-row__grid">
+          <div className="case-row__content">
+            <h2 className="case-row__title">{c.title}</h2>
+            {c.description ? (
+              <p className="case-row__lead">{c.description}</p>
+            ) : null}
+            {metrics.length > 0 ? (
+              <div className="case-row__metrics" aria-label="Key outcomes">
+                {metrics.map((raw, i) => {
+                  const { value, text } = normalizeMetric(raw);
+                  return (
+                    <div className="case-row__metric-row" key={`${c.slug}-metric-${i}`}>
+                      <span className="case-row__metric-dot" aria-hidden />
+                      <p className="case-row__metric-line">
+                        {value ? (
+                          <>
+                            <strong className="case-row__metric-value">{value}</strong>
+                            {text ? <span className="case-row__metric-rest"> {text}</span> : null}
+                          </>
+                        ) : (
+                          <span className="case-row__metric-rest">{text}</span>
+                        )}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
+            ) : null}
+            {c.context ? (
+              <p className="case-row__meta">{c.context}</p>
+            ) : null}
+            <span className="case-row__cta">View case →</span>
+          </div>
+          <div className="case-row__media">
+            {c.thumbnailVideoSrc ? (
+              <video
+                src={c.thumbnailVideoSrc}
+                className="case-row__media-el case-row__media-el--video"
+                muted
+                autoPlay
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden
+              />
+            ) : c.thumbnailSrc ? (
+              <img src={c.thumbnailSrc} alt="" className="case-row__media-el" />
+            ) : (
+              <div className="case-row__media-fallback" aria-hidden>
+                {VISUALS[c.visual] ?? VISUALS.ds}
+              </div>
+            )}
           </div>
         </div>
-      </article>
+      </div>
+    </article>
   );
 
   return c.slug ? (

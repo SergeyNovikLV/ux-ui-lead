@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
 import './BankingNew.css';
 import ZoomableImage from '../components/ZoomableImage';
+import FleetSectionVideo from '../components/FleetSectionVideo';
+import CaseCardTitleGroup from '../components/CaseCardTitleGroup';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, Wrench, FlaskConical } from 'lucide-react';
 import RoleAndScope from '../components/RoleAndScope';
@@ -8,25 +9,6 @@ import ResearchSignalCard from '../components/ResearchSignalCard';
 import { bankingRoleScope } from '../data/roleScopeData';
 
 export default function BankingNew() {
-  const [videoPlaying, setVideoPlaying] = useState(false);
-  const [videoHover, setVideoHover] = useState(false);
-  const bankVideoRef = useRef(null);
-
-  const toggleBankVideo = () => {
-    const v = bankVideoRef.current;
-    if (!v) return;
-    if (v.paused) {
-      v.play();
-      setVideoPlaying(true);
-    } else {
-      v.pause();
-      setVideoPlaying(false);
-    }
-  };
-
-  const onBankVideoPlay = () => setVideoPlaying(true);
-  const onBankVideoPause = () => setVideoPlaying(false);
-  const onBankVideoEnded = () => setVideoPlaying(false);
   return (
     <article className="eleving mogo-case">
       {/* HERO — Executive summary */}
@@ -36,7 +18,7 @@ export default function BankingNew() {
             <div className="eleving-hero__text">
               <div className="case__hero-label">DEUTSCHE BANK · PRODUCT DESIGN · INTERNAL PLATFORM</div>
               <h1 className="eleving-hero__title">Boosting banking platform efficiency through structural UX redesign</h1>
-              <p className="eleving-hero__subtitle">Redesigned navigation, restructured compliance flows, and rebuilt accessibility across web and tablet — reducing task time, clicks, and support load.</p>
+              <p className="eleving-hero__subtitle">Enterprise banking workflow redesign focused on reducing structural friction, improving compliance clarity, and making internal operational tasks more predictable.</p>
               <div className="eleving-hero__divider" aria-hidden />
             </div>
           </div>
@@ -96,7 +78,7 @@ export default function BankingNew() {
       {/* 03 — EVIDENCE */}
       <section className="case__section fleet-process fleet-research">
         <div className="case__wrap">
-          <div className="fleet-process__grid mogo-evidence__grid">
+          <CaseCardTitleGroup className="fleet-process__grid mogo-evidence__grid">
             <div className="mogo-evidence__intro">
               <div className="case__section-label">03 — EVIDENCE</div>
               <h2 className="case__h2">Signals that drove decisions</h2>
@@ -123,9 +105,9 @@ export default function BankingNew() {
               title="WCAG 2.1 AA review"
               method="WCAG 2.1 AA review across light/dark mode, focus states, and keyboard navigation."
               signal="Contrast and focus inconsistencies slowed work and increased mistake rates in high-stakes tasks."
-              decision="Fix tokens and focus states; ship accessibility parity as a mandatory release requirement, not as optional."
+              decision="Fix focus, contrast, and interaction states; ship accessibility parity as a mandatory release requirement, not as optional."
             />
-          </div>
+          </CaseCardTitleGroup>
           <div className="mogo-section__image">
             <ZoomableImage src={import.meta.env.BASE_URL + "db/bankusers.png"} alt="Field input: daily users across operational roles" caption="Field input: daily users across operational roles — tasks, constraints, and navigation workarounds mapped before restructuring." className="mogo-section__img" />
           </div>
@@ -141,7 +123,7 @@ export default function BankingNew() {
           <ul className="case__list">
             <li>Rebuilt navigation into a unified primary model — reduced depth, predictable entry points.</li>
             <li>Restructured compliance flows into clear, linear steps with explicit "what's next" signals.</li>
-            <li>Standardised patterns via tokens and components for consistent behaviour across desktop, web, and tablet.</li>
+            <li>Standardised interaction patterns and shared components for consistent behaviour across desktop, web, and tablet.</li>
             <li>Accessibility parity shipped: light/dark contrast, focus states, keyboard navigation.</li>
           </ul>
           <p className="case__body case__body--strong">Before → After: From fragmented navigation to unified task paths</p>
@@ -191,7 +173,7 @@ export default function BankingNew() {
                 <span className="case__decision-num">04</span>
                 <div>
                   <div className="case__decision-title">Accessibility as infrastructure</div>
-                  <p className="case__decision-body">Accessibility parity treated as a release requirement — not a post-launch audit. Tokens, focus states, and contrast shipped as part of every change.</p>
+                  <p className="case__decision-body">Accessibility parity treated as a release requirement — not a post-launch audit. Contrast, focus, and keyboard behaviour shipped as part of every change.</p>
                 </div>
               </div>
             </div>
@@ -206,25 +188,25 @@ export default function BankingNew() {
           <h2 className="case__h2">How it stayed consistent in production</h2>
           <p className="case__body">A redesign only works if it ships reliably, stays consistent, and doesn't drift after release.</p>
           <p className="case__body case__body--strong">The system I introduced</p>
-          <div className="mogo-system__grid">
+          <CaseCardTitleGroup className="mogo-system__grid">
             <div className="mogo-system__item">
               <Compass size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Design tokens (single source of truth)</h3>
-              <p className="mogo-system__desc">Built and expanded semantic tokens (color, type, spacing, states) to keep desktop, web, and tablet consistent. Reduced drift during rollout and made accessibility fixes reusable.</p>
+              <h3 className="mogo-system__title" data-case-card-title>Shared foundations for production</h3>
+              <p className="mogo-system__desc">Aligned colour, type, spacing, and state patterns across desktop, web, and tablet so fixes stayed consistent during rollout and accessibility improvements could propagate once.</p>
             </div>
             <div className="mogo-system__item">
               <ClipboardList size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Definition of done (checklist)</h3>
+              <h3 className="mogo-system__title" data-case-card-title>Definition of done (checklist)</h3>
               <p className="mogo-system__desc">A lightweight release checklist covering states, edge cases, focus and contrast, responsive behaviour — so each release doesn't silently degrade quality.</p>
             </div>
             <div className="mogo-system__item">
               <ShieldCheck size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Design QA gate</h3>
+              <h3 className="mogo-system__title" data-case-card-title>Design QA gate</h3>
               <p className="mogo-system__desc">Design sign-off before release and post-release spot checks — so implementation matches intent and accessibility regressions are caught early.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
           <div className="mogo-section__image">
-            <ZoomableImage src={import.meta.env.BASE_URL + "db/pallete.jpg"} alt="Design system palette — tokens and alignment model" className="mogo-section__img" />
+            <ZoomableImage src={import.meta.env.BASE_URL + "db/pallete.jpg"} alt="Shared foundations — palette and alignment model" className="mogo-section__img" />
           </div>
         </div>
       </section>
@@ -241,40 +223,10 @@ export default function BankingNew() {
             <li>Accessibility parity reduced friction and errors for all user types.</li>
             <li>Consistent patterns reduced cognitive load across modules.</li>
           </ul>
-          <div className="fleet-section__video">
-            <div
-              className="fleet-section__video-wrap"
-              onMouseEnter={() => setVideoHover(true)}
-              onMouseLeave={() => setVideoHover(false)}
-            >
-              <video
-                ref={bankVideoRef}
-                src={import.meta.env.BASE_URL + "videos/bank.mp4"}
-                controls
-                playsInline
-                className="fleet-section__video-el"
-                onPlay={onBankVideoPlay}
-                onPause={onBankVideoPause}
-                onEnded={onBankVideoEnded}
-              />
-              <div className={`fleet-section__video-center ${videoPlaying || !videoHover ? 'fleet-section__video-center--hidden' : ''}`} aria-hidden>
-                <button type="button" className="fleet-section__video-play" onClick={toggleBankVideo} aria-label="Play">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <path d="M8 5v14l11-7L8 5z" fill="currentColor" />
-                  </svg>
-                </button>
-              </div>
-              <div className={`fleet-section__video-center fleet-section__video-center--pause ${!videoPlaying || !videoHover ? 'fleet-section__video-center--hidden' : ''}`} aria-hidden>
-                <button type="button" className="fleet-section__video-play fleet-section__video-play--pause" onClick={toggleBankVideo} aria-label="Pause">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" />
-                    <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <p className="fleet-section__video-caption">Demo: redesigned workflows + new capabilities (incl. dark mode) after the structural UX rebuild.</p>
-          </div>
+          <FleetSectionVideo
+            src={import.meta.env.BASE_URL + 'videos/bank.mp4'}
+            caption="Demo: redesigned workflows + new capabilities (incl. dark mode) after the structural UX rebuild."
+          />
         </div>
       </section>
 
@@ -284,23 +236,23 @@ export default function BankingNew() {
           <div className="case__section-label">08 — NEXT STEPS</div>
           <h2 className="case__h2">How I'd extend the work</h2>
           <p className="case__body mogo-next__lead">To keep improving without introducing new fragmentation, I'd run a lightweight iteration loop:</p>
-          <div className="mogo-next__grid">
+          <CaseCardTitleGroup className="mogo-next__grid">
             <div className="mogo-next__card">
               <ScanEye size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Task-level friction watchlist</h3>
+              <h3 className="mogo-next__title" data-case-card-title>Task-level friction watchlist</h3>
               <p className="mogo-next__text">Monthly review of task-level patterns to catch navigation regressions early when product changes ship.</p>
             </div>
             <div className="mogo-next__card">
               <Wrench size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Compliance flow hardening</h3>
+              <h3 className="mogo-next__title" data-case-card-title>Compliance flow hardening</h3>
               <p className="mogo-next__text">Expand edge case coverage from support tickets and compliance incidents to reduce release-to-release drift.</p>
             </div>
             <div className="mogo-next__card">
               <FlaskConical size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Accessibility regression checks</h3>
+              <h3 className="mogo-next__title" data-case-card-title>Accessibility regression checks</h3>
               <p className="mogo-next__text">Spot checks on contrast, focus states, and keyboard behavior during each release cycle.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 
@@ -309,28 +261,32 @@ export default function BankingNew() {
         <div className="case__wrap">
           <div className="case__section-label">09 — TAKEAWAYS</div>
           <h2 className="case__h2">Executive takeaways</h2>
-          <div className="mogo-takeaways__numbered">
+          <p className="case__body">
+            Efficiency improved because the platform structure became more predictable — fewer navigation hops, clearer compliance steps, and stronger
+            release-quality rules.
+          </p>
+          <CaseCardTitleGroup className="mogo-takeaways__numbered">
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">01</span>
-              <p className="mogo-takeaways__num-title">Simplify structure, not visuals</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Simplify structure, not visuals</p>
               <p className="mogo-takeaways__num-text">Efficiency came from restructuring navigation depth and task flows — not from visual refresh or colour changes.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">02</span>
-              <p className="mogo-takeaways__num-title">Make navigation predictable</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Make navigation predictable</p>
               <p className="mogo-takeaways__num-text">One consistent model removed the need for workarounds and reduced the time users spent orienting themselves.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">03</span>
-              <p className="mogo-takeaways__num-title">Treat accessibility as a release requirement</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Treat accessibility as a release requirement</p>
               <p className="mogo-takeaways__num-text">Shipping accessibility parity as part of every release — not as a separate audit — kept quality stable and prevented regressions.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">04</span>
-              <p className="mogo-takeaways__num-title">Ship with QA rules to prevent drift</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Ship with QA rules to prevent drift</p>
               <p className="mogo-takeaways__num-text">A lightweight definition of done and design QA gate kept production aligned with design intent across releases.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 

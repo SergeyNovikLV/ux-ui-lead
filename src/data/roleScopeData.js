@@ -31,6 +31,9 @@ import {
   Smartphone,
   Scale,
   Waypoints,
+  Bot,
+  Zap,
+  LineChart,
 } from 'lucide-react';
 
 const ICONS = {
@@ -61,6 +64,9 @@ const ICONS = {
   Smartphone,
   Scale,
   Waypoints,
+  Bot,
+  Zap,
+  LineChart,
 };
 
 export function getIcon(name) {
@@ -70,13 +76,13 @@ export function getIcon(name) {
 /** UK TV Case — Media & Entertainment */
 export const ukMediaRoleScope = {
   year: '2021–2022',
-  role: 'Senior Product Designer',
+  role: 'Senior UX/UI Designer',
   platforms: 'iOS Native · Android Native',
   intro: 'I led cross-platform rebrand and accessibility overhaul — unifying UX, shaping tooling migration, and deciding release standards.',
   led: [
     { title: 'Accessibility implementation', desc: 'Text resizing, VoiceOver improvements, WCAG patterns.', icon: 'Accessibility' },
     { title: 'UI audit & quality gate', desc: '40+ inconsistencies, design QA, release validation.', icon: 'ScanSearch' },
-    { title: 'Design system foundations', desc: 'Tokens, components, parity structure rebuild.', icon: 'Blocks' },
+    { title: 'Design system foundations', desc: 'Components, parity structure, and cross-platform rebuild.', icon: 'Blocks' },
   ],
   shaped: [
     { title: 'Platform unification', desc: 'HIG + Material mapping, parity rules.', icon: 'Merge' },
@@ -95,21 +101,58 @@ export const mogoRoleScope = {
   year: '2025 – Present',
   role: 'Product Designer',
   platforms: 'Web',
-  intro: 'I led flow redesign and validation — shaping scope with PO and Engineering, and deciding what to cut vs keep per step.',
+  intro:
+    'I owned the UX direction for the application flow — from problem framing and scope decisions to production handoff, QA criteria, and post-release measurement.',
   led: [
-    { title: 'Flow architecture & step intent', desc: 'Flow structure and intent per step.', icon: 'Route' },
-    { title: 'UX specs & edge cases', desc: 'States, acceptance criteria, edge cases.', icon: 'FileCheck2' },
-    { title: 'Measurement baseline & validation', desc: 'Pre/post release measurement and validation.', icon: 'BarChart3' },
+    {
+      title: 'Flow architecture',
+      desc: 'Defined the step structure, intent per step, and progression logic.',
+      icon: 'Route',
+    },
+    {
+      title: 'UX specs & edge cases',
+      desc: 'Documented states, validation rules, acceptance criteria, and edge cases.',
+      icon: 'FileCheck2',
+    },
+    {
+      title: 'Measurement baseline',
+      desc: 'Set the before/after view for completion, entry rate, and key friction signals.',
+      icon: 'BarChart3',
+    },
   ],
   shaped: [
-    { title: 'Scope sequencing', desc: 'With PO and Engineering across delivery.', icon: 'ArrowLeftRight' },
-    { title: 'Release quality bar', desc: 'Definition of done and handoff standards.', icon: 'ClipboardCheck' },
-    { title: 'Stakeholder alignment', desc: 'Decision-ready updates and scope clarity.', icon: 'Users' },
+    {
+      title: 'Scope sequencing',
+      desc: 'Aligned with PO and Engineering on what to ship first and what to defer.',
+      icon: 'ArrowLeftRight',
+    },
+    {
+      title: 'Release quality bar',
+      desc: 'Defined what needed to be true before the flow was ready for production.',
+      icon: 'ClipboardCheck',
+    },
+    {
+      title: 'Cross-team decisions',
+      desc: 'Prepared decision-ready updates for product, business, and engineering discussions.',
+      icon: 'Users',
+    },
   ],
   decided: [
-    { title: 'Cut vs keep per step', desc: 'What to remove vs retain at each step.', icon: 'Scissors' },
-    { title: 'CTA hierarchy & disclosure', desc: 'Progressive disclosure and primary action rules.', icon: 'MousePointerClick' },
-    { title: 'Success checkpoints', desc: 'Where and how to measure success.', icon: 'Target' },
+    {
+      title: 'Cut vs keep per step',
+      desc: 'Removed unnecessary transitions while keeping required inputs and compliance needs.',
+      icon: 'Scissors',
+    },
+    {
+      title: 'CTA hierarchy',
+      desc: 'Reduced competing actions and made the next step more explicit.',
+      icon: 'MousePointerClick',
+    },
+    {
+      title: 'Success checkpoints',
+      desc: 'Defined where to monitor the flow after release.',
+      icon: 'Target',
+    },
   ],
 };
 
@@ -121,7 +164,7 @@ export const fleetRoleScope = {
   intro: 'I led end-to-end design across 6 modules — from discovery to delivery, shaping scope and alignment with product and engineering.',
   led: [
     { title: 'End-to-end design delivery', desc: 'Discovery to delivery for core workflows.', icon: 'Compass' },
-    { title: 'Design system foundations', desc: 'Tokens, components, usage rules across web and mobile.', icon: 'Blocks' },
+    { title: 'Shared UI foundations', desc: 'Components and usage rules across web and mobile.', icon: 'Blocks' },
     { title: 'Design QA & handoff', desc: 'States, edge cases, acceptance criteria.', icon: 'ShieldCheck' },
   ],
   shaped: [
@@ -134,12 +177,34 @@ export const fleetRoleScope = {
     { title: 'AI as decision support', desc: 'No black-box automation; explainability built in.', icon: 'BrainCircuit' },
     { title: 'Mobile-first parity', desc: 'Same logic across web and mobile surfaces.', icon: 'Smartphone' },
   ],
+  extraRows: [
+    {
+      label: 'I also used',
+      items: [
+        {
+          title: 'AI-supported evaluation',
+          desc: 'Used Claude for fast UX critique and dashboard evaluation.',
+          icon: 'Bot',
+        },
+        {
+          title: 'Rapid iteration',
+          desc: 'Explored alternative dashboard structures and workflow directions faster through AI-assisted review.',
+          icon: 'Zap',
+        },
+        {
+          title: 'Operational signal interpretation',
+          desc: 'Simplified complex data-heavy views into more actionable operational decisions.',
+          icon: 'LineChart',
+        },
+      ],
+    },
+  ],
 };
 
 /** Banking Case — Deutsche Bank internal platform */
 export const bankingRoleScope = {
   year: '2021–2022',
-  role: 'Senior Product Designer',
+  role: 'Senior UX/UI Designer',
   platforms: 'Web · Tablet',
   intro: 'I led structural redesign across navigation, compliance flows, and accessibility — shaping scope and alignment with stakeholders.',
   led: [
@@ -150,7 +215,7 @@ export const bankingRoleScope = {
   shaped: [
     { title: 'Workflow prioritisation', desc: 'Top workflows with PM/BA based on frequency and support load.', icon: 'ListChecks' },
     { title: 'Compliance clarity alignment', desc: 'Stakeholder alignment on minimum acceptable clarity per step.', icon: 'Scale' },
-    { title: 'Component & token rollout', desc: 'Updates to prevent cross-surface inconsistencies during rollout.', icon: 'Blocks' },
+    { title: 'Shared component rollout', desc: 'Coordinated updates so patterns stayed consistent across surfaces during rollout.', icon: 'Blocks' },
   ],
   decided: [
     { title: 'Task-path navigation model', desc: 'Structure follows workflows, not feature taxonomy.', icon: 'Route' },
@@ -162,8 +227,8 @@ export const bankingRoleScope = {
 /** Eleving Case — Product Design OS (not in spec; using relevant icons) */
 export const elevingRoleScope = {
   year: '2025 – Present',
-  role: 'Lead Product Designer',
-  platforms: 'Mogo · Primero · MyMogo',
+  role: 'Product Designer',
+  platforms: 'Web / Mobile',
   intro: 'I established the product design operating system — tokens, QA process, and governance across 3 brands.',
   led: [
     { title: 'Token architecture & system', desc: 'Token rebuild, typography, component foundations.', icon: 'Blocks' },

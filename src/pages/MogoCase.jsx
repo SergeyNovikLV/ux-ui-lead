@@ -1,7 +1,7 @@
 import './MogoCase.css';
 import ZoomableImage from '../components/ZoomableImage';
-import VideoPreview from '../components/VideoPreview';
-import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench } from 'lucide-react';
+import CaseCardTitleGroup from '../components/CaseCardTitleGroup';
+import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench, Layers } from 'lucide-react';
 import RoleAndScope from '../components/RoleAndScope';
 import ResearchSignalCard from '../components/ResearchSignalCard';
 import { mogoRoleScope } from '../data/roleScopeData';
@@ -14,31 +14,34 @@ export default function MogoCase() {
         <div className="case__wrap">
           <div className="eleving-hero__grid">
             <div className="eleving-hero__text">
-              <div className="case__hero-label">ELEVING GROUP · PRODUCT DESIGN · FUNNEL IMPROVEMENT</div>
+              <div className="case__hero-label">ELEVING GROUP · PRODUCT DESIGN · FINTECH FLOW</div>
               <h1 className="eleving-hero__title">Reducing friction in a conversion-critical loan application</h1>
-              <p className="eleving-hero__subtitle">Merged repeated decisions, reduced cognitive load per step, and validated impact post-release.</p>
+              <p className="eleving-hero__subtitle">
+                A fintech application flow redesign focused on reducing mid-flow friction and improving completion without lowering entry intent.
+              </p>
               <div className="eleving-hero__divider" aria-hidden />
             </div>
           </div>
 
           {/* Under-hero: Tiles → Credibility → Role list */}
           <div className="mogo-hero__under">
-            <p className="mogo-hero__metric-context">Baseline → post-release (Sep–Nov)</p>
             <div className="mogo-hero__metrics">
               <div className="case__stat">
                 <div className="case__stat-num">9 → 6</div>
                 <div className="case__stat-label">Steps reduced</div>
-                <div className="case__stat-desc">Reduced transitions and repeated decisions across the flow.</div>
+                <div className="case__stat-desc">Removed unnecessary transitions and repeated decisions.</div>
               </div>
               <div className="case__stat">
                 <div className="case__stat-num">16.7% → 38.8%</div>
-                <div className="case__stat-label">Completion rate (Sep–Nov)</div>
-                <div className="case__stat-desc">More starters finished the application — over 2×.</div>
+                <div className="case__stat-label">Completion rate</div>
+                <div className="case__stat-desc">More starters reached the end of the application.</div>
               </div>
               <div className="case__stat">
                 <div className="case__stat-num">43.7% → 42.1%</div>
-                <div className="case__stat-label">Entry rate (stable)</div>
-                <div className="case__stat-desc">Entry intent held steady — the lift came from mid-flow friction removal.</div>
+                <div className="case__stat-label">Entry rate held stable</div>
+                <div className="case__stat-desc">
+                  The improvement came from mid-flow friction removal, not from changing who entered.
+                </div>
               </div>
             </div>
 
@@ -52,89 +55,139 @@ export default function MogoCase() {
 
       <RoleAndScope {...mogoRoleScope} />
 
-      {/* 02 — PROBLEM */}
+      {/* 02 — AI-ASSISTED WORKFLOW */}
       <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">02 — PROBLEM</div>
+          <div className="case__section-label">02 — AI-ASSISTED WORKFLOW</div>
+          <h2 className="case__h2">AI-supported product workflow</h2>
+          <p className="case__body">
+            I used AI-supported workflows to reduce ambiguity, structure product decisions faster, and speed up early validation before final
+            implementation.
+          </p>
+          <p className="case__body">
+            Internal AI workflow support (internally referred to as &ldquo;ProductBuddy&rdquo;) was used to:
+          </p>
+          <p className="case__body">
+            — turn unclear product requests into structured design briefs with assumptions, UX checkpoints, and delivery risks
+            <br />
+            — interpret GA4 and Clarity signals to identify friction patterns and behavioral anomalies
+            <br />
+            — support rapid prototyping and early flow evaluation using Cursor, Claude, and Figma Make
+            <br />
+            — assist with UX QA preparation, edge-case reviews, and hierarchy checks before handoff
+            <br />— accelerate iteration cycles during product and stakeholder discussions
+          </p>
+          <p className="case__body">
+            AI was used as a delivery acceleration layer — not as a replacement for UX judgment, business constraints, or implementation review.
+          </p>
+        </div>
+      </section>
+
+      {/* 03 — PROBLEM */}
+      <section className="case__section mogo-section">
+        <div className="case__wrap">
+          <div className="case__section-label">03 — PROBLEM</div>
           <h2 className="case__h2">Where the flow leaked</h2>
-          <p className="case__body">The issue wasn't traffic. Users entered the application, then dropped off inside the flow.</p>
-          <p className="case__body case__body--strong">What I observed</p>
+          <p className="case__body">
+            The problem was not traffic. Users entered the application, but the flow created too many moments where they had to stop, re-read, or
+            decide what to do next.
+          </p>
           <ul className="case__list">
-            <li>Steps repeated unnecessarily — users stalled mid-flow without a clear signal to continue.</li>
-            <li>The next action was rarely obvious — key moments lacked explicit direction.</li>
-            <li>Competing UI blocks created visual noise, making the primary action easy to overlook.</li>
-            <li>Too many decisions per screen raised cognitive load and increased hesitation.</li>
+            <li>Some steps repeated decisions that users had already made.</li>
+            <li>Several screens carried more than one primary action.</li>
+            <li>Progression was not always clear enough to keep momentum.</li>
+            <li>Supporting content competed with the next step instead of helping it.</li>
+            <li>Required inputs stayed necessary, but the way they were grouped created avoidable friction.</li>
           </ul>
-          <p className="case__body"><strong>Constraint:</strong> Simplify the application and increase submissions without reducing start intent.</p>
+          <p className="case__body">
+            <strong>Constraint:</strong> improve completion by simplifying progression, without reducing required information or weakening entry
+            intent.
+          </p>
+          <p className="case__body">
+            Several friction points could not be removed entirely because parts of the flow depended on backend validation logic, compliance
+            requirements, and operational risk checks.
+          </p>
           <div className="mogo-section__image">
             <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo1.png"} alt="Before/After screens showing messy hierarchy → simplified flow and clearer primary CTA" caption={'Before → After: Cleaner steps, clearer \u201cNext\u201d.'} className="mogo-section__img" />
           </div>
         </div>
       </section>
 
-      {/* 03 — EVIDENCE */}
+      {/* 04 — EVIDENCE */}
       <section className="case__section fleet-process fleet-research">
         <div className="case__wrap">
-          <div className="fleet-process__grid mogo-evidence__grid">
+          <CaseCardTitleGroup className="fleet-process__grid mogo-evidence__grid">
             <div className="mogo-evidence__intro">
-              <div className="case__section-label">03 — EVIDENCE</div>
+              <div className="case__section-label">04 — EVIDENCE</div>
               <h2 className="case__h2">Signals that drove decisions</h2>
               <p className="case__body fleet-process__body-lead">
-                I added a lightweight evidence layer to pinpoint stalls and translate them into product decisions.
+                I used a small evidence stack to separate real flow friction from opinion and visual preference.
               </p>
             </div>
             <ResearchSignalCard
               eyebrow="USER SESSIONS"
-              title="User sessions (2 segments)"
-              method="Two focused sessions: new applicants vs returning users."
-              signal={"Users stalled when steps felt repetitive, and the \"next step\" wasn't obvious."}
-              decision='Merge repeated decisions and make progress + "Next" explicit at every step.'
+              title="User sessions"
+              method="Focused review of how new and returning users understood the application steps."
+              signal="Users slowed down when steps felt repetitive or when the next action was not obvious."
+              decision="Merge repeated decisions and make progress + next action explicit."
             />
             <ResearchSignalCard
               eyebrow="FEEDBACK ANALYSIS"
-              title="Feedback analysis (reviews)"
-              method="AI clustering of recurring themes + manual validation of top issues."
-              signal='Confusion clustered around "what happens next" and missing clarity in key moments.'
-              decision="Add clarity moments (what / why / next) and reduce cognitive load per step."
+              title="Feedback analysis"
+              method="AI-assisted clustering of recurring feedback themes, followed by manual review."
+              signal='Confusion appeared around "what happens next" and why certain information was needed.'
+              decision="Add clearer explanation moments and reduce cognitive load per step."
             />
             <ResearchSignalCard
               eyebrow="BEHAVIORAL ANALYTICS"
-              title="Behavioral analytics (GA4 + Clarity)"
-              method="Funnel snapshots + session replays on entry and high-friction steps."
-              signal="Users missed primary actions when multiple UI blocks competed for attention."
+              title="Behavioral analytics"
+              method="GA4 funnel snapshots and Clarity replays around entry and high-friction steps."
+              signal="Users missed primary actions when several UI blocks competed for attention."
               decision="Enforce one primary CTA per step and simplify hierarchy around it."
             />
-          </div>
+          </CaseCardTitleGroup>
           <div className="mogo-section__image">
             <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo6.png"} alt="Pain/importance map" caption="Pain/importance map: Prioritized issues by user pain vs business importance to focus the redesign." className="mogo-section__img" />
           </div>
         </div>
       </section>
 
-      {/* 04 — REDESIGN */}
+      {/* 05 — REDESIGN */}
       <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">04 — REDESIGN</div>
+          <div className="case__section-label">05 — REDESIGN</div>
           <h2 className="case__h2">Redesign summary</h2>
-          <p className="case__body">I rebuilt the application into a 6-step flow (previously 9-step) with clear step intent and fewer transitions — so users move forward with less hesitation.</p>
+          <p className="case__body">
+            The redesign focused less on visual refresh and more on progression control, decision clarity, and reducing unnecessary transitions inside
+            the application flow.
+          </p>
           <ul className="case__list">
-            <li>Merged repeat loops: duplicated decisions collapsed into single, clearly-scoped steps.</li>
-            <li>One job per step: each screen supports one primary action, with no competing choices.</li>
-            <li>Visible progression: step position, next action, and remaining steps are clear throughout.</li>
+            <li>Removed repeated decisions: duplicated moments were collapsed into clearer steps.</li>
+            <li>One primary job per step: each screen focused on one main user action.</li>
+            <li>Clearer progression: users could see where they were and what to do next.</li>
+            <li>Lower visual competition: supporting content no longer competed with the main action.</li>
           </ul>
           <div className="mogo-section__image">
-            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo2.png"} alt="6-step flow overview with step intent labels" caption="6-step flow: Simplified application with clear step intent and one obvious primary action per screen." className="mogo-section__img" />
+            <ZoomableImage
+              src={import.meta.env.BASE_URL + "eleving/mogo2.png"}
+              alt="6-step flow overview with step intent labels"
+              caption="6-step flow: required information preserved, but grouped into a clearer progression model."
+              className="mogo-section__img"
+            />
           </div>
         </div>
       </section>
 
-      {/* 05 — KEY DECISIONS */}
+      {/* 06 — KEY DECISIONS */}
       <section className="case__section case__key-decisions">
         <div className="case__wrap case__key-decisions__wrap">
           <div className="case__key-decisions__left">
-            <div className="case__section-label">05 — KEY DECISIONS</div>
+            <div className="case__section-label">06 — KEY DECISIONS</div>
             <h2 className="case__h2">Rules and trade-offs behind the redesign</h2>
-            <p className="case__body">These decisions explain how I chose what to cut, what to keep, and how to protect conversion without lowering entry.</p>
+            <p className="case__body">
+              These were the product decisions behind the redesign — what to simplify, what to keep, and how to protect conversion without weakening
+              the application requirements.
+            </p>
           </div>
           <div className="case__key-decisions__right">
             <div className="case__key-decisions__list">
@@ -142,28 +195,46 @@ export default function MogoCase() {
                 <span className="case__decision-num">01</span>
                 <div>
                   <div className="case__decision-title">Keep requirements, remove transitions</div>
-                  <p className="case__decision-body">Never remove required inputs — remove unnecessary step boundaries. Fewer screens without losing compliance or data integrity.</p>
+                  <p className="case__decision-body">
+                    I did not remove required inputs. I removed unnecessary step boundaries and repeated decision moments.
+                  </p>
                 </div>
               </div>
               <div className="case__decision">
                 <span className="case__decision-num">02</span>
                 <div>
                   <div className="case__decision-title">Make the primary action unmissable</div>
-                  <p className="case__decision-body">One primary CTA per step, no competing blocks. Less "exploration UI" — more decisiveness and momentum.</p>
+                  <p className="case__decision-body">
+                    Each step needed one dominant action. Secondary content could support the decision, but not compete with it.
+                  </p>
                 </div>
               </div>
               <div className="case__decision">
                 <span className="case__decision-num">03</span>
                 <div>
-                  <div className="case__decision-title">Progressive disclosure by intent</div>
-                  <p className="case__decision-body">Show only what's needed to decide now; defer everything else. Lower cognitive load without hiding critical info.</p>
+                  <div className="case__decision-title">Use progressive disclosure by intent</div>
+                  <p className="case__decision-body">
+                    Only show what helps the user decide now. Defer supporting details until they are useful.
+                  </p>
                 </div>
               </div>
               <div className="case__decision">
                 <span className="case__decision-num">04</span>
                 <div>
-                  <div className="case__decision-title">Define "done" for production</div>
-                  <p className="case__decision-body">Every step ships with states, edge cases, and acceptance criteria — preventing silent regressions while maintaining delivery speed.</p>
+                  <div className="case__decision-title">Define &ldquo;done&rdquo; before release</div>
+                  <p className="case__decision-body">
+                    Each step needed states, validation rules, edge cases, and acceptance criteria before handoff.
+                  </p>
+                </div>
+              </div>
+              <div className="case__decision">
+                <span className="case__decision-num">05</span>
+                <div>
+                  <div className="case__decision-title">Constraint-aware simplification</div>
+                  <p className="case__decision-body">
+                    Some simplifications were intentionally rejected because they increased implementation complexity, compliance risk, or operational
+                    ambiguity.
+                  </p>
                 </div>
               </div>
             </div>
@@ -171,105 +242,115 @@ export default function MogoCase() {
         </div>
       </section>
 
-      {/* 06 — SHIPPING SYSTEM */}
+      {/* 07 — SHIPPING SYSTEM */}
       <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">06 — SHIPPING SYSTEM</div>
+          <div className="case__section-label">07 — SHIPPING SYSTEM</div>
           <h2 className="case__h2">How it stayed consistent in production</h2>
-          <p className="case__body">A redesign only works if it ships reliably, stays measurable, and doesn't drift in production.</p>
-          <p className="case__body case__body--strong">The system I introduced</p>
-          <div className="mogo-system__grid">
+          <p className="case__body">
+            The redesign had to ship reliably, stay measurable, and avoid drifting once implementation started.
+          </p>
+          <CaseCardTitleGroup className="mogo-system__grid mogo-system__grid--two-col">
             <div className="mogo-system__item">
               <Compass size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Ownership &amp; step rules</h3>
-              <p className="mogo-system__desc">Clear step intent, responsibilities, and progression rules — so the flow stays coherent across iterations.</p>
+              <h3 className="mogo-system__title" data-case-card-title>Step ownership rules</h3>
+              <p className="mogo-system__desc">Each step had a defined purpose, required inputs, and progression logic.</p>
             </div>
             <div className="mogo-system__item">
               <ClipboardList size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Definition of done (checklist)</h3>
-              <p className="mogo-system__desc">A lightweight checklist for states, edge cases, spacing, typography, and copy — so releases don't degrade UX.</p>
+              <h3 className="mogo-system__title" data-case-card-title>Definition of done</h3>
+              <p className="mogo-system__desc">
+                States, validation rules, hierarchy, accessibility, and edge cases were checked before release.
+              </p>
             </div>
             <div className="mogo-system__item">
               <ShieldCheck size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">QA sign-off gate</h3>
-              <p className="mogo-system__desc">Design verification before release + post-release spot checks — so implementation matches intent and regressions are caught early.</p>
+              <h3 className="mogo-system__title" data-case-card-title>QA sign-off gate</h3>
+              <p className="mogo-system__desc">
+                Design verification and post-release spot checks helped keep implementation aligned with intent.
+              </p>
             </div>
-          </div>
+            <div className="mogo-system__item">
+              <Layers size={32} className="mogo-system__icon" aria-hidden />
+              <h3 className="mogo-system__title" data-case-card-title>AI draft normalization</h3>
+              <p className="mogo-system__desc">
+                AI-assisted drafts were reviewed and normalized for hierarchy, accessibility, component consistency, and implementation realism.
+              </p>
+            </div>
+          </CaseCardTitleGroup>
+          <p className="case__body">
+            Not every UX refinement was included in the first release scope. Several improvements were intentionally deferred to avoid implementation
+            instability close to release.
+          </p>
           <div className="mogo-section__image">
-            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo7.png"} alt="Alignment model — Business–Design–Engineering workflow" caption="Alignment model: Business–Design–Engineering workflow with ownership, outputs, and QA checkpoints to ship without UX drift." className="mogo-section__img" />
+            <ZoomableImage
+              src={import.meta.env.BASE_URL + "eleving/mogo7.png"}
+              alt="Alignment model — Business–Design–Engineering workflow"
+              caption="Alignment model: business, design, and engineering checkpoints used to keep the flow shippable and measurable."
+              className="mogo-section__img"
+            />
           </div>
         </div>
       </section>
 
-      {/* 07 — IMPACT */}
+      {/* 08 — IMPACT */}
       <section className="case__section mogo-impact">
         <div className="case__wrap">
-          <div className="case__section-label">07 — IMPACT</div>
+          <div className="case__section-label">08 — IMPACT</div>
           <h2 className="case__h2">Results</h2>
-          <p className="case__body mogo-impact__intro">Completion improved because the redesign reduced friction at every transition: fewer steps, clearer progression signals, and less visual competition on each screen.</p>
+          <p className="case__body mogo-impact__intro">
+            Completion improved after reducing unnecessary transitions, clarifying progression, and removing competing actions per step.
+          </p>
           <ul className="mogo-impact__list">
-            <li>Merging repeated decisions reduced the number of transitions users had to clear.</li>
-            <li>A single dominant action per step removed visual ambiguity at each decision point.</li>
-            <li>Shipping with defined states and acceptance criteria prevented quality drift post-release.</li>
+            <li>9-step flow reduced to 6 steps while keeping required information intact.</li>
+            <li>
+              Completion improved during the measured post-release period, with the strongest lift coming from mid-flow continuation.
+            </li>
+            <li>Entry rate stayed broadly stable, which suggests the uplift came from mid-flow improvements.</li>
+            <li>The monitoring setup made future regressions easier to spot.</li>
           </ul>
           <div className="mogo-section__image">
-            <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo4.png"} alt="Monitoring pack — GA4 + Clarity dashboard" caption="Monitoring pack: Monthly GA4 + Clarity dashboard — start rate, continuation, completion, scroll depth, dead clicks." className="mogo-section__img" />
+            <ZoomableImage
+              src={import.meta.env.BASE_URL + "eleving/mogo4.png"}
+              alt="Monitoring pack — GA4 + Clarity dashboard"
+              caption="Monitoring pack: GA4 and Clarity view used to track entry, continuation, completion, and friction signals."
+              className="mogo-section__img"
+            />
           </div>
         </div>
       </section>
 
-      {/* 08 — NEXT STEPS */}
+      {/* 09 — NEXT STEPS */}
       <section className="case__section mogo-next">
         <div className="case__wrap">
-          <div className="case__section-label">08 — NEXT STEPS</div>
+          <div className="case__section-label">09 — NEXT STEPS</div>
           <h2 className="case__h2">How I'd extend the win</h2>
-          <p className="case__body mogo-next__lead">To keep improving without reintroducing friction, I'd run a lightweight iteration loop:</p>
-          <div className="mogo-next__grid">
+          <p className="case__body mogo-next__lead">
+            The next step is not another large redesign. It is a lightweight optimization loop around the highest-friction moments.
+          </p>
+          <CaseCardTitleGroup className="mogo-next__grid">
             <div className="mogo-next__card">
               <ScanEye size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Drop-off watchlist</h3>
-              <p className="mogo-next__text">Monthly step-level drop-off review to catch regressions early when UI changes ship.</p>
+              <h3 className="mogo-next__title" data-case-card-title>Step-level watchlist</h3>
+              <p className="mogo-next__text">
+                Track monthly drop-off by step to catch regressions after product or content changes.
+              </p>
             </div>
             <div className="mogo-next__card">
               <FlaskConical size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Clarity experiments</h3>
-              <p className="mogo-next__text">Test microcopy + helper patterns on the highest-friction steps and track "continue rate" step-by-step.</p>
+              <h3 className="mogo-next__title" data-case-card-title>Microcopy testing</h3>
+              <p className="mogo-next__text">
+                Test helper text and decision-support copy on the highest-friction steps.
+              </p>
             </div>
             <div className="mogo-next__card">
               <Wrench size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Edge-case hardening</h3>
-              <p className="mogo-next__text">Expand acceptance criteria from production incidents and support tickets to reduce release-to-release drift.</p>
+              <h3 className="mogo-next__title" data-case-card-title>Edge-case hardening</h3>
+              <p className="mogo-next__text">
+                Use support tickets, production issues, and Clarity replays to improve acceptance criteria.
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 09 — RELATED WORK */}
-      <section className="case__section mogo-related">
-        <div className="case__wrap">
-          <div className="case__section-label">09 — RELATED WORK</div>
-          <h2 className="case__h2">More impact at Eleving</h2>
-          <p className="case__body mogo-related__intro">Beyond this application redesign, I built reusable delivery standards and multi-brand foundations that made shipping faster and more consistent. I focused on governance, design–dev alignment, and quality gates to prevent UI drift after release. These systems scaled across brands and accelerated future iterations.</p>
-          <div className="mogo-related__grid">
-            <div className="mogo-related__card">
-              <div className="mogo-related__eyebrow">PRODUCT DESIGN OS</div>
-              <h3 className="mogo-related__title">Product Design OS</h3>
-              <p className="mogo-related__desc">I built an internal delivery system: tokens + governance + a design sign-off gate, plus a shared workspace where teams track UX quality and metrics.</p>
-              <VideoPreview src={import.meta.env.BASE_URL + "videos/elev.mp4"} caption="Product Design OS: tokens, governance, and design sign-off gate in action." className="mogo-related__video" />
-            </div>
-            <div className="mogo-related__card">
-              <div className="mogo-related__eyebrow">KLEVO</div>
-              <h3 className="mogo-related__title">Klevo — brand launched in 4 weeks</h3>
-              <p className="mogo-related__desc">From brand name voting to production in one month — clear ownership, fast iteration loops, and delivery discipline that kept scope under control.</p>
-              <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo8.png"} alt="Klevo brand launch proof" caption="Klevo: From brand name voting to production release in 4 weeks." className="mogo-related__img-zoom" />
-            </div>
-            <div className="mogo-related__card">
-              <div className="mogo-related__eyebrow">3 BRANDS</div>
-              <h3 className="mogo-related__title">3 brands on one foundation</h3>
-              <p className="mogo-related__desc">One shared token source and common UI rules across brands — consistent UX patterns, easier maintenance, and faster rollouts without breaking brand integrity.</p>
-              <ZoomableImage src={import.meta.env.BASE_URL + "eleving/mogo9.png"} alt="3 brands on one foundation" caption="3 brands on one shared token foundation — consistent patterns, faster rollouts." className="mogo-related__img-zoom" />
-            </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 
@@ -278,28 +359,35 @@ export default function MogoCase() {
         <div className="case__wrap">
           <div className="case__section-label">10 — TAKEAWAYS</div>
           <h2 className="case__h2">Executive takeaways</h2>
-          <div className="mogo-takeaways__numbered">
+          <p className="case__body">
+            The redesign improved completion because the problem was treated as a flow and delivery issue — not as a visual refresh.
+          </p>
+          <CaseCardTitleGroup className="mogo-takeaways__numbered">
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">01</span>
-              <p className="mogo-takeaways__num-title">Simplify without losing intent</p>
-              <p className="mogo-takeaways__num-text">Removing friction at the transition level — not the requirement level — lets completion improve without affecting who starts.</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Fix the flow, not the traffic</p>
+              <p className="mogo-takeaways__num-text">The main opportunity was inside the application journey, not at the entry point.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">02</span>
-              <p className="mogo-takeaways__num-title">Make &ldquo;Next&rdquo; unmistakable</p>
-              <p className="mogo-takeaways__num-text">Visible progress and one dominant action per step reduce hesitation without changing what users are asked to do.</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Remove transitions, not requirements</p>
+              <p className="mogo-takeaways__num-text">Completion improved by simplifying progression while keeping required information intact.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">03</span>
-              <p className="mogo-takeaways__num-title">Ship without drift</p>
-              <p className="mogo-takeaways__num-text">Defining &ldquo;done&rdquo; with edge cases and criteria before release keeps production aligned with what was actually validated.</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Reduce operational hesitation</p>
+              <p className="mogo-takeaways__num-text">
+                Clear progression, lower visual competition, and fewer repeated decisions reduced unnecessary hesitation across the flow.
+              </p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">04</span>
-              <p className="mogo-takeaways__num-title">Measure as a habit</p>
-              <p className="mogo-takeaways__num-text">A lightweight monitoring routine converts design changes into evidence — and evidence into a repeatable improvement loop.</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Keep delivery measurable</p>
+              <p className="mogo-takeaways__num-text">
+                A redesign is only useful if the team can ship it, check it, and continue improving it after release.
+              </p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 
@@ -307,7 +395,7 @@ export default function MogoCase() {
       <nav className="eleving-nav" aria-label="Case study navigation">
         <div className="eleving-nav__wrap">
           <a href="#work" className="eleving-nav__link"><ArrowLeft size={16} strokeWidth={2} aria-hidden /> Back to Work</a>
-          <a href="#fleet" className="eleving-nav__link">Next: Fleet Operations Platform <ArrowRight size={16} strokeWidth={2} aria-hidden /></a>
+          <a href="#ai-workflow" className="eleving-nav__link">Next: AI-Assisted Product Delivery <ArrowRight size={16} strokeWidth={2} aria-hidden /></a>
         </div>
       </nav>
     </article>

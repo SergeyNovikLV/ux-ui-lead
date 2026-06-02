@@ -1,5 +1,11 @@
 import "./Nav.css";
 
+const NAV_LINKS = [
+  { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function Nav({ scrolled, hoveredNav, setHoveredNav }) {
   return (
     <nav className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
@@ -9,15 +15,15 @@ export default function Nav({ scrolled, hoveredNav, setHoveredNav }) {
         </svg>
       </a>
       <div className="nav__links">
-        {["Work", "About", "Contact"].map((link) => (
+        {NAV_LINKS.map(({ label, href }) => (
           <a
-            key={link}
-            href={`#${link.toLowerCase()}`}
-            className={`nav__link ${hoveredNav === link ? "nav__link--active" : ""}`}
-            onMouseEnter={() => setHoveredNav(link)}
+            key={label}
+            href={href}
+            className={`nav__link ${hoveredNav === label ? "nav__link--active" : ""}`}
+            onMouseEnter={() => setHoveredNav(label)}
             onMouseLeave={() => setHoveredNav(null)}
           >
-            {link}
+            {label}
           </a>
         ))}
       </div>

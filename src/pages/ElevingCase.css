@@ -23,18 +23,7 @@
   box-sizing: border-box;
 }
 
-/* ─── HERO (Fleet structure) ─────────────────────────────────────────── */
-.eleving-hero {
-  padding-top: var(--section-padding);
-  padding-bottom: var(--section-padding);
-}
-
-@media (max-width: 768px) {
-  .eleving-hero {
-    padding-top: calc(var(--nav-height, 68px) + 40px);
-  }
-}
-
+/* ─── HERO (Fleet structure) — vertical padding from .case__section + .eleving-hero in case-shared.css ─── */
 .eleving-hero__grid {
   display: block;
 }
@@ -58,7 +47,7 @@
 
 .eleving-hero__title {
   font-family: var(--font-display);
-  font-size: 56px;
+  font-size: 44px;
   font-weight: 700;
   color: var(--color-text);
   line-height: 1.1;
@@ -173,10 +162,6 @@
 }
 
 @media (max-width: 640px) {
-  .eleving-hero {
-    padding-top: var(--section-padding);
-  }
-
   .eleving-hero__title {
     font-size: 40px;
   }
@@ -473,7 +458,7 @@
 
 /* ── Section 01 — ROLE & SCOPE (global, all case pages) ── */
 .role-scope__intro {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--copy-to-block-gap);
 }
 
 .role-scope__meta {
@@ -628,7 +613,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-md);
-  margin-top: var(--space-md);
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {

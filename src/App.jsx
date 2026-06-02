@@ -11,19 +11,22 @@ import MogoCase from "./pages/MogoCase";
 import ProductOSCase from "./pages/ProductOSCase";
 import BankingNew from "./pages/BankingNew";
 import UKMediaCase from "./pages/UKMediaCase";
+import AIWorkflowCase from "./pages/AIWorkflowCase";
+import DesignSystemsCase from "./pages/DesignSystemsCase";
+import AboutCase from "./pages/AboutCase";
 import "./App.css";
 
 const CASES = [
   {
     id: "01",
-    title: "Mogo — Loan Application Journey Redesign",
-    description: "Loan application journey redesign for Eleving Group. Simplified flow and clearer decision points for measurable uplift.",
-    context: "Eleving Group · Product Designer · 2025 – Present",
-    bullets: [
-      { numbers: "9 → 6", text: "steps", desc: "Reduced decision friction" },
-      { numbers: "16.7% → 38.8%", text: "completion", desc: "More users finished" },
-      { numbers: "", text: "Entry rate stable", desc: "Lift came mid-flow" },
+    title: "Mogo — Loan application flow",
+    description:
+      "Reducing friction in a fintech loan application flow with clearer progression, fewer decision points, and stronger completion.",
+    metrics: [
+      { value: "9 → 6", text: "steps reduced" },
+      { value: "16.7% → 38.8%", text: "completion rate" },
     ],
+    context: "Eleving Group · Product Designer · 2025–Present",
     year: "2025 – Present",
     visual: "ds",
     thumbnailSrc: import.meta.env.BASE_URL + "eleving/mogo.png",
@@ -31,15 +34,47 @@ const CASES = [
     slug: "mogo",
   },
   {
-    id: "03",
-    title: "Fleet Operations Platform",
-    description: "Fleet operations platform for Mapon. Unified data views, reduced manual reporting, AI-backed decisions.",
-    context: "Mapon · Senior UX/UI Designer · 2025",
-    bullets: [
-      { numbers: "23%", text: "faster", desc: "Data interpretation" },
-      { numbers: "17%", text: "less", desc: "Manual reporting reduced" },
-      { numbers: "", text: "AI decision support", desc: "Unified workflows" },
+    id: "02",
+    title: "AI-assisted product delivery",
+    description:
+      "Internal workflow for turning unclear product input, analytics signals, and early ideas into structured briefs, validation direction, and delivery-ready outputs.",
+    metrics: [
+      { value: "", text: "Design briefs from unclear tasks" },
+      { value: "", text: "Faster UX evaluation cycles" },
     ],
+    context: "Eleving Group · AI-assisted workflow · 2025",
+    year: "2025",
+    visual: "workflow",
+    thumbnailVideoSrc: import.meta.env.BASE_URL + "videos/productbuddy-workflow.mp4",
+    bg: "#F6F6F4",
+    slug: "ai-workflow",
+  },
+  {
+    id: "03",
+    title: "Design Systems at scale",
+    description:
+      "Multi-brand design system operations: semantic tokens, shared foundations, governance, and design-to-development reliability across fintech products.",
+    metrics: [
+      { value: "", text: "Shared foundations + semantic tokens" },
+      { value: "", text: "Theme-driven multi-brand delivery" },
+    ],
+    context: "Eleving Group · Design systems · Operations · 2024–2025",
+    year: "2024–2025",
+    visual: "ds",
+    thumbnailSrc: import.meta.env.BASE_URL + "eleving/mogo8.png",
+    bg: "#F6F6F4",
+    slug: "design-systems",
+  },
+  {
+    id: "04",
+    title: "Fleet Operations Platform",
+    description:
+      "Unified operational fleet platform focused on faster data interpretation, clearer decisions, and AI-supported operational evaluation.",
+    metrics: [
+      { value: "23%", text: "faster data interpretation" },
+      { value: "17%", text: "less manual reporting" },
+    ],
+    context: "Mapon · Senior UX/UI Designer · 2025",
     year: "2025",
     visual: "fleet",
     thumbnailSrc: import.meta.env.BASE_URL + "fleet/fleetapp.png",
@@ -47,15 +82,15 @@ const CASES = [
     slug: "fleet",
   },
   {
-    id: "04",
-    title: "Banking Platform Efficiency",
-    description: "Banking platform UX overhaul. Faster workflows and fewer clicks per task, with measurable satisfaction gains.",
-    context: "2021–2022 · Senior UX/UI Designer",
-    bullets: [
-      { numbers: "16%", text: "faster", desc: "Task completion time" },
-      { numbers: "33%", text: "fewer clicks", desc: "Per task reduced" },
-      { numbers: "21%", text: "higher", desc: "User satisfaction" },
+    id: "05",
+    title: "Banking platform efficiency",
+    description:
+      "Enterprise banking workflow redesign focused on reducing operational friction, improving compliance clarity, and making internal tasks more predictable.",
+    metrics: [
+      { value: "16%", text: "faster task completion" },
+      { value: "33%", text: "fewer operational clicks" },
     ],
+    context: "Deutsche Bank · Senior UX/UI Designer · 2021–2022",
     year: "2021–2022",
     visual: "banking",
     thumbnailSrc: import.meta.env.BASE_URL + "db/card-bank.jpg",
@@ -63,15 +98,15 @@ const CASES = [
     slug: "banking",
   },
   {
-    id: "05",
-    title: "Reimagining the UK's top TV app",
-    description: "Reimagined the UK's leading TV streaming app for millions of viewers. Post-release engagement gains and smoother design-to-dev handoff.",
-    context: "2021–2022 · Senior UX/UI Designer",
-    bullets: [
-      { numbers: "28M+", text: "users", desc: "Scale of platform" },
-      { numbers: "9%", text: "↑ engagement", desc: "Post-release lift" },
-      { numbers: "15%", text: "faster handoff", desc: "Design to dev" },
+    id: "06",
+    title: "Reimagining the UK’s top TV app",
+    description:
+      "High-scale accessibility and cross-platform redesign for one of the UK’s largest streaming platforms.",
+    metrics: [
+      { value: "9%", text: "increase in engagement" },
+      { value: "15%", text: "faster design-to-development handoff" },
     ],
+    context: "Channel 4 / UKTV · Senior UX/UI Designer · 2021–2022",
     year: "2021–2022",
     visual: "banking",
     thumbnailSrc: import.meta.env.BASE_URL + "ukc4/card-uktv.png",
@@ -92,7 +127,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const CASE_HASHES = ['mogo', 'eleving', 'product-os', 'fleet', 'banking', 'ukmedia'];
+    const CASE_HASHES = ['mogo', 'eleving', 'product-os', 'fleet', 'banking', 'ukmedia', 'ai-workflow', 'design-systems', 'about'];
     const handler = () => {
       const hash = window.location.hash.slice(1) || "home";
       if (CASE_HASHES.includes(hash)) {
@@ -105,12 +140,39 @@ export default function App() {
     return () => window.removeEventListener("hashchange", handler);
   }, []);
 
+  if (page === "about") {
+    return (
+      <div className="app">
+        <ScrollToTop location={page} />
+        <Nav scrolled={scrolled} hoveredNav={hoveredNav} setHoveredNav={setHoveredNav} />
+        <AboutCase />
+      </div>
+    );
+  }
   if (page === "mogo") {
     return (
       <div className="app">
         <ScrollToTop location={page} />
         <Nav scrolled={scrolled} hoveredNav={hoveredNav} setHoveredNav={setHoveredNav} />
         <MogoCase />
+      </div>
+    );
+  }
+  if (page === "ai-workflow") {
+    return (
+      <div className="app">
+        <ScrollToTop location={page} />
+        <Nav scrolled={scrolled} hoveredNav={hoveredNav} setHoveredNav={setHoveredNav} />
+        <AIWorkflowCase />
+      </div>
+    );
+  }
+  if (page === "design-systems") {
+    return (
+      <div className="app">
+        <ScrollToTop location={page} />
+        <Nav scrolled={scrolled} hoveredNav={hoveredNav} setHoveredNav={setHoveredNav} />
+        <DesignSystemsCase />
       </div>
     );
   }
@@ -166,7 +228,6 @@ export default function App() {
           <CaseRow
             key={c.id}
             c={c}
-            index={i}
             transitionDelay={i * 0.1}
           />
         ))}

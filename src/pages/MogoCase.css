@@ -125,7 +125,6 @@
   color: var(--color-text);
   margin: 0;
   line-height: 1.3;
-  min-height: calc(1.3em * 2);
 }
 
 .mogo-next__text {
@@ -245,8 +244,11 @@
   }
 }
 
+.mogo-hero__metrics .case__stat-label {
+  min-height: calc(2 * 1.35 * var(--font-size-subtitle, 18px));
+}
+
 .mogo-hero__metrics .case__stat-desc {
-  font-weight: 400;
   color: var(--color-caption);
 }
 
@@ -277,7 +279,11 @@
 }
 
 .mogo-section__image {
-  margin-top: 28px;
+  margin-top: 0;
+}
+
+.mogo-section__image + .mogo-section__image {
+  margin-top: var(--copy-to-block-gap);
 }
 
 .mogo-section__img {
@@ -290,7 +296,7 @@
   font-size: 16px;
   color: var(--color-body-dark);
   line-height: 1.75;
-  margin: var(--space-sm) 0;
+  margin: 0 0 var(--space-sm) 0;
   padding-left: 1.5em;
 }
 
@@ -368,7 +374,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  margin-top: var(--space-md);
+  margin-top: 0;
 }
 
 @media (max-width: 900px) {
@@ -379,6 +385,26 @@
 
 @media (max-width: 580px) {
   .mogo-system__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 2×2 grid: two columns down to tablet, one column on small phones */
+.mogo-system__grid.mogo-system__grid--two-col {
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+}
+
+.mogo-system__grid.mogo-system__grid--two-col .mogo-system__item {
+  height: 100%;
+}
+
+.mogo-system__grid.mogo-system__grid--two-col .mogo-system__desc {
+  flex: 1;
+}
+
+@media (max-width: 580px) {
+  .mogo-system__grid.mogo-system__grid--two-col {
     grid-template-columns: 1fr;
   }
 }
@@ -410,7 +436,6 @@
   color: var(--color-text);
   margin: 0;
   line-height: 1.35;
-  min-height: calc(1.35em * 2);
 }
 
 .mogo-system__desc {
@@ -426,7 +451,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-md);
-  margin-top: var(--space-md);
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {
@@ -456,6 +481,82 @@
   grid-row: 1;
   padding-right: var(--space-md);
   align-self: start;
+}
+
+/* ProductBuddy — 03 ANALYTICS: before/after cards + rs-style example (no pipeline UI) */
+.pb-analytics03__compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-top: var(--copy-to-block-gap);
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .pb-analytics03__compare {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pb-analytics03__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 var(--rs-eyebrow-to-title) 0;
+}
+
+.pb-analytics03__card-list {
+  margin-bottom: 0;
+}
+
+.pb-analytics03__compare .mogo-system__item .case__list {
+  max-width: none;
+}
+
+.pb-analytics03__compare .case__list li:last-child {
+  margin-bottom: 0;
+}
+
+.pb-analytics03__example-wrap {
+  margin-top: var(--copy-to-block-gap);
+}
+
+.pb-analytics03__example .rs-card__title {
+  margin-bottom: 0;
+}
+
+.pb-analytics03__stack {
+  margin-top: var(--rs-title-to-body);
+}
+
+.pb-analytics03__field {
+  padding-top: var(--rs-row-padding);
+  margin-top: var(--rs-row-padding);
+  border-top: 1px solid var(--color-border);
+}
+
+.pb-analytics03__field:first-child {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: none;
+}
+
+.pb-analytics03__field-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 6px;
+}
+
+.pb-analytics03__media-title.case__body--strong {
+  margin-top: var(--copy-to-block-gap);
+  margin-bottom: var(--space-xs);
 }
 
 /* MY ROLE — Fleet-style 3-column layout (matches FleetCase) */
@@ -550,4 +651,87 @@
   font-size: 16px;
   line-height: 1.5;
   color: var(--color-body-dark);
+}
+
+/* Design Systems at scale case — centered editorial hero + proof video */
+.design-systems-case .design-systems-case__hero .eleving-hero__text.design-systems-case__hero-text {
+  max-width: 980px;
+}
+
+.design-systems-case .design-systems-case__hero-title {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.design-systems-case .design-systems-case__hero-subtitle {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hero metrics — same layout as AI case hero cards (outside centered .eleving-hero__text) */
+.design-systems-case.eleving .case__wrap > .eleving-hero__grid + .design-systems-case__hero-cards {
+  margin-top: var(--copy-to-block-gap);
+}
+
+.design-systems-case__hero-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+  align-items: stretch;
+}
+
+.design-systems-case__hero-card {
+  height: 100%;
+  gap: var(--space-sm);
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .design-systems-case__hero-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hero video — same FleetSectionVideo pattern as AI case */
+.design-systems-case .design-systems-case__hero-media {
+  margin-top: var(--space-md);
+}
+
+.design-systems-case .design-systems-case__hero-media .fleet-section__video-caption {
+  text-align: center;
+}
+
+.design-systems-case .design-systems-case__hero-media .fleet-section__video {
+  margin-top: 0;
+}
+
+/* 01 — Delivery drift symptoms (role-scope cards, 3-up) */
+.design-systems-case__drift-cards {
+  margin-top: var(--copy-to-block-gap);
+  align-items: stretch;
+}
+
+.design-systems-case__drift-card {
+  height: 100%;
+}
+
+/* Before → After slider wrap (same as Fleet §04 REDESIGN — Design Systems §02) */
+.fleet-section__slider-wrap {
+  margin-top: var(--space-md);
+}
+
+.fleet-section__slider-wrap .slider-container {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.design-systems-case .case__wrap > .fleet-section__slider-wrap + .case__key-decisions__list.design-systems-case__system-restructure-principles {
+  margin-top: var(--copy-to-block-gap);
+}
+
+.design-systems-case .design-systems-case__takeaways-h2 {
+  margin-top: var(--copy-to-block-gap);
+  font-size: clamp(22px, 2.5vw, 28px);
 }

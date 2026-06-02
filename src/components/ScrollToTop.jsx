@@ -1,6 +1,6 @@
 import { useLayoutEffect, useEffect } from 'react';
 
-const CASE_PAGES = ['mogo', 'eleving', 'product-os', 'fleet', 'banking', 'ukmedia'];
+const CASE_PAGES = ['mogo', 'eleving', 'product-os', 'fleet', 'banking', 'ukmedia', 'ai-workflow', 'design-systems', 'about'];
 
 /**
  * Scrolls to correct position on route/page change.
@@ -12,10 +12,12 @@ export default function ScrollToTop({ location }) {
   const isCasePage = CASE_PAGES.includes(location);
 
   useLayoutEffect(() => {
-    if (location === 'work') {
-      document.getElementById('work')?.scrollIntoView({ behavior: 'auto' });
+    if (location === "work") {
+      document.getElementById("work")?.scrollIntoView({ behavior: "auto" });
+    } else if (location === "contact") {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "auto" });
     } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     }
   }, [location]);
 

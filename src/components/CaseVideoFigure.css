@@ -1,0 +1,23 @@
+.case-video-figure__frame {
+  display: block;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-surface);
+  overflow: hidden;
+  background: #111;
+}
+
+.case-video-figure__video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.case-video-figure__caption {
+  margin-top: 24px;
+}
+
+.case-video-figure__title {
+  font-weight: 600;
+  color: var(--color-body-dark);
+}

@@ -75,7 +75,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 80px;
+  margin-top: var(--copy-to-block-gap);
   opacity: 0;
   transform: translateX(20px);
   transition: all 0.65s ease 0.14s;
@@ -117,6 +117,6 @@
   }
 
   .capabilities__skills {
-    margin-top: 24px;
+    margin-top: var(--copy-to-block-gap);
   }
 }

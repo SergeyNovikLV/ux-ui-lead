@@ -2,33 +2,32 @@ import { useInView } from "../hooks/useInView";
 import "./Capabilities.css";
 
 const SKILLS = [
-  "Decision Architecture",
-  "AI Integration Design",
-  "Design Systems",
-  "Token Strategy",
-  "Operational UX",
-  "Cross-functional Leadership",
-  "Research to Outcome",
-  "WCAG Accessibility",
-  "Product Strategy",
-  "Interaction Design",
-  "Governance",
+  "Complex Flow Design",
+  "Fintech UX",
+  "Analytics-informed UX",
+  "AI-assisted delivery",
+  "Design Systems Governance",
+  "UX Quality Gates",
+  "Product Framing",
+  "Cursor / Claude / Figma Make",
+  "Accessibility",
+  "Engineering Collaboration",
 ];
 
 export default function Capabilities() {
   const [capRef, capVisible] = useInView(0.08);
 
   return (
-    <section id="about" ref={capRef} className="capabilities">
+    <section id="capabilities" ref={capRef} className="capabilities">
       <div className="capabilities__inner">
         <div className={`capabilities__left ${capVisible ? "capabilities__left--visible" : ""}`}>
           <p className="capabilities__eyebrow">Capabilities</p>
           <h2 className="capabilities__title">
-            Design as a<br /><em>product decision</em>
+            Product design<br /><em>beyond screens</em>
           </h2>
           <div className="capabilities__line" />
           <p className="capabilities__text">
-            Every decision mapped to an operational outcome, a risk removed, or a constraint honored. Not execution for its own sake.
+            I work where UX, product logic, systems quality, and delivery meet — helping teams move from unclear problems to scalable product outcomes.
           </p>
           <p className="capabilities__domains"><strong>Domains:</strong> Fintech · Transportation · Healthcare · Media</p>
         </div>

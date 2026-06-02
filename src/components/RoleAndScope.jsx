@@ -1,12 +1,13 @@
 import { getIcon } from '../data/roleScopeData';
+import CaseCardTitleGroup from './CaseCardTitleGroup';
 
 /**
  * Reusable Section 01 — ROLE & SCOPE for all case pages.
  * Renders: eyebrow, title, optional intro, meta row (YEAR/ROLE/PLATFORMS), 3×3 grid (I led / I shaped / I decided).
- * Props: pass full data from roleScopeData (year, role, platforms, intro, led, shaped, decided).
+ * Props: pass full data from roleScopeData (year, role, platforms, intro, led, shaped, decided, extraRows?).
  * Each card: { title, desc, icon } — icon is Lucide component name.
  */
-export default function RoleAndScope({ year, role, platforms, intro, led, shaped, decided }) {
+export default function RoleAndScope({ year, role, platforms, intro, led, shaped, decided, extraRows }) {
   const Card = ({ title, desc, icon }) => {
     const IconComponent = getIcon(icon);
     return (
@@ -15,7 +16,9 @@ export default function RoleAndScope({ year, role, platforms, intro, led, shaped
           <IconComponent size={20} strokeWidth={2} className="role-scope__card-icon" aria-hidden />
         </div>
         <div className="role-scope__card-content">
-          <div className="role-scope__card-title">{title}</div>
+          <div className="role-scope__card-title" data-case-card-title>
+            {title}
+          </div>
           <p className="role-scope__card-desc">{desc}</p>
         </div>
       </div>
@@ -25,11 +28,11 @@ export default function RoleAndScope({ year, role, platforms, intro, led, shaped
   const Row = ({ label, items }) => (
     <div className="role-scope__row">
       <h3 className="role-scope__row-title">{label}</h3>
-      <div className="role-scope__row-cards">
+      <CaseCardTitleGroup className="role-scope__row-cards">
         {items.map((item, i) => (
           <Card key={i} title={item.title} desc={item.desc} icon={item.icon} />
         ))}
-      </div>
+      </CaseCardTitleGroup>
     </div>
   );
 
@@ -57,6 +60,9 @@ export default function RoleAndScope({ year, role, platforms, intro, led, shaped
           <Row label="I led" items={led} />
           <Row label="I shaped" items={shaped} />
           <Row label="I decided" items={decided} />
+          {extraRows?.map((row) => (
+            <Row key={row.label} label={row.label} items={row.items} />
+          ))}
         </div>
       </div>
     </section>

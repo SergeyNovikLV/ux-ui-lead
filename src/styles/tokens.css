@@ -58,10 +58,13 @@
   --letter-spacing-max: 2px;
   --section-padding: 70px;
   --nav-height: 68px;
+  /* Prose → cards / grids / media (desktop 32px, tighter on small screens) */
+  --copy-to-block-gap: 32px;
 }
 
 @media (max-width: 768px) {
   :root {
     --section-padding: 30px;
+    --copy-to-block-gap: 20px;
   }
 }

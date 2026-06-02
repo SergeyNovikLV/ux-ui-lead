@@ -9,7 +9,9 @@ export default function ResearchSignalCard({ eyebrow, title, method, signal, dec
   return (
     <div className={`rs-card ${variant === 'large' ? 'rs-card--large' : ''}`}>
       <div className="rs-card__eyebrow">{eyebrow}</div>
-      <h3 className="rs-card__title">{title}</h3>
+      <h3 className="rs-card__title" data-case-card-title>
+        {title}
+      </h3>
       <div className="rs-card__body">
         <div className="rs-row">
           <div className="rs-label">METHOD</div>

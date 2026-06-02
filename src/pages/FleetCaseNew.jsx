@@ -1,5 +1,6 @@
 import './FleetCaseNew.css';
 import ZoomableImage from '../components/ZoomableImage';
+import CaseCardTitleGroup from '../components/CaseCardTitleGroup';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import { ArrowLeft, ArrowRight, Compass, ClipboardList, ShieldCheck, ScanEye, FlaskConical, Wrench } from 'lucide-react';
 import RoleAndScope from '../components/RoleAndScope';
@@ -16,7 +17,7 @@ export default function FleetCaseNew() {
             <div className="eleving-hero__text">
               <div className="case__hero-label">B2B · FLEET OPERATIONS · AI INTEGRATION</div>
               <h1 className="eleving-hero__title">Scaling an 18-year system with AI decision support</h1>
-              <p className="eleving-hero__subtitle">Redesigning an 18-year-old enterprise platform — unifying core workflows, integrating AI decision support, and rebuilding shared design foundations across web and mobile.</p>
+              <p className="eleving-hero__subtitle">Unified data-heavy fleet workflows with AI-supported evaluation, faster signal interpretation, and clearer operational decision-making.</p>
               <div className="eleving-hero__divider" aria-hidden />
             </div>
           </div>
@@ -74,7 +75,7 @@ export default function FleetCaseNew() {
       {/* 03 — RESEARCH */}
       <section className="case__section fleet-process fleet-research">
         <div className="case__wrap">
-          <div className="fleet-process__grid mogo-evidence__grid">
+          <CaseCardTitleGroup className="fleet-process__grid mogo-evidence__grid">
             <div className="mogo-evidence__intro">
               <div className="case__section-label">03 — RESEARCH</div>
               <h2 className="case__h2">Signals that drove decisions</h2>
@@ -103,7 +104,14 @@ export default function FleetCaseNew() {
               signal="Users ignored AI suggestions when reasoning and confidence were hidden."
               decision="Surface confidence + data source inline; keep the primary action dominant."
             />
-          </div>
+            <ResearchSignalCard
+              eyebrow="AI-SUPPORTED REVIEW"
+              title="AI-supported UX review"
+              method="Claude-assisted critique on early wireframes and dashboard directions — not a substitute for research, but a fast second pass on hierarchy and density."
+              signal="Surfaced overloaded structures, weak visual hierarchy, and unclear operational priorities before build-out."
+              decision="Prioritized hierarchy fixes and signal clarity in the iteration backlog — so engineering effort followed operational impact."
+            />
+          </CaseCardTitleGroup>
         </div>
       </section>
 
@@ -179,23 +187,23 @@ export default function FleetCaseNew() {
           <h2 className="case__h2">This wasn't cleanup — it was product infrastructure</h2>
           <p className="case__body">No shared token layer, inconsistent components, weak cross-platform parity. I drove a system rebuild as a structural requirement for the redesign to hold.</p>
           <p className="case__body case__body--strong">What I built</p>
-          <div className="mogo-system__grid">
+          <CaseCardTitleGroup className="mogo-system__grid">
             <div className="mogo-system__item">
               <Compass size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">DS audit + Figma ↔ Storybook sync</h3>
+              <h3 className="mogo-system__title" data-case-card-title>DS audit + Figma ↔ Storybook sync</h3>
               <p className="mogo-system__desc">Synced Figma components with Storybook in close dev collaboration — single source of truth, fewer implementation mismatches.</p>
             </div>
             <div className="mogo-system__item">
               <ClipboardList size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Token architecture</h3>
+              <h3 className="mogo-system__title" data-case-card-title>Token architecture</h3>
               <p className="mogo-system__desc">Defined semantic tokens for type, spacing, color intent, and elevation — one foundation reused across web and mobile.</p>
             </div>
             <div className="mogo-system__item">
               <ShieldCheck size={32} className="mogo-system__icon" aria-hidden />
-              <h3 className="mogo-system__title">Component library + accessibility</h3>
+              <h3 className="mogo-system__title" data-case-card-title>Component library + accessibility</h3>
               <p className="mogo-system__desc">Rebuilt core components with documented states, variants, usage rules, and WCAG 2.1 AA patterns — faster iterations, predictable quality.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 
@@ -222,23 +230,23 @@ export default function FleetCaseNew() {
           <div className="case__section-label">08 — NEXT STEPS</div>
           <h2 className="case__h2">How I'd extend the platform</h2>
           <p className="case__body mogo-next__lead">To keep improving operational outcomes without adding UI complexity, I'd run a focused iteration loop:</p>
-          <div className="mogo-next__grid">
+          <CaseCardTitleGroup className="mogo-next__grid">
             <div className="mogo-next__card">
               <ScanEye size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">AI confidence monitoring</h3>
+              <h3 className="mogo-next__title" data-case-card-title>AI confidence monitoring</h3>
               <p className="mogo-next__text">Track AI suggestion acceptance rates per workflow to detect where explainability or confidence scoring needs refinement.</p>
             </div>
             <div className="mogo-next__card">
               <FlaskConical size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Role-based IA experiments</h3>
+              <h3 className="mogo-next__title" data-case-card-title>Role-based IA experiments</h3>
               <p className="mogo-next__text">Test further IA splits between manager and operator views — measure task completion rate step-by-step per segment.</p>
             </div>
             <div className="mogo-next__card">
               <Wrench size={32} className="mogo-next__icon" aria-hidden />
-              <h3 className="mogo-next__title">Mobile parity hardening</h3>
+              <h3 className="mogo-next__title" data-case-card-title>Mobile parity hardening</h3>
               <p className="mogo-next__text">Expand acceptance criteria from mobile production incidents to reduce web–mobile divergence release-to-release.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 
@@ -247,28 +255,31 @@ export default function FleetCaseNew() {
         <div className="case__wrap">
           <div className="case__section-label">09 — TAKEAWAYS</div>
           <h2 className="case__h2">Executive takeaways</h2>
-          <div className="mogo-takeaways__numbered">
+          <p className="case__body">
+            The redesign worked because operational decisions were made easier without removing human control or adding unnecessary automation.
+          </p>
+          <CaseCardTitleGroup className="mogo-takeaways__numbered">
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">01</span>
-              <p className="mogo-takeaways__num-title">Structure before surface</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Structure before surface</p>
               <p className="mogo-takeaways__num-text">No visual redesign holds without shared tokens, components, and cross-platform parity as the foundation.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">02</span>
-              <p className="mogo-takeaways__num-title">AI earns trust through explainability</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>AI earns trust through explainability</p>
               <p className="mogo-takeaways__num-text">Surfacing confidence and data sources inline turned ignored suggestions into accepted decisions.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">03</span>
-              <p className="mogo-takeaways__num-title">Role-based IA over feature lists</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Role-based IA over feature lists</p>
               <p className="mogo-takeaways__num-text">Splitting navigation by manager vs operator needs reduced steps and removed wrong-context noise.</p>
             </div>
             <div className="mogo-takeaways__num-item">
               <span className="mogo-takeaways__num-digit">04</span>
-              <p className="mogo-takeaways__num-title">Ship without drift</p>
+              <p className="mogo-takeaways__num-title" data-case-card-title>Ship without drift</p>
               <p className="mogo-takeaways__num-text">QA gates and Figma ↔ Storybook alignment kept production consistent across delivery streams.</p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 

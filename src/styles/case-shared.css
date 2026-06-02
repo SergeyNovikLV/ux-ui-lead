@@ -5,6 +5,20 @@
   padding-bottom: var(--section-padding);
 }
 
+/* Case hero only: extra top breathing room under nav (all case studies use .eleving-hero) */
+.case__section.eleving-hero {
+  padding-top: calc(var(--section-padding) + 60px);
+}
+
+@media (max-width: 768px) {
+  .case__section.eleving-hero {
+    padding-top: max(
+      calc(var(--section-padding) + 48px),
+      calc(var(--nav-height, 68px) + 40px)
+    );
+  }
+}
+
 .case__wrap {
   max-width: var(--content-max);
   margin: 0 auto;
@@ -19,6 +33,7 @@
   letter-spacing: 0.12em;
   margin-bottom: 12px;
   text-align: left;
+  max-width: var(--text-width);
 }
 
 .case__h2 {
@@ -36,6 +51,11 @@
   font-size: 16px;
   color: var(--color-body-dark);
   line-height: 1.75;
+  max-width: var(--text-width);
+}
+
+/* Same prose measure as .case__body (lists were full wrap width before) */
+.case__list {
   max-width: var(--text-width);
 }
 
@@ -62,13 +82,17 @@
   font-size: var(--font-size-subtitle);
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: 4px;
+  line-height: 1.35;
+  margin-bottom: 8px;
 }
 
 .case__stat-desc {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: var(--color-caption);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-body-dark);
+  margin: 0;
 }
 
 .case__card {
@@ -91,6 +115,21 @@
   line-height: 1;
 }
 
+/*
+ * Case preview media (homepage / selected work — CaseRow):
+ * object-fit: contain — full image visible, centered, neutral fill in letterbox areas.
+ */
+
+/*
+ * Card grid alignment (CaseCardTitleGroup + useCardGroupMultilineTitles):
+ * - Default: title height follows content (no reserved 2-line slot).
+ * - Per visual row: if any title wraps, JS sets min-height to the tallest title in that row only.
+ * - Optional data-case-card-row on a card for explicit row grouping in multi-row grids.
+ */
+.case-card-grid [data-case-card-title] {
+  min-height: 0;
+}
+
 .case__card-title {
   font-family: var(--font-sans);
   font-size: 18px;
@@ -98,7 +137,6 @@
   color: var(--color-text);
   margin: 0 0 16px 0;
   line-height: 1.35;
-  min-height: calc(1.35em * 2);
 }
 
 .case__card-list {
@@ -219,7 +257,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-md);
-  margin-top: 32px;
+  margin-top: 0;
 }
 
 .case__ds-pillar {
@@ -427,8 +465,6 @@
   color: var(--color-text);
   margin: 0;
   line-height: 1.35;
-  /* reserve 2-line height so descriptions align across all cards */
-  min-height: calc(1.35em * 2);
 }
 
 .mogo-takeaways__num-text {
@@ -437,4 +473,200 @@
   color: var(--color-body-dark);
   line-height: 1.65;
   margin: 0;
+}
+
+/* Outcome intro → Executive takeaways (AI ProductBuddy; matches Design Systems rhythm) */
+.mogo-case .mogo-takeaways > .case__wrap > .case__body + .case__h2 {
+  margin-top: var(--copy-to-block-gap);
+}
+
+/* ── Copy → block rhythm (prose to cards, grids, media) ─────────────────── */
+.case__body + .case__body {
+  margin-top: var(--space-sm);
+}
+
+.mogo-evidence__intro > .case__body:last-child {
+  margin-bottom: var(--copy-to-block-gap);
+}
+
+.eleving .case__wrap > .mogo-system__grid,
+.eleving .case__wrap > .mogo-next__grid,
+.eleving .case__wrap > .mogo-section__image,
+.eleving .case__wrap > .mogo-section__images,
+.eleving .case__wrap > .mogo-evidence__images,
+.eleving .case__wrap > .mogo-related__grid,
+.eleving .case__wrap > .fleet-process__grid {
+  margin-top: 0;
+}
+
+.eleving .case__wrap > .case__body + .mogo-next__grid,
+.eleving .case__wrap > .case__body + .mogo-system__grid,
+.eleving .case__wrap > .case__body + .mogo-section__image,
+.eleving .case__wrap > .case__body + .mogo-section__images,
+.eleving .case__wrap > .case__body + .case__list,
+.eleving .case__wrap > .case__body + .case__body + .case__list,
+.eleving .case__wrap > .case__body + .case__body + .case__body + .case__list,
+.eleving .case__wrap > .case__body + .case__ds-pillars,
+.eleving .case__wrap > .case__body + .case__placeholder,
+.eleving .case__wrap > .case__body + .hero-split,
+.eleving .case__wrap > .case__body + .fleet-section__slider-wrap,
+.eleving .case__wrap > .case__body + .banking-section__slider-wrap,
+.eleving .case__wrap > .case__body + .mogo-related__grid,
+.eleving .case__wrap > .case__body--strong + .mogo-next__grid,
+.eleving .case__wrap > .case__body--strong + .mogo-system__grid,
+.eleving .case__wrap > .case__body--strong + .case__list,
+.eleving .case__wrap > .case__body--strong + .mogo-section__image,
+.eleving .case__wrap > .case__body--strong + .fleet-section__slider-wrap,
+.eleving .case__wrap > .case__body--strong + .banking-section__slider-wrap,
+.eleving .case__wrap > .case__list + .mogo-section__image,
+.eleving .case__wrap > .case__list + .mogo-system__grid,
+.eleving .case__wrap > .case__list + .case__ds-pillars,
+.eleving .case__wrap > .case__list + .fleet-section__slider-wrap,
+.eleving .case__wrap > .case__list + .banking-section__slider-wrap,
+.eleving .case__wrap > .fleet-process__grid + .mogo-section__image,
+.eleving .case__wrap > .fleet-process__grid + .mogo-evidence__images,
+.eleving .case__wrap > .fleet-process__grid + .mogo-section__images,
+.eleving .case__wrap > .pb-analytics03__compare + .mogo-section__image,
+.eleving .case__wrap > .pb-analytics03__compare + .mogo-section__images,
+.eleving .case__wrap > .mogo-system__grid + .mogo-section__image,
+.eleving .case__wrap > .mogo-next__grid + .mogo-section__image {
+  margin-top: var(--copy-to-block-gap);
+}
+
+.eleving .case__wrap > .case__body--strong:has(+ .mogo-next__grid),
+.eleving .case__wrap > .case__body--strong:has(+ .mogo-system__grid) {
+  margin-bottom: 0;
+}
+
+/* Non-image framed blocks (e.g. pipeline diagram) — same radius/shadow as .zoom-img */
+.case-framed-block {
+  display: block;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-surface);
+  overflow: hidden;
+  background: var(--color-card-bg);
+}
+
+.case-pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 8px;
+  padding: 28px 20px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--color-body-dark);
+}
+
+.case-pipeline__step {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-white);
+  font-weight: 500;
+}
+
+.case-pipeline__arrow {
+  color: var(--color-accent);
+  font-weight: 600;
+  user-select: none;
+}
+
+.case-pipeline__track {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ProductBuddy — 01 context diagram: 4 equal steps, one row on desktop (no scroll) */
+.case-pb-context-flow__inner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px 6px;
+  padding: 28px 16px 32px;
+  font-family: var(--font-sans);
+  overflow-x: visible;
+}
+
+.case-pb-context-flow__arrow--h {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 16px;
+  color: var(--color-accent);
+  margin-top: 17px;
+  line-height: 0;
+}
+
+.case-pb-context-flow__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  flex: 1 1 140px;
+  min-width: 120px;
+  max-width: 220px;
+}
+
+.case-pb-context-flow__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.case-pb-context-flow__icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.case-pb-context-flow__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-text);
+}
+
+.case-pb-context-flow__desc {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--color-muted);
+  max-width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .case-pb-context-flow__inner {
+    flex-wrap: nowrap;
+    padding: 32px 20px 36px;
+    gap: 6px;
+  }
+
+  .case-pb-context-flow__step {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .case-pb-context-flow__title {
+    font-size: 16px;
+  }
+
+  .case-pb-context-flow__desc {
+    font-size: 13px;
+  }
 }

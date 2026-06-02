@@ -2,6 +2,7 @@ import './ElevingCase.css';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import KeyDecisions from '../components/KeyDecisions';
 import RoleAndScope from '../components/RoleAndScope';
+import CaseCardTitleGroup from '../components/CaseCardTitleGroup';
 import { elevingRoleScope } from '../data/roleScopeData';
 import DesignSystemPillars from '../components/DesignSystemPillars';
 
@@ -133,10 +134,10 @@ export default function ElevingCase() {
           <p className="case__body">
             I introduced a research and analysis layer directly into the product development flow.
           </p>
-          <div className="eleving-process__grid">
+          <CaseCardTitleGroup className="eleving-process__grid">
             <div className="case__card">
               <div className="eleving-process__card-label">USER UNDERSTANDING</div>
-              <h3 className="case__card-title">Personas · JTBD · User Stories</h3>
+              <h3 className="case__card-title" data-case-card-title>Personas · JTBD · User Stories</h3>
               <p className="eleving-process__card-body">
                 Introduced user personas, Jobs-to-be-Done framework, and user stories as
                 mandatory inputs to the product design flow. Redesigned the customer
@@ -147,7 +148,7 @@ export default function ElevingCase() {
             </div>
             <div className="case__card">
               <div className="eleving-process__card-label">FEEDBACK ANALYSIS</div>
-              <h3 className="case__card-title">NPS · Reviews · In-app Feedback</h3>
+              <h3 className="case__card-title" data-case-card-title>NPS · Reviews · In-app Feedback</h3>
               <p className="eleving-process__card-body">
                 Established a monthly feedback analysis cycle — NPS scores, Google Play and
                 App Store reviews, and in-app feedback modals. Synthesized findings into
@@ -159,7 +160,7 @@ export default function ElevingCase() {
             </div>
             <div className="case__card">
               <div className="eleving-process__card-label">BEHAVIORAL ANALYTICS</div>
-              <h3 className="case__card-title">Heatmaps · GA · Clarity</h3>
+              <h3 className="case__card-title" data-case-card-title>Heatmaps · GA · Clarity</h3>
               <p className="eleving-process__card-body">
                 Introduced Microsoft Clarity heatmap analysis and structured Google
                 Analytics reporting as standard tools in the design process. Before this,
@@ -171,7 +172,7 @@ export default function ElevingCase() {
             </div>
             <div className="case__card">
               <div className="eleving-process__card-label">AI-ASSISTED INSIGHTS</div>
-              <h3 className="case__card-title">AI integrated into Product Design OS</h3>
+              <h3 className="case__card-title" data-case-card-title>AI integrated into Product Design OS</h3>
               <p className="eleving-process__card-body">
                 Integrated an AI layer into the product design workflow — connected to
                 Google Analytics and Clarity reports. The tool generates behavioral
@@ -180,7 +181,7 @@ export default function ElevingCase() {
                 signals, not from gut feel or stakeholder opinion.
               </p>
             </div>
-          </div>
+          </CaseCardTitleGroup>
           <div className="eleving-process__outcomes">
             <h3 className="eleving-process__outcomes-title">What this research layer changed</h3>
             <p className="eleving-process__outcomes-text">
@@ -204,10 +205,10 @@ export default function ElevingCase() {
         <div className="case__wrap">
           <div className="case__section-label">06 — EVIDENCE</div>
           <h2 className="case__h2">From operating model to shipped product</h2>
-          <div className="eleving-evidence__grid">
+          <CaseCardTitleGroup className="eleving-evidence__grid">
             <div className="eleving-evidence__block">
               <div className="eleving-evidence__label">MOGO REDESIGN</div>
-              <h3 className="eleving-evidence__title">Mogo — full redesign on new foundation</h3>
+              <h3 className="eleving-evidence__title" data-case-card-title>Mogo — full redesign on new foundation</h3>
               <p className="case__body">
                 First major product migrated to the global token system. Full redesign shipped
                 with dark/light mode, new component library, and QA gate integrated into
@@ -217,7 +218,7 @@ export default function ElevingCase() {
             </div>
             <div className="eleving-evidence__block">
               <div className="eleving-evidence__label">MULTI-BRAND SYSTEM</div>
-              <h3 className="eleving-evidence__title">One system. Three brand expressions.</h3>
+              <h3 className="eleving-evidence__title" data-case-card-title>One system. Three brand expressions.</h3>
               <p className="case__body">
                 Mogo, Primero, and MyMogo running on a single component layer. Brand
                 differentiation via theme tokens only — no duplicated components, no separate
@@ -227,7 +228,7 @@ export default function ElevingCase() {
             </div>
             <div className="eleving-evidence__block">
               <div className="eleving-evidence__label">DARK / LIGHT MODE</div>
-              <h3 className="eleving-evidence__title">Automatic mode switching — all brands</h3>
+              <h3 className="eleving-evidence__title" data-case-card-title>Automatic mode switching — all brands</h3>
               <p className="case__body">
                 Dark and light mode shipped across all surfaces without component-level
                 changes. Mode awareness built into the token layer — switching is a single
@@ -235,7 +236,7 @@ export default function ElevingCase() {
               </p>
               <div className="case__placeholder case__placeholder--evidence">DARK/LIGHT SCREENS</div>
             </div>
-          </div>
+          </CaseCardTitleGroup>
         </div>
       </section>
 
