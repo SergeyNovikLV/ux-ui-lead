@@ -2,7 +2,7 @@ import { useCallback, useLayoutEffect } from 'react';
 
 const TITLE_SEL = '[data-case-card-title]';
 const ROW_ATTR = 'data-case-card-row';
-const CARD_SEL = '.role-scope__card, .rs-card, .mogo-system__card, .mogo-next__card, .mogo-takeaways__item, .case__card, .eleving-evidence__card';
+const CARD_SEL = '.role-scope__card, .rs-card, .mogo-system__card, .mogo-next__card, .mogo-takeaways__item, .case__card, .eleving-evidence__card, .case__stat';
 
 const ROW_CLUSTER_PX = 10;
 

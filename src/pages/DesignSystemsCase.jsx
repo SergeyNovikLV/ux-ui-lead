@@ -20,17 +20,17 @@ const base = import.meta.env.BASE_URL;
 
 const HERO_METRICS = [
   {
-    num: '01',
+    num: '1',
     title: '3+ brands aligned',
     desc: 'Shared system logic across Mogo, Primero, MyMogo, and related products.',
   },
   {
-    num: '02',
+    num: '2',
     title: 'Design ↔ Storybook parity',
     desc: 'Design foundations moved closer to reusable front-end implementation.',
   },
   {
-    num: '03',
+    num: '3',
     title: 'Lower delivery drift',
     desc: 'Reusable rules reduced mismatch between design decisions and production output.',
   },
@@ -54,19 +54,28 @@ const DELIVERY_DRIFT_SYMPTOMS = [
   },
 ];
 
-function HeroMetricCard({ num, title, desc }) {
-  return (
-    <div className="role-scope__card design-systems-case__hero-card">
-      <span className="mogo-takeaways__num-digit">{num}</span>
-      <div className="role-scope__card-content">
-        <div className="role-scope__card-title" data-case-card-title>
-          {title}
-        </div>
-        <p className="role-scope__card-desc">{desc}</p>
-      </div>
-    </div>
-  );
-}
+const FOUNDATION_PRINCIPLES = [
+  {
+    title: 'Shared foundations',
+    desc: 'Core spacing, typography, radius, and behavior moved into reusable shared layers.',
+    icon: 'Layers',
+  },
+  {
+    title: 'Clearer token logic',
+    desc: 'Token structure became easier to understand, maintain, and align with implementation.',
+    icon: 'Type',
+  },
+  {
+    title: 'Theme-based brands',
+    desc: 'Brand differences moved into reusable theme layers instead of duplicated libraries.',
+    icon: 'Merge',
+  },
+  {
+    title: 'Storybook alignment',
+    desc: 'Design foundations aligned closer to reusable front-end component logic.',
+    icon: 'Code2',
+  },
+];
 
 function DriftSymptomCard({ title, desc, icon }) {
   const IconComponent = getIcon(icon);
@@ -88,15 +97,15 @@ function DriftSymptomCard({ title, desc, icon }) {
 export default function DesignSystemsCase() {
   return (
     <article className="eleving mogo-case design-systems-case">
-      <section className="case__section eleving-hero design-systems-case__hero">
+      <section className="case__section eleving-hero">
         <div className="case__wrap">
           <div className="eleving-hero__grid">
-            <div className="eleving-hero__text design-systems-case__hero-text">
+            <div className="eleving-hero__text">
               <div className="case__hero-label">PRACTICE · DESIGN SYSTEMS · DESIGN ↔ DEVELOPMENT OPERATIONS</div>
-              <h1 className="eleving-hero__title design-systems-case__hero-title">
+              <h1 className="eleving-hero__title">
                 Reducing delivery drift across multi-brand product teams
               </h1>
-              <p className="eleving-hero__subtitle design-systems-case__hero-subtitle">
+              <p className="eleving-hero__subtitle">
                 I helped rebuild fragmented brand libraries into shared design and implementation foundations — making multi-brand delivery more predictable
                 across Mogo, Primero, MyMogo, and related fintech products.
               </p>
@@ -104,11 +113,19 @@ export default function DesignSystemsCase() {
             </div>
           </div>
 
-          <CaseCardTitleGroup className="role-scope__row-cards design-systems-case__hero-cards">
-            {HERO_METRICS.map((card) => (
-              <HeroMetricCard key={card.num} {...card} />
-            ))}
-          </CaseCardTitleGroup>
+          <div className="mogo-hero__under">
+            <CaseCardTitleGroup className="mogo-hero__metrics">
+              {HERO_METRICS.map((metric) => (
+                <div key={metric.num} className="case__stat">
+                  <div className="case__stat-num">{metric.num}</div>
+                  <div className="case__stat-label" data-case-card-title>
+                    {metric.title}
+                  </div>
+                  <div className="case__stat-desc">{metric.desc}</div>
+                </div>
+              ))}
+            </CaseCardTitleGroup>
+          </div>
 
           <div className="hero-split design-systems-case__hero-media">
             <FleetSectionVideo
@@ -163,44 +180,11 @@ export default function DesignSystemsCase() {
               afterCaption="Shared foundations, reusable themes, typography modes, clearer token logic, and Storybook-aligned components."
             />
           </div>
-          <div className="case__key-decisions__list design-systems-case__system-restructure-principles">
-            <div className="case__decision">
-              <span className="case__decision-num">01</span>
-              <div>
-                <div className="case__decision-title">Shared foundations</div>
-                <p className="case__decision-body">
-                  Core spacing, typography, radius, and behavior moved into reusable shared layers.
-                </p>
-              </div>
-            </div>
-            <div className="case__decision">
-              <span className="case__decision-num">02</span>
-              <div>
-                <div className="case__decision-title">Clearer token logic</div>
-                <p className="case__decision-body">
-                  Token structure became easier to understand, maintain, and align with implementation.
-                </p>
-              </div>
-            </div>
-            <div className="case__decision">
-              <span className="case__decision-num">03</span>
-              <div>
-                <div className="case__decision-title">Theme-based brands</div>
-                <p className="case__decision-body">
-                  Brand differences moved into reusable theme layers instead of duplicated libraries.
-                </p>
-              </div>
-            </div>
-            <div className="case__decision">
-              <span className="case__decision-num">04</span>
-              <div>
-                <div className="case__decision-title">Storybook alignment</div>
-                <p className="case__decision-body">
-                  Design foundations aligned closer to reusable front-end component logic.
-                </p>
-              </div>
-            </div>
-          </div>
+          <CaseCardTitleGroup className="role-scope__row-cards design-systems-case__foundation-cards">
+            {FOUNDATION_PRINCIPLES.map((card) => (
+              <DriftSymptomCard key={card.title} {...card} />
+            ))}
+          </CaseCardTitleGroup>
         </div>
       </section>
 

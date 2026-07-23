@@ -1,218 +1,104 @@
 import './MogoCase.css';
 import './AIWorkflowCase.css';
-import ZoomableImage from '../components/ZoomableImage';
 import CaseCardTitleGroup from '../components/CaseCardTitleGroup';
+import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import FleetSectionVideo from '../components/FleetSectionVideo';
-import { getIcon } from '../data/roleScopeData';
-import { ArrowLeft, ArrowRight, FileText, Layers, Library, LineChart, PackageCheck, Route, ScanSearch } from 'lucide-react';
+import ResearchSignalCard from '../components/ResearchSignalCard';
+import ZoomableImage from '../components/ZoomableImage';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const base = import.meta.env.BASE_URL;
 
-const HERO_CARDS = [
+const WORKFLOW_CARDS = [
   {
-    num: '01',
-    title: 'Faster product framing',
-    desc: 'Structured workflows reduced repeated clarification before design execution.',
-  },
-  {
-    num: '02',
-    title: 'Earlier validation',
-    desc: 'More product directions reviewed before engineering implementation started.',
-  },
-  {
-    num: '03',
-    title: 'Design ↔ Storybook delivery',
-    desc: 'Shared component workflows reduced implementation drift between Figma and production.',
-  },
-];
-
-const FUNCTION_ROWS = [
-  {
-    label: 'PRODUCT FRAMING',
-    items: [
-      { title: 'Structured briefs', desc: 'Turns fragmented requests into structured product direction.', icon: 'FileText' },
-      { title: 'JTBD extraction', desc: 'Defines goals, states, constraints, and dependencies.', icon: 'Compass' },
-      { title: 'UX risk review', desc: 'Flags weak flows and missing edge cases early.', icon: 'SearchCheck' },
+    eyebrow: 'STEP 1',
+    title: 'Structure the request',
+    rows: [
+      { label: 'INPUT', text: 'Raw request from Jira, Teams or a stakeholder.' },
+      { label: 'OUTPUT', text: 'Problem, user, goal, states and constraints.' },
     ],
   },
   {
-    label: 'ANALYTICS & VALIDATION',
-    items: [
-      { title: 'GA4 interpretation', desc: 'Transforms funnel metrics into operational UX signals.', icon: 'LineChart' },
-      { title: 'Behavior review', desc: 'Detects hesitation, confusion, and friction patterns.', icon: 'ScanSearch' },
-      { title: 'Flow validation', desc: 'Connects behavioral signals to UX and product decisions.', icon: 'Route' },
+    eyebrow: 'STEP 2',
+    title: 'Plan the screens',
+    rows: [
+      { label: 'INPUT', text: 'Structured product and design brief.' },
+      { label: 'OUTPUT', text: 'Required screens, variants and DS2 components.' },
     ],
   },
   {
-    label: 'DELIVERY & IMPLEMENTATION',
-    items: [
-      { title: 'Design review', desc: 'Checks hierarchy, accessibility, and consistency.', icon: 'Layers' },
-      { title: 'Storybook delivery', desc: 'Prepares reusable implementation-ready components.', icon: 'Library' },
-      { title: 'QA support', desc: 'Supports release checks and implementation consistency.', icon: 'PackageCheck' },
+    eyebrow: 'STEP 3',
+    title: 'Build the DS2 draft',
+    rows: [
+      { label: 'INPUT', text: 'Approved screen and component plan.' },
+      { label: 'OUTPUT', text: 'Initial design using real shared DS2 patterns.' },
+    ],
+  },
+  {
+    eyebrow: 'STEP 4',
+    title: 'Run QA and review',
+    rows: [
+      { label: 'CHECK', text: 'Brief, consistency and accessibility.' },
+      { label: 'GATE', text: 'Human design review before approval.' },
     ],
   },
 ];
-
-const DELIVERY_WORKFLOW = [
-  { stage: 'FRAME', title: 'Figma exploration', icon: 'Figma' },
-  { stage: 'STRUCTURE', title: 'Cursor refinement', icon: 'BrainCircuit' },
-  { stage: 'VALIDATE', title: 'Interactive prototype', icon: 'MousePointerClick' },
-  { stage: 'PREPARE', title: 'Storybook components', icon: 'Library' },
-  { stage: 'DELIVER', title: 'Implementation support', icon: 'ClipboardCheck' },
-];
-
-const WORKFLOW_OUTCOMES = [
-  {
-    num: '01',
-    title: 'Earlier validation before engineering',
-    text: 'More concepts were reviewed before implementation work started.',
-  },
-  {
-    num: '02',
-    title: 'Lower implementation ambiguity',
-    text: 'Developers received clearer flow structure, reusable logic, and delivery direction earlier.',
-  },
-  {
-    num: '03',
-    title: 'Closer design ↔ production alignment',
-    text: 'Storybook delivery reduced drift between Figma, design system logic, and production components.',
-  },
-];
-
-const DELIVERY_EVIDENCE = [
-  {
-    category: 'EVENT',
-    title: 'Europe People Forum 2026',
-    desc: 'Conference landing page designed for rapid implementation using Figma Make, Cursor, and AI-assisted delivery workflows.',
-    contribution:
-      'Concept structure, UX direction, layout validation, and implementation-ready delivery for a time-critical event.',
-    icon: 'Zap',
-  },
-  {
-    category: 'INTERNAL',
-    title: 'People & Culture platform',
-    desc: 'Employee-facing platform pages designed for reusable content structure and scalable internal communication flows.',
-    contribution:
-      'Content architecture, UX hierarchy validation, reusable layouts, and implementation support for internal tools.',
-    icon: 'Users',
-  },
-  {
-    category: 'TOOLING',
-    title: 'ProductBuddy operational tooling',
-    desc: 'Operational workflow connecting product framing, analytics interpretation, UX validation, and Storybook delivery preparation.',
-    contribution:
-      'Structured briefs, UX review, analytics interpretation, reusable component preparation, and QA support workflows.',
-    icon: 'Bot',
-  },
-  {
-    category: 'PORTAL',
-    title: 'New MyMogo portal',
-    desc: 'Portal exploration focused on reusable flow structure, component logic, and implementation-ready product direction.',
-    contribution:
-      'Flow validation, Storybook alignment, reusable component preparation, and delivery direction before engineering.',
-    icon: 'Smartphone',
-  },
-];
-
-const IMPACT_TAKEAWAYS = [
-  {
-    title: 'Less ambiguity before implementation',
-    text: 'Product, UX, and implementation direction became clearer before development started.',
-  },
-  {
-    title: 'Faster reusable delivery',
-    text: 'Structured workflows reduced repeated clarification and preparation work.',
-  },
-  {
-    title: 'Closer design ↔ production consistency',
-    text: 'Shared Storybook delivery reduced implementation drift across teams.',
-  },
-  {
-    title: 'AI became part of delivery operations',
-    text: 'AI supported framing, validation, and implementation preparation inside daily product delivery workflows.',
-  },
-];
-
-function FunctionCard({ title, desc, icon }) {
-  const IconComponent = getIcon(icon);
-  return (
-    <div className="role-scope__card">
-      <div className="role-scope__card-icon-wrap">
-        <IconComponent size={20} strokeWidth={2} className="role-scope__card-icon" aria-hidden />
-      </div>
-      <div className="role-scope__card-content">
-        <div className="role-scope__card-title" data-case-card-title>
-          {title}
-        </div>
-        <p className="role-scope__card-desc">{desc}</p>
-      </div>
-    </div>
-  );
-}
-
-function HeroCard({ num, title, desc }) {
-  return (
-    <div className="role-scope__card ai-case__hero-card">
-      <span className="mogo-takeaways__num-digit">{num}</span>
-      <div className="role-scope__card-content">
-        <div className="role-scope__card-title" data-case-card-title>
-          {title}
-        </div>
-        <p className="role-scope__card-desc">{desc}</p>
-      </div>
-    </div>
-  );
-}
-
-function DeliveryEvidenceCard({ category, title, desc, contribution, icon, row = '0' }) {
-  const IconComponent = getIcon(icon);
-  return (
-    <div className="role-scope__card ai-case__delivery-card" data-case-card-row={row}>
-      <div className="ai-case__delivery-card__icon">
-        <div className="role-scope__card-icon-wrap">
-          <IconComponent size={20} strokeWidth={2} className="role-scope__card-icon" aria-hidden />
-        </div>
-      </div>
-      <div className="role-scope__row-title ai-case__delivery-card__category">{category}</div>
-      <div className="role-scope__card-title ai-case__delivery-card__title" data-case-card-title>
-        {title}
-      </div>
-      <p className="role-scope__card-desc ai-case__delivery-card__desc">{desc}</p>
-      <p className="ai-case__delivery-contribution-label">Workflow contribution</p>
-      <p className="role-scope__card-desc ai-case__delivery-card__contribution">{contribution}</p>
-    </div>
-  );
-}
 
 export default function AIWorkflowCase() {
-  const deliveryFlowAria = DELIVERY_WORKFLOW.map((s) => `${s.stage}: ${s.title}`).join(' → ');
-
   return (
     <article className="eleving mogo-case ai-case">
       <section className="case__section eleving-hero">
         <div className="case__wrap">
           <div className="eleving-hero__grid">
             <div className="eleving-hero__text">
-              <div className="case__hero-label">PRACTICE · PRODUCT DELIVERY · DESIGN ↔ DEVELOPMENT OPERATIONS</div>
-              <h1 className="eleving-hero__title">Reducing the gap between design and production</h1>
+              <div className="case__hero-label">DESIGN OPERATIONS · DESIGN SYSTEMS · AI DELIVERY</div>
+              <h1 className="eleving-hero__title">Building a scalable design workflow across three brands</h1>
               <p className="eleving-hero__subtitle">
-                Building operational workflows that connect product framing, UX validation, Storybook delivery, and implementation-ready outputs across
-                fintech product teams.
+                I led the design-side work to consolidate three legacy systems into one DS2, align Figma with Storybook,
+                and introduce an AI-assisted workflow from stakeholder request to working MVP.
+              </p>
+              <p className="case__body ai-case__role-line">
+                Scope: Design System operations, stakeholder intake, design QA, AI workflow design, and delivery with
+                development.
               </p>
               <div className="eleving-hero__divider" aria-hidden />
             </div>
           </div>
 
-          <CaseCardTitleGroup className="role-scope__row-cards ai-case__hero-cards">
-            {HERO_CARDS.map((card) => (
-              <HeroCard key={card.num} {...card} />
-            ))}
-          </CaseCardTitleGroup>
+          <div className="mogo-hero__under">
+            <CaseCardTitleGroup className="mogo-hero__metrics">
+              <div className="case__stat">
+                <div className="case__stat-num">1</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Multi-brand foundation
+                </div>
+                <div className="case__stat-desc">3 legacy systems → 1 DS2 supporting three brand modes.</div>
+              </div>
+              <div className="case__stat">
+                <div className="case__stat-num">2</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Repeatable AI workflow
+                </div>
+                <div className="case__stat-desc">
+                  4 connected stages from structured request to reviewed DS2 draft.
+                </div>
+              </div>
+              <div className="case__stat">
+                <div className="case__stat-num">3</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Working product earlier
+                </div>
+                <div className="case__stat-desc">
+                  Around 50% of the MyPortal front-end MVP built before full development.
+                </div>
+              </div>
+            </CaseCardTitleGroup>
+          </div>
 
-          <div className="hero-split ai-case__hero-media">
+          <div className="hero-split">
             <FleetSectionVideo
-              src={`${base}videos/productbuddy-workflow.mp4`}
-              caption="Operational workflow connecting product framing, validation, reusable component delivery, and implementation support."
+              src={`${base}ai-case/myportal20.mp4`}
+              caption="Working MyPortal MVP with real navigation, reusable components and customer states."
             />
           </div>
         </div>
@@ -220,133 +106,199 @@ export default function AIWorkflowCase() {
 
       <section className="case__section mogo-section">
         <div className="case__wrap">
-          <div className="case__section-label">01 — OPERATIONAL DELIVERY SYSTEM</div>
-          <h2 className="case__h2">Why I built ProductBuddy</h2>
+          <div className="case__section-label">01 — DESIGN SYSTEM</div>
+          <h2 className="case__h2">From three legacy systems to one multi-brand DS2</h2>
           <p className="case__body">
-            ProductBuddy started as a response to a real delivery problem: product work arrived fragmented, unclear, and difficult to translate into
-            implementation-ready direction.
+            Three brands had separate tokens, components and rules. I consolidated the design-side foundation into one
+            DS2, where Figma variable modes apply each brand style to the same component structure.
           </p>
           <p className="case__body">
-            Generic AI tools helped generate output, but they did not understand product logic, reusable systems, analytics signals, delivery constraints, or
-            implementation structure.
+            One library now supports cross-brand work, shared governance and one system for designers to learn.
           </p>
-          <p className="case__body">
-            I built ProductBuddy as an operational layer between product, design, and engineering — combining structured prompts, analytics interpretation, UX
-            review, reusable component preparation, and implementation support inside one workflow.
+          <ul className="case__list">
+            <li>Before: separate tokens, components and rules for each brand.</li>
+            <li>After: one shared DS2 supporting three brand modes.</li>
+            <li>Governance: common component structure, states and usage rules.</li>
+            <li>Adoption: one library reused across cross-brand work.</li>
+          </ul>
+          <p className="case__body case__body--strong">
+            Before → After: three separate foundations became one multi-brand DS2
           </p>
-          <p className="case__body">
-            The goal was not &ldquo;more AI&rdquo;. The goal was reducing ambiguity before engineering starts.
-          </p>
-
-          <div className="role-scope__rows ai-case__pb-functions">
-            {FUNCTION_ROWS.map((row) => (
-              <div key={row.label} className="role-scope__row">
-                <h3 className="role-scope__row-title">{row.label}</h3>
-                <CaseCardTitleGroup className="role-scope__row-cards">
-                  {row.items.map((item) => (
-                    <FunctionCard key={item.title} title={item.title} desc={item.desc} icon={item.icon} />
-                  ))}
-                </CaseCardTitleGroup>
-              </div>
-            ))}
+          <div className="fleet-section__slider-wrap">
+            <BeforeAfterSlider
+              beforeSrc={`${base}ai-case/ds1.png`}
+              afterSrc={`${base}ai-case/ds2.png`}
+              beforeCaption="Separate brand libraries, duplicated component logic, inconsistent typography, and weak token structure."
+              afterCaption="Shared foundations, reusable themes, typography modes, clearer token logic, and Storybook-aligned components."
+            />
           </div>
+        </div>
+      </section>
 
-          <div className="mogo-section__image ai-case__pb-section-media">
+      <section className="case__section case__key-decisions">
+        <div className="case__wrap">
+          <div className="case__key-decisions__wrap">
+          <div className="case__key-decisions__left">
+            <div className="case__section-label">02 — DESIGN ↔ DEVELOPMENT</div>
+            <h2 className="case__h2">A shared component workflow from Figma to Storybook</h2>
+            <p className="case__body">
+              DS2 only creates value when coded components follow the same logic. Working with development, I established
+              a shared contribution and review flow between Figma and Storybook.
+            </p>
+            <p className="case__body">
+              Design defines the structure and behavior. Development validates the implementation and merges the code.
+            </p>
+          </div>
+          <div className="case__key-decisions__right">
+            <div className="case__key-decisions__list">
+              <div className="case__decision">
+                <span className="case__decision-num">01</span>
+                <div>
+                  <div className="case__decision-title">Define the component</div>
+                  <p className="case__decision-body">Structure, modes and states are prepared in Figma.</p>
+                </div>
+              </div>
+              <div className="case__decision">
+                <span className="case__decision-num">02</span>
+                <div>
+                  <div className="case__decision-title">Document the behavior</div>
+                  <p className="case__decision-body">Usage rules, edge cases and expected behavior are recorded.</p>
+                </div>
+              </div>
+              <div className="case__decision">
+                <span className="case__decision-num">03</span>
+                <div>
+                  <div className="case__decision-title">Review with development</div>
+                  <p className="case__decision-body">Technical feasibility and implementation logic are validated.</p>
+                </div>
+              </div>
+              <div className="case__decision">
+                <span className="case__decision-num">04</span>
+                <div>
+                  <div className="case__decision-title">Release in Storybook</div>
+                  <p className="case__decision-body">The approved coded component becomes available for product work.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div className="pb-analytics03__compare">
+            <div className="ai-case__compare-col">
+              <p className="pb-analytics03__eyebrow">Figma</p>
+              <ZoomableImage
+                src={`${base}ai-case/cardfigma.png`}
+                alt="Figma component — structure, modes and states"
+                className="mogo-section__img"
+              />
+            </div>
+            <div className="ai-case__compare-col">
+              <p className="pb-analytics03__eyebrow">Storybook</p>
+              <ZoomableImage
+                src={`${base}ai-case/sb2.png`}
+                alt="Storybook component — same logic in code"
+                className="mogo-section__img"
+              />
+            </div>
+          </div>
+          <p className="fleet-section__video-caption">
+            The same component structure carried from design into coded implementation.
+          </p>
+        </div>
+      </section>
+
+      <section className="case__section fleet-process fleet-research">
+        <div className="case__wrap">
+          <div className="case__section-label">03 — AI-ASSISTED WORKFLOW</div>
+          <h2 className="case__h2">From stakeholder request to reviewed DS2 draft</h2>
+          <p className="case__body">
+            I created and shared a Claude-based workflow that standardizes how stakeholders bring work into design. It
+            keeps the problem, business goal, states and constraints connected through planning, DS2 creation and QA.
+          </p>
+          <p className="case__body">
+            The workflow also helps stakeholders understand what a useful product and design request should contain.
+          </p>
+          <CaseCardTitleGroup className="fleet-process__grid mogo-evidence__grid ai-case__workflow-grid">
+            {WORKFLOW_CARDS.map((card) => (
+              <ResearchSignalCard key={card.eyebrow} {...card} />
+            ))}
+          </CaseCardTitleGroup>
+          <p className="case__body ai-case__tools-line">Tools: Claude, Figma MCP, Cursor and Claude Code.</p>
+        </div>
+      </section>
+
+      <section className="case__section mogo-impact">
+        <div className="case__wrap">
+          <div className="case__section-label">04 — MYPORTAL 2.0</div>
+          <h2 className="case__h2">A working MVP became a shared Scenario Hub</h2>
+          <p className="case__body mogo-impact__intro">
+            A developer helped establish the Nuxt/Vue project and AI-assisted setup. Using DS2 and Claude Code, I
+            independently built around 50% of the working front-end MVP.
+          </p>
+          <p className="case__body">
+            I then designed the Scenario Hub so product, design and development could review customer states, journeys
+            and market-specific features before production implementation.
+          </p>
+          <ul className="mogo-impact__list">
+            <li>Around 50% of the working front-end MVP was created before full development.</li>
+            <li>Customer states and complete journeys became testable in one shared hub.</li>
+            <li>Market variants could be reviewed across LV, LT, EE, RO, BG, AM and GE.</li>
+            <li>Reusable components and flows remained accessible through the Pattern Catalog.</li>
+            <li>Missing states and market gaps could be identified earlier.</li>
+          </ul>
+          <div className="mogo-section__image">
             <ZoomableImage
-              src={`${base}ai-case/product-health.png`}
-              alt="Operational analytics interpretation with UX risks and recommendations"
-              caption="Operational analytics interpretation translated into UX risks, recommendations, and implementation-ready direction."
+              src={`${base}ai-case/hub.png`}
+              alt="Scenario Hub — customer states, journeys and market coverage"
+              caption="Scenario Hub with customer states, journeys, market coverage and QA entry points."
               className="mogo-section__img"
             />
           </div>
         </div>
       </section>
 
-      <section className="case__section mogo-section">
-        <div className="case__wrap">
-          <div className="case__section-label">02 — DESIGN ↔ DEVELOPMENT SYNERGY</div>
-          <h2 className="case__h2">Reducing implementation drift before release</h2>
-          <p className="case__body">
-            The workflow evolved beyond UX support into shared delivery operations between design and engineering.
-          </p>
-          <p className="case__body">
-            Instead of stopping at Figma handoff, I started preparing reusable Storybook components directly inside the same operational workflow — aligned with
-            the design system foundations and implementation structure.
-          </p>
-          <p className="case__body">
-            This reduced repeated clarification, improved consistency between design and production, and accelerated implementation preparation across product
-            teams.
-          </p>
-
-          <div className="ai-case__workflow-panel" role="region" aria-label={deliveryFlowAria}>
-            <div className="ai-case__workflow-panel__steps">
-              {DELIVERY_WORKFLOW.map((step, index) => {
-                const StepIcon = getIcon(step.icon);
-                const isLast = index === DELIVERY_WORKFLOW.length - 1;
-                return (
-                  <div key={step.stage} className="ai-case__workflow-panel__step">
-                    <div className="ai-case__workflow-panel__icon-wrap">
-                      <StepIcon size={20} strokeWidth={2} className="ai-case__workflow-panel__icon" aria-hidden />
-                    </div>
-                    <span className="ai-case__workflow-panel__stage">{step.stage}</span>
-                    <div className="ai-case__workflow-panel__title-row">
-                      <p className="ai-case__workflow-panel__label">{step.title}</p>
-                      {!isLast ? (
-                        <ArrowRight size={16} strokeWidth={2} className="ai-case__workflow-panel__arrow" aria-hidden />
-                      ) : null}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="ai-case__workflow-outcomes" role="list">
-            {WORKFLOW_OUTCOMES.map((item) => (
-              <div key={item.num} className="ai-case__workflow-outcome" role="listitem">
-                <span className="ai-case__workflow-outcome__num">{item.num}</span>
-                <p className="ai-case__workflow-outcome__title">{item.title}</p>
-                <p className="ai-case__workflow-outcome__text">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="case__section ai-case__delivery-section">
-        <div className="case__wrap">
-          <div className="case__section-label">03 — REAL PRODUCT DELIVERY</div>
-          <h2 className="case__h2">Where the workflow was applied</h2>
-          <p className="case__body ai-case__delivery-intro">
-            The workflow was used across internal tooling, conference experiences, portal exploration, and design-system delivery support at Eleving — helping
-            teams move from fragmented product input to implementation-ready delivery faster.
-          </p>
-          <CaseCardTitleGroup className="ai-case__delivery-grid">
-            {DELIVERY_EVIDENCE.map((item, index) => (
-              <DeliveryEvidenceCard key={item.title} {...item} row={String(Math.floor(index / 2))} />
-            ))}
-          </CaseCardTitleGroup>
-        </div>
-      </section>
-
       <section className="case__section mogo-takeaways">
         <div className="case__wrap">
-          <div className="case__section-label">04 — OPERATIONAL IMPACT</div>
-          <h2 className="case__h2">What changed operationally</h2>
+          <div className="case__section-label">EXECUTIVE TAKEAWAYS</div>
+          <h2 className="case__h2">Executive takeaways</h2>
           <p className="case__body">
-            The workflow improved implementation readiness, reduced ambiguity before development, and brought product, design, and engineering closer through
-            shared operational delivery foundations.
+            The work shows how shared systems, clear governance and practical AI can improve product delivery without
+            replacing human design or development judgment.
           </p>
           <CaseCardTitleGroup className="mogo-takeaways__numbered">
-            {IMPACT_TAKEAWAYS.map((item, i) => (
-              <div key={item.title} className="mogo-takeaways__num-item">
-                <span className="mogo-takeaways__num-digit">{String(i + 1).padStart(2, '0')}</span>
-                <p className="mogo-takeaways__num-title" data-case-card-title>
-                  {item.title}
-                </p>
-                <p className="mogo-takeaways__num-text">{item.text}</p>
-              </div>
-            ))}
+            <div className="mogo-takeaways__num-item">
+              <span className="mogo-takeaways__num-digit">01</span>
+              <p className="mogo-takeaways__num-title" data-case-card-title>
+                Build the system first
+              </p>
+              <p className="mogo-takeaways__num-text">Shared foundations make cross-brand delivery easier to scale.</p>
+            </div>
+            <div className="mogo-takeaways__num-item">
+              <span className="mogo-takeaways__num-digit">02</span>
+              <p className="mogo-takeaways__num-title" data-case-card-title>
+                Connect design and code
+              </p>
+              <p className="mogo-takeaways__num-text">
+                Clear contribution and review rules reduce drift between Figma and implementation.
+              </p>
+            </div>
+            <div className="mogo-takeaways__num-item">
+              <span className="mogo-takeaways__num-digit">03</span>
+              <p className="mogo-takeaways__num-title" data-case-card-title>
+                Give AI structure
+              </p>
+              <p className="mogo-takeaways__num-text">
+                A defined brief, DS2 components and QA make AI output more consistent.
+              </p>
+            </div>
+            <div className="mogo-takeaways__num-item">
+              <span className="mogo-takeaways__num-digit">04</span>
+              <p className="mogo-takeaways__num-title" data-case-card-title>
+                Test the product earlier
+              </p>
+              <p className="mogo-takeaways__num-text">
+                A working MVP and Scenario Hub expose missing states before production integration.
+              </p>
+            </div>
           </CaseCardTitleGroup>
         </div>
       </section>

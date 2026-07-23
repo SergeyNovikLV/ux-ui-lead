@@ -26,23 +26,29 @@ export default function BankingNew() {
           {/* Under-hero: Results metrics strip */}
           <div className="mogo-hero__under">
             <p className="mogo-hero__metric-context">Baseline → post-release (2021–2022)</p>
-            <div className="mogo-hero__metrics">
+            <CaseCardTitleGroup className="mogo-hero__metrics">
               <div className="case__stat">
                 <div className="case__stat-num">16%</div>
-                <div className="case__stat-label">Faster task completion</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Faster task completion
+                </div>
                 <div className="case__stat-desc">Reduced navigation depth and fewer hops per task.</div>
               </div>
               <div className="case__stat">
                 <div className="case__stat-num">33%</div>
-                <div className="case__stat-label">Fewer clicks per task</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Fewer clicks per task
+                </div>
                 <div className="case__stat-desc">Unified navigation and persistent primary actions removed redundant steps.</div>
               </div>
               <div className="case__stat">
                 <div className="case__stat-num">21%</div>
-                <div className="case__stat-label">Higher user satisfaction</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Higher user satisfaction
+                </div>
                 <div className="case__stat-desc">Post-release internal survey; consistent patterns reduced cognitive load.</div>
               </div>
-            </div>
+            </CaseCardTitleGroup>
           </div>
 
           <div className="hero-split">

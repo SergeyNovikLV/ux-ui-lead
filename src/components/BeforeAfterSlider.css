@@ -44,7 +44,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: var(--color-bg-white);
+  background: var(--color-accent);
   transform: translateX(-50%);
   left: calc(var(--slider-position, 40) * 1%);
   pointer-events: none;
@@ -59,18 +59,20 @@
   height: 36px;
   border-radius: 50%;
   background: var(--color-bg-white);
+  border: 2px solid var(--color-accent);
   box-shadow: 0 2px 12px var(--color-shadow);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 2px;
   pointer-events: none;
 }
 
 .slider-handle-arrow {
-  width: 22px;
-  height: 22px;
+  width: 12px;
+  height: 12px;
   color: var(--color-accent);
+  flex-shrink: 0;
 }
 
 .slider-handle-arrow--left {

@@ -24,28 +24,38 @@ export default function FleetCaseNew() {
 
           {/* Under-hero: Metric tiles */}
           <div className="mogo-hero__under">
-            <p className="mogo-hero__metric-context">Baseline → post-launch (2025)</p>
-            <div className="mogo-hero__metrics">
+            <CaseCardTitleGroup className="mogo-hero__metrics">
               <div className="case__stat">
                 <div className="case__stat-num">23%</div>
-                <div className="case__stat-label">Faster data interpretation</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Faster data interpretation
+                </div>
                 <div className="case__stat-desc">Dashboard replaced manual table analysis across monitored fleets.</div>
               </div>
               <div className="case__stat">
                 <div className="case__stat-num">17%</div>
-                <div className="case__stat-label">Reduction in manual reporting</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Reduction in manual reporting
+                </div>
                 <div className="case__stat-desc">Automated analytics saved ~40 min per manager per week.</div>
               </div>
               <div className="case__stat">
                 <div className="case__stat-num">15%</div>
-                <div className="case__stat-label">Improved fuel efficiency</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Improved fuel efficiency
+                </div>
                 <div className="case__stat-desc">AI decision support reduced unnecessary detours and fuel waste.</div>
               </div>
-            </div>
+            </CaseCardTitleGroup>
           </div>
 
           <div className="hero-split">
-            <ZoomableImage src={import.meta.env.BASE_URL + "fleet/mobilescreen.png"} alt="Fleet Operations Platform — dashboard preview" caption="Fleet Dashboard: Fuel summary timeline with AI-assisted anomaly detection and decision support." className="mogo-hero__img" />
+            <ZoomableImage
+              src={import.meta.env.BASE_URL + 'fleet/mobilescreen.png'}
+              alt="Mapon fleet manager mobile app — GPS, messaging, fuel, driver logs and behaviour scores on iOS and Android"
+              caption="Mobile fleet manager app: live GPS, team messaging, fuel graphs, work-and-rest logs and driving scores across phone and tablet."
+              className="mogo-hero__img"
+            />
           </div>
         </div>
       </section>

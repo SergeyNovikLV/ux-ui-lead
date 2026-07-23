@@ -24,23 +24,29 @@ export default function UKMediaCase() {
 
           <div className="mogo-hero__under">
             <p className="mogo-hero__metric-context">Baseline → post-release (2021–2022)</p>
-            <div className="mogo-hero__metrics">
+            <CaseCardTitleGroup className="mogo-hero__metrics">
               <div className="case__stat">
                 <div className="case__stat-num">9%</div>
-                <div className="case__stat-label">Increase in user engagement</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Increase in user engagement
+                </div>
                 <div className="case__stat-desc">Unified UI language and improved accessibility patterns.</div>
               </div>
               <div className="case__stat">
                 <div className="case__stat-num">15%</div>
-                <div className="case__stat-label">Faster design-to-development handoff</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Faster design-to-development handoff
+                </div>
                 <div className="case__stat-desc">Shared Figma library and parity rules reduced rework.</div>
               </div>
               <div className="case__stat">
                 <div className="case__stat-num">7%</div>
-                <div className="case__stat-label">Increase in accessible usage</div>
+                <div className="case__stat-label" data-case-card-title>
+                  Increase in accessible usage
+                </div>
                 <div className="case__stat-desc">200% text scaling and VoiceOver improvements.</div>
               </div>
-            </div>
+            </CaseCardTitleGroup>
           </div>
 
           <div className="hero-split">

@@ -245,7 +245,11 @@
 }
 
 .mogo-hero__metrics .case__stat-label {
-  min-height: calc(2 * 1.35 * var(--font-size-subtitle, 18px));
+  margin-bottom: 8px;
+}
+
+.mogo-hero__metrics.case-card-grid [data-case-card-title] {
+  min-height: 0;
 }
 
 .mogo-hero__metrics .case__stat-desc {
@@ -653,48 +657,7 @@
   color: var(--color-body-dark);
 }
 
-/* Design Systems at scale case — centered editorial hero + proof video */
-.design-systems-case .design-systems-case__hero .eleving-hero__text.design-systems-case__hero-text {
-  max-width: 980px;
-}
-
-.design-systems-case .design-systems-case__hero-title {
-  max-width: 820px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.design-systems-case .design-systems-case__hero-subtitle {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Hero metrics — same layout as AI case hero cards (outside centered .eleving-hero__text) */
-.design-systems-case.eleving .case__wrap > .eleving-hero__grid + .design-systems-case__hero-cards {
-  margin-top: var(--copy-to-block-gap);
-}
-
-.design-systems-case__hero-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-md);
-  align-items: stretch;
-}
-
-.design-systems-case__hero-card {
-  height: 100%;
-  gap: var(--space-sm);
-  text-align: left;
-}
-
-@media (max-width: 900px) {
-  .design-systems-case__hero-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Hero video — same FleetSectionVideo pattern as AI case */
+/* Design Systems at scale case — hero proof video */
 .design-systems-case .design-systems-case__hero-media {
   margin-top: var(--space-md);
 }
@@ -727,11 +690,43 @@
   overflow: hidden;
 }
 
-.design-systems-case .case__wrap > .fleet-section__slider-wrap + .case__key-decisions__list.design-systems-case__system-restructure-principles {
+.design-systems-case .case__wrap > .fleet-section__slider-wrap + .design-systems-case__foundation-cards {
   margin-top: var(--copy-to-block-gap);
+}
+
+.design-systems-case__foundation-cards.role-scope__row-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+@media (max-width: 580px) {
+  .design-systems-case__foundation-cards.role-scope__row-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 .design-systems-case .design-systems-case__takeaways-h2 {
   margin-top: var(--copy-to-block-gap);
   font-size: clamp(22px, 2.5vw, 28px);
+}
+
+/* ── Eleving (Mogo) case — Fleet-pattern spacing helpers only ─────────────── */
+
+.mogo-case__role-line {
+  max-width: var(--text-width);
+}
+
+.eleving.mogo-case .case__wrap > .case__body + .case__body + .fleet-process__grid.mogo-case__signal-pair {
+  margin-top: var(--copy-to-block-gap);
+}
+
+.mogo-case__signal-pair.mogo-evidence__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+@media (max-width: 768px) {
+  .mogo-case__signal-pair.mogo-evidence__grid {
+    grid-template-columns: 1fr;
+  }
 }

@@ -15,6 +15,7 @@ import {
   Library,
   Route,
   FileCheck2,
+  FileText,
   BarChart3,
   ArrowLeftRight,
   ClipboardCheck,
@@ -34,6 +35,8 @@ import {
   Bot,
   Zap,
   LineChart,
+  Code2,
+  PackageCheck,
 } from 'lucide-react';
 
 const ICONS = {
@@ -48,6 +51,7 @@ const ICONS = {
   Library,
   Route,
   FileCheck2,
+  FileText,
   BarChart3,
   ArrowLeftRight,
   ClipboardCheck,
@@ -67,6 +71,8 @@ const ICONS = {
   Bot,
   Zap,
   LineChart,
+  Code2,
+  PackageCheck,
 };
 
 export function getIcon(name) {
