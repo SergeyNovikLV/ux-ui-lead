@@ -89,7 +89,7 @@ export default function AboutCase() {
               <div className="case__hero-label">ABOUT</div>
               <h1 className="eleving-hero__title">From safety-critical systems to product design</h1>
               <p className="eleving-hero__subtitle">
-                I&apos;m Sergejs Noviks — a Product Designer with 10+ years of design experience, focused on complex fintech, enterprise, and operational
+                I&apos;m Sergejs Noviks — a Product Designer with 11 years of design experience, focused on complex fintech, enterprise, and operational
                 products.
               </p>
               <p className="eleving-hero__subtitle">

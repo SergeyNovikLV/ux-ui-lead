@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./Hero.css";
 
 const STATS = [
-  { value: "10+ years", label: "Complex products" },
+  { value: "11 years", label: "Complex products" },
   { value: "Product systems", label: "Flows + quality" },
   { value: "AI delivery", label: "Cursor + Claude" },
 ];
