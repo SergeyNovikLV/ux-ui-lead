@@ -24,3 +24,14 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Local QA evidence and browser reports
+qa-evidence/
+playwright-report/
+test-results/
+portfolio-qa-report.md
+portfolio-qa-result.json
+
+portfolio-qa-dashboard.html
+portfolio-qa-history.json
+portfolio-cursor-tasks.md

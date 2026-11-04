@@ -1,0 +1,76 @@
+name: Portfolio independent QA
+
+# Runs trusted default-branch code after the secret-free PR build. Never checks
+# out PR code or executes files downloaded from the evidence artifact.
+on:
+  workflow_run:
+    workflows: [Portfolio PR checks]
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: write
+
+concurrency:
+  group: portfolio-review-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+
+jobs:
+  review:
+    if: github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Locate current same-repository PR
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const run = context.payload.workflow_run;
+            if (run.path !== '.github/workflows/portfolio-checks.yml' || run.head_repository.full_name !== context.payload.repository.full_name) return;
+            const prs = await github.paginate(github.rest.pulls.list, { ...context.repo, state: 'open', base: 'main', head: `${context.repo.owner}:${run.head_branch}` });
+            const pr = prs.find(pr => pr.head.sha === run.head_sha && pr.head.repo.full_name === context.payload.repository.full_name);
+            if (pr) core.setOutput('number', pr.number);
+      - name: Download evidence as data
+        if: steps.pr.outputs.number != '' && github.event.workflow_run.conclusion == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: portfolio-evidence
+          path: qa-evidence
+          github-token: ${{ github.token }}
+          run-id: ${{ github.event.workflow_run.id }}
+      - name: Review and update PR report
+        if: always() && steps.pr.outputs.number != ''
+        uses: actions/github-script@v7
+        env:
+          CURSOR_QA_ENABLED: ${{ vars.CURSOR_QA_ENABLED }}
+          CURSOR_QA_MAX_ROUNDS: ${{ vars.CURSOR_QA_MAX_ROUNDS }}
+          CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.PORTFOLIO_QA_MODEL }}
+          PORTFOLIO_QA_ENABLED: ${{ vars.PORTFOLIO_QA_ENABLED }}
+        with:
+          script: |
+            const { run } = await import(`${process.env.GITHUB_WORKSPACE}/scripts/portfolio-qa/report.mjs`);
+            await run({ github, context, core });
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.pr.outputs.number != ''
+        with:
+          name: portfolio-qa-report
+          path: |
+            portfolio-qa-report.md
+            portfolio-qa-result.json
+            portfolio-qa-dashboard.html
+            portfolio-qa-history.json
+            portfolio-cursor-tasks.md
+          if-no-files-found: ignore
+          retention-days: 90
