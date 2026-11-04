@@ -131,3 +131,8 @@ The browser job is pinned to the hosted Ubuntu 24.04 runner. Its runtime librari
 are already present; it installs Playwright Chromium without reinstalling unrelated
 system font packages. All browser checks still run and fail on missing runtime
 dependencies. No browser errors or screenshot failures are suppressed.
+
+Re-running a GitHub run replaces that run's downloadable artifacts; per-attempt
+scorecard comments remain in the PR. Different commit runs retain separate
+artifacts. After adding a missing key, re-running the failed reviewer job can
+reuse the successful build's evidence without rebuilding the site.

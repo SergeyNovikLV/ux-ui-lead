@@ -86,4 +86,5 @@ jobs:
             portfolio-qa-history.json
             portfolio-cursor-tasks.md
           if-no-files-found: ignore
+          overwrite: true
           retention-days: 90
