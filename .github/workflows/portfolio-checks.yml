@@ -36,6 +36,7 @@ jobs:
           name: portfolio-evidence
           path: qa-evidence/
           if-no-files-found: ignore
+          overwrite: true
           retention-days: 7
       - uses: actions/upload-artifact@v4
         if: always()
@@ -45,6 +46,7 @@ jobs:
             playwright-report/
             test-results/
           if-no-files-found: ignore
+          overwrite: true
           retention-days: 7
 
   review:
@@ -56,9 +58,9 @@ jobs:
       actions: read
       pull-requests: write
     # Both references are a reviewed immutable commit, never the PR head.
-    uses: SergeyNovikLV/ux-ui-lead/.github/workflows/portfolio-review.yml@7a2b0b18ee92a54b4b9d745a513282700e08a853
+    uses: SergeyNovikLV/ux-ui-lead/.github/workflows/portfolio-review.yml@d8aef58879aeec5b5c7fe16d2e1489cfa3631823
     with:
-      reviewer_ref: 7a2b0b18ee92a54b4b9d745a513282700e08a853
+      reviewer_ref: d8aef58879aeec5b5c7fe16d2e1489cfa3631823
       build_result: ${{ needs.browser.result }}
     secrets:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
