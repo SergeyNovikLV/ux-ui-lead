@@ -126,3 +126,8 @@ rounded scores can differ by 0.01 from the correctly rounded delta.
 - Do not paste keys into chats or commit them. GitHub secrets are unreadable to this local session; credential names and run results are sufficient for verification.
 
 References: [GitHub reusable workflow pinning](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows), [Cursor API](https://cursor.com/docs/cloud-agent/api/endpoints), [example OpenAI model](https://developers.openai.com/api/docs/models/gpt-5.4-mini).
+
+The browser job is pinned to the hosted Ubuntu 24.04 runner. Its runtime libraries
+are already present; it installs Playwright Chromium without reinstalling unrelated
+system font packages. All browser checks still run and fail on missing runtime
+dependencies. No browser errors or screenshot failures are suppressed.

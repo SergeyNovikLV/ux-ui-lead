@@ -10,7 +10,7 @@ permissions:
 jobs:
   browser:
     name: Build and browser QA
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     concurrency:
       group: portfolio-checks-${{ github.event.pull_request.number }}
@@ -26,7 +26,9 @@ jobs:
       - run: npm ci
       - run: npm run test:qa
       - run: npm run build
-      - run: npx playwright install --with-deps chromium
+      # Hosted Ubuntu 24.04 already supplies Chromium runtime libraries.
+      # Avoid reinstalling unrelated system fonts from slow package mirrors.
+      - run: npx playwright install chromium
       - run: npm run test:browser
       - uses: actions/upload-artifact@v4
         if: always()
