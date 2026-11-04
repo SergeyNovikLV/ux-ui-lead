@@ -1,0 +1,90 @@
+name: Portfolio independent QA
+
+# Called after the existing PR build; workflow and scripts are pinned to the same
+# reviewed commit by the caller. No merge/default-branch installation is required.
+on:
+  workflow_call:
+    inputs:
+      reviewer_ref:
+        required: true
+        type: string
+      build_result:
+        required: true
+        type: string
+    secrets:
+      OPENAI_API_KEY:
+        required: false
+      CURSOR_API_KEY:
+        required: false
+
+permissions:
+  contents: read
+  actions: read
+  pull-requests: write
+
+jobs:
+  review:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    # A newer push can cancel its build, but never interrupt a reserved Cursor
+    # dispatch. Stale-head checks prevent an older review changing the PR report.
+    concurrency:
+      group: portfolio-review-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.reviewer_ref }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Locate current same-repository PR
+        id: pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const event = context.payload.pull_request;
+            if (event.base.ref !== 'main' || event.head.repo.full_name !== context.payload.repository.full_name) return;
+            const { data: pr } = await github.rest.pulls.get({ ...context.repo, pull_number: event.number });
+            if (pr.state === 'open' && pr.head.sha === event.head.sha && pr.head.repo.full_name === context.payload.repository.full_name) core.setOutput('number', pr.number);
+      - name: Download evidence as data
+        if: steps.pr.outputs.number != '' && inputs.build_result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: portfolio-evidence
+          path: qa-evidence
+          github-token: ${{ github.token }}
+          run-id: ${{ github.run_id }}
+      - name: Review and update PR report
+        if: always() && steps.pr.outputs.number != ''
+        uses: actions/github-script@v7
+        env:
+          BUILD_RESULT: ${{ inputs.build_result }}
+          REVIEWER_REF: ${{ inputs.reviewer_ref }}
+          CURSOR_QA_ENABLED: ${{ vars.CURSOR_QA_ENABLED }}
+          CURSOR_QA_APPROVED_PR: ${{ vars.CURSOR_QA_APPROVED_PR }}
+          CURSOR_QA_MAX_ROUNDS: ${{ vars.CURSOR_QA_MAX_ROUNDS }}
+          CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.PORTFOLIO_QA_MODEL }}
+          PORTFOLIO_QA_ENABLED: ${{ vars.PORTFOLIO_QA_ENABLED }}
+        with:
+          script: |
+            const { run } = await import(`${process.env.GITHUB_WORKSPACE}/scripts/portfolio-qa/report.mjs`);
+            await run({ github, context, core });
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.pr.outputs.number != ''
+        with:
+          name: portfolio-qa-report
+          path: |
+            portfolio-qa-report.md
+            portfolio-qa-result.json
+            portfolio-qa-dashboard.html
+            portfolio-qa-history.json
+            portfolio-cursor-tasks.md
+          if-no-files-found: ignore
+          overwrite: true
+          retention-days: 90

@@ -1,0 +1,67 @@
+name: Portfolio PR checks
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    name: Build and browser QA
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: portfolio-checks-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:qa
+      - run: npm run build
+      # Hosted Ubuntu 24.04 already supplies Chromium runtime libraries.
+      # Avoid reinstalling unrelated system fonts from slow package mirrors.
+      - run: npx playwright install chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: portfolio-evidence
+          path: qa-evidence/
+          if-no-files-found: ignore
+          overwrite: true
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          overwrite: true
+          retention-days: 7
+
+  review:
+    name: Independent portfolio review
+    needs: browser
+    if: ${{ always() && github.event.pull_request.head.repo.full_name == github.repository }}
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
+    # Both references are a reviewed immutable commit, never the PR head.
+    uses: SergeyNovikLV/ux-ui-lead/.github/workflows/portfolio-review.yml@d8aef58879aeec5b5c7fe16d2e1489cfa3631823
+    with:
+      reviewer_ref: d8aef58879aeec5b5c7fe16d2e1489cfa3631823
+      build_result: ${{ needs.browser.result }}
+    secrets:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}

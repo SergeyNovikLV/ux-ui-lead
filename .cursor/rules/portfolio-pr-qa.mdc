@@ -1,0 +1,12 @@
+---
+description: Portfolio edits go through a PR and human publication approval
+alwaysApply: true
+---
+
+- Work on a branch and open/update a PR against main. Do not push directly to main, enable auto-merge, merge a PR or publish without explicit human approval.
+- Run `npm run build` and `npm run test:browser` for portfolio changes. Read the Playwright artifact and the latest Portfolio QA PR comment; address actionable findings, then push to the same branch for a new run.
+- A successful build or an advisory AI report is not publication approval. NOT REVIEWED means independent QA did not run.
+- Never add API keys to source, prompts or screenshots. API credentials belong only in approved GitHub Actions secrets. Do not change deployment or repository protection without approval.
+- The API reviewer has only the versioned context/rules, PR changes, rendered text and selected screenshots. Do not claim it inherits a ChatGPT conversation or memory.
+- Download the latest independent QA artifact for `portfolio-cursor-tasks.md` and the HTML version dashboard. Reject tasks for an older head commit. Do not change reviewer rules or provisional criteria to raise scores.
+- The six-dimensional rubric is provisional until the owner supplies the historical criteria screenshot and comments. Never invent benchmark scores or fill evidence gaps with claims.
