@@ -26,12 +26,19 @@ test('history accepts bot snapshots only; HTML escapes model output and has no f
 test('Cursor dispatch reserves before call, binds PR, stops at round limit or stale head',async()=>{
   const old={...process.env};
   try {
-    process.env.CURSOR_QA_ENABLED='true';process.env.CURSOR_API_KEY='test';process.env.CURSOR_QA_MAX_ROUNDS='1';
+    process.env.CURSOR_QA_ENABLED='true';process.env.CURSOR_QA_APPROVED_PR='1';process.env.CURSOR_API_KEY='test';process.env.CURSOR_QA_MAX_ROUNDS='1';
     const order=[];
     const pr={number:1,state:'open',head:{sha:'a'.repeat(40)},html_url:'https://github.com/o/r/pull/1'};
-    const args={pr,context:{repo:{owner:'o',repo:'r'}},history:[],tasks:'fix',github:{rest:{pulls:{get:async()=>({data:pr})},issues:{createComment:async()=>order.push('reserved')}}},fetchImpl:async(url,opts)=>{order.push('called');const b=JSON.parse(opts.body);assert.equal(b.repos[0].prUrl,pr.html_url);assert.equal(b.autoCreatePR,false);return {ok:true}}};
-    assert.equal(await dispatch(args),'submitted');assert.deepEqual(order,['reserved','called']);
+    const args={pr,context:{repo:{owner:'o',repo:'r'}},history:[],tasks:'fix',github:{rest:{pulls:{get:async()=>({data:pr})},issues:{createComment:async()=>{order.push('reserved');return {data:{id:7}}},updateComment:async value=>{assert.equal(value.comment_id,7);order.push('receipt')}}}},fetchImpl:async(url,opts)=>{order.push('called');const b=JSON.parse(opts.body);assert.equal(b.repos[0].prUrl,pr.html_url);assert.equal(b.autoCreatePR,false);return {ok:true,json:async()=>({agent:{id:'bc-fixture'},run:{id:'run-fixture'}})}}};
+    assert.equal(await dispatch(args),'submitted: https://cursor.com/agents/bc-fixture (run run-fixture)');assert.deepEqual(order,['reserved','called','receipt']);
     assert.equal(await dispatch({...args,history:[{user:{login:'github-actions[bot]'},body:'<!-- portfolio-cursor-dispatch --> old'}]}),'round limit reached');
+    process.env.CURSOR_QA_MAX_ROUNDS='5';
+    await assert.rejects(dispatch(args), /Invalid Cursor round limit/);
+    process.env.CURSOR_QA_MAX_ROUNDS='2';
+    assert.equal(await dispatch({...args,history:[1,2].map(i=>({user:{login:'github-actions[bot]'},body:'<!-- portfolio-cursor-dispatch --> '+i}))}),'round limit reached');
+    delete process.env.CURSOR_QA_APPROVED_PR;
+    assert.match(await dispatch(args), /awaiting owner approval/);
+    process.env.CURSOR_QA_APPROVED_PR='1';
     assert.equal(await dispatch({...args,github:{rest:{pulls:{get:async()=>({data:{...pr,head:{sha:'new'}}})}}}}),'stale');
   } finally {process.env=old;}
 });

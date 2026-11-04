@@ -1,30 +1,41 @@
 name: Portfolio independent QA
 
-# Runs trusted default-branch code after the secret-free PR build. Never checks
-# out PR code or executes files downloaded from the evidence artifact.
+# Called after the existing PR build; workflow and scripts are pinned to the same
+# reviewed commit by the caller. No merge/default-branch installation is required.
 on:
-  workflow_run:
-    workflows: [Portfolio PR checks]
-    types: [completed]
+  workflow_call:
+    inputs:
+      reviewer_ref:
+        required: true
+        type: string
+      build_result:
+        required: true
+        type: string
+    secrets:
+      OPENAI_API_KEY:
+        required: false
+      CURSOR_API_KEY:
+        required: false
 
 permissions:
   contents: read
   actions: read
   pull-requests: write
 
-concurrency:
-  group: portfolio-review-${{ github.event.workflow_run.head_branch }}
-  cancel-in-progress: false
-
 jobs:
   review:
-    if: github.event.workflow_run.event == 'pull_request'
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 8
+    # A newer push can cancel its build, but never interrupt a reserved Cursor
+    # dispatch. Stale-head checks prevent an older review changing the PR report.
+    concurrency:
+      group: portfolio-review-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ inputs.reviewer_ref }}
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -34,24 +45,26 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const run = context.payload.workflow_run;
-            if (run.path !== '.github/workflows/portfolio-checks.yml' || run.head_repository.full_name !== context.payload.repository.full_name) return;
-            const prs = await github.paginate(github.rest.pulls.list, { ...context.repo, state: 'open', base: 'main', head: `${context.repo.owner}:${run.head_branch}` });
-            const pr = prs.find(pr => pr.head.sha === run.head_sha && pr.head.repo.full_name === context.payload.repository.full_name);
-            if (pr) core.setOutput('number', pr.number);
+            const event = context.payload.pull_request;
+            if (event.base.ref !== 'main' || event.head.repo.full_name !== context.payload.repository.full_name) return;
+            const { data: pr } = await github.rest.pulls.get({ ...context.repo, pull_number: event.number });
+            if (pr.state === 'open' && pr.head.sha === event.head.sha && pr.head.repo.full_name === context.payload.repository.full_name) core.setOutput('number', pr.number);
       - name: Download evidence as data
-        if: steps.pr.outputs.number != '' && github.event.workflow_run.conclusion == 'success'
+        if: steps.pr.outputs.number != '' && inputs.build_result == 'success'
         uses: actions/download-artifact@v4
         with:
           name: portfolio-evidence
           path: qa-evidence
           github-token: ${{ github.token }}
-          run-id: ${{ github.event.workflow_run.id }}
+          run-id: ${{ github.run_id }}
       - name: Review and update PR report
         if: always() && steps.pr.outputs.number != ''
         uses: actions/github-script@v7
         env:
+          BUILD_RESULT: ${{ inputs.build_result }}
+          REVIEWER_REF: ${{ inputs.reviewer_ref }}
           CURSOR_QA_ENABLED: ${{ vars.CURSOR_QA_ENABLED }}
+          CURSOR_QA_APPROVED_PR: ${{ vars.CURSOR_QA_APPROVED_PR }}
           CURSOR_QA_MAX_ROUNDS: ${{ vars.CURSOR_QA_MAX_ROUNDS }}
           CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
           PR_NUMBER: ${{ steps.pr.outputs.number }}

@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { run } from '../../scripts/portfolio-qa/report.mjs';
 
-async function scenario({ conclusion = 'success', enabled = 'false', stale = false, existing = false } = {}) {
+async function scenario({ conclusion = 'success', enabled = 'false', stale = false, existing = false, reusable = false } = {}) {
   const directory = await mkdtemp(join(tmpdir(), 'portfolio-report-'));
   const previous = process.cwd();
   const oldEnv = { ...process.env };
@@ -16,11 +16,12 @@ async function scenario({ conclusion = 'success', enabled = 'false', stale = fal
   try {
     process.chdir(directory);
     process.env.PR_NUMBER = '12';
+    process.env.BUILD_RESULT = conclusion;
     process.env.PORTFOLIO_QA_ENABLED = enabled;
     delete process.env.OPENAI_API_KEY;
     delete process.env.OPENAI_MODEL;
     await run({
-      context: { repo: { owner: 'owner', repo: 'repo' }, payload: { repository: { full_name: 'owner/repo' }, workflow_run: { conclusion, head_sha: 'abc123', html_url: 'https://github.com/owner/repo/actions/runs/1' } } },
+      context: { runId: 123, repo: { owner: 'owner', repo: 'repo' }, payload: { repository: { full_name: 'owner/repo' }, ...(reusable ? {pull_request: pr} : {workflow_run: { conclusion, head_sha: 'abc123', html_url: 'https://github.com/owner/repo/actions/runs/1' }}) } },
       github: {
         rest: {
           pulls: { get: async () => ({ data: { ...pr, head: { ...pr.head, sha: stale && ++reads > 1 ? 'new-sha' : 'abc123' } } }) },
@@ -61,4 +62,11 @@ test('report is updated rather than adding repeat comments', async () => {
 test('a newer PR push suppresses stale comment publication', async () => {
   const { comments } = await scenario({ stale: true });
   assert.equal(comments.length, 0);
+});
+
+test('reusable reviewer uses the real PR event and caller run identity', async () => {
+  const { comments } = await scenario({ reusable: true });
+  assert.equal(comments.length, 1);
+  assert.match(comments[0].body, /actions\/runs\/123/);
+  assert.match(comments[0].body, /NOT REVIEWED.*disabled/);
 });
